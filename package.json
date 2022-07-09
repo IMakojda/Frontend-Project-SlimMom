@@ -1,10 +1,11 @@
 {
-  "name": "SlimMom",
+  "name": "Frontend-Project-SlimMom ",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://IMakojda.github.io/Frontend-Project-SlimMom/",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "dotenv": "^16.0.1",
     "modern-normalize": "^1.1.0",
@@ -13,13 +14,14 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:js": "eslint src/**/*.{js,jsx}"
   },
   "eslintConfig": {
     "extends": [

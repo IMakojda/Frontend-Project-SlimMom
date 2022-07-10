@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
-import { MenuContext } from "../NavState";
+import { MenuContext } from "../NavState/NavState";
 import styles from '../Footer.module.css';
 import { NavLink } from "react-router-dom";
 

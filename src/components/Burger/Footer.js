@@ -1,6 +1,6 @@
 import React from "react";
-import MainMenu from './MainMenu';
-import { NavState } from './NavState';
+import MainMenu from './MainMenu/MainMenu';
+import { NavState } from './NavState/NavState';
 import styles from './Footer.module.css';
 
 const Footer = () => {

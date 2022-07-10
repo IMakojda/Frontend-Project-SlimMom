@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { MenuContext } from '../NavState';
+import { MenuContext } from '../NavState/NavState';
 
 const MenuButton = styled.button`
 display:block;

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-
-import arrow from '../Image/Logo/arrow.png';
+import { FiCornerDownLeft } from 'react-icons/fi';
 
 const Title = styled.h2`
   margin: 0;
@@ -28,18 +27,6 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const Arrow = styled.div`
-  width: 20px;
-  height: 10px;
-  background-image: url(${arrow});
-  background-repeat: no-repeat;
-  background-position: center;
-
-  @media only screen and (min-width: 768px) {
-    display: none;
-  }
-`;
-
 const List = styled.div`
   display: flex;
   margin-right: 630px;
@@ -59,7 +46,7 @@ export default function UserMenu() {
         <ListItem>Калькулятор</ListItem>
       </List>
       <Button type="button">
-        <Arrow />
+        <FiCornerDownLeft color="black" size="20px" />
       </Button>
       <Title>Nic</Title>
       <Button type="button">Вихід</Button>

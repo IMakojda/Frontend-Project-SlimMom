@@ -1,0 +1,39 @@
+.ProductForm {
+  display: flex;
+  margin: 0px;
+  outline: none;
+  width: 240px;
+}
+.ProductFormWrapper {
+  margin-bottom: 60px;
+}
+.ProductWeight {
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  width: 106px;
+  margin-right: 87px;
+  padding-bottom: 20px;
+}
+.ProductName {
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  width: 240px;
+  margin-right: 32px;
+  padding-bottom: 20px;
+}
+/* .iconPlus{
+    fill: #fff
+}
+.iconPlus:hover{
+    fill: #9b9faa
+} */
+
+@media screen and(min-device-width: 1200px) {
+  .ProductName {
+    margin-right: 48px;
+  }
+  .ProductWeight {
+    width: 107px;
+    margin-right: 60px;
+  }
+}

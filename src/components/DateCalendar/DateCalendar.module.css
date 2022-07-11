@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.datetime {
+  border: none;
+  font-size: 18px;
+  width: 116px;
+  weight: 700;
+  line-height: 1.22;
+  padding: 0;
+}
+.iconCalendar {
+  background-color: #fff;
+  min-width: 28px;
+  min-height: 28px;
+  fill: #9b9faa;
+  align-self: end;
+}
+.iconCalendar:hover {
+  fill: #fc842d;
+}
+
+/* .rdtPicker td.rdtActive,
+.rdtPicker td.rdtActive:hover {
+  background-color: #fc842d !important;
+}
+.rdtPicker td.rdtToday:before {
+  border-bottom: 7px solid #fc842d;
+} */
+@media screen and (min-width: 768px) {
+  .datetime {
+    font-size: 34px;
+    width: 219px;
+  }
+}

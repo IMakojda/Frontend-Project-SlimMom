@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import BgTablet from '../../images/BackgroundTablet.webp'
 import BgDesk from'../../images/BackgroundDesc.webp'
+
 export const ResponsiveContainer=styled.div`
-  display: flex;
-  justify-content: center;
   padding:20px;
   margin-left: auto;
   margin-right: auto;

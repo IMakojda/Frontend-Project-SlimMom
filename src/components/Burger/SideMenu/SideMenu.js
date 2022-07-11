@@ -13,12 +13,17 @@ z-index: 293;
 display: block;
 width: 1280px;
 max-width: 100%;
+height: 100vh;
 margin-top: 0px;
 padding-right: 0px;
 align-items: stretch;
 background-color: #264061;
 transform: translateX(-100%);
 transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+@media screen and (min-width: 768px) {
+    display: none;
+}
+
 
 ${(props) =>
         props.open &&

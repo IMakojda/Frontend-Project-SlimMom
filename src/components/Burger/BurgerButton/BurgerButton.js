@@ -5,13 +5,17 @@ import { MenuContext } from '../NavState/NavState';
 const MenuButton = styled.button`
 display:block;
 transform-origin: 18px 12px;
-float: left;
+float: right;
 outline: 0;
 border: 0;
 padding-top: 28px;
 margin-left: 0;
 margin-bottom: 28px;
 background: none;
+
+@media screen and (min-width: 768px) {
+    display: none;
+}
 
 &.active{
     span:nth-of-type(1){

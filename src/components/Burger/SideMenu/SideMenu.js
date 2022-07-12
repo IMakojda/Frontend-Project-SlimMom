@@ -19,6 +19,9 @@ align-items: stretch;
 background-color: #264061;
 transform: translateX(-100%);
 transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+@media screen and (min-width: 768px){
+    display: none;
+}
 
 ${(props) =>
         props.open &&

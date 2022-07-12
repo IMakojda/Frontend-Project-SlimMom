@@ -91,7 +91,7 @@ const Link = styled(NavLink)`
 
 const NavHeader = styled.nav`
   padding: 20px 20px 16px 14px;
-
+  display: flex;
   @media only screen and (min-width: ${layoutStyles.deskTop}) {
     display: flex;
     align-items: center;
@@ -171,7 +171,7 @@ export default function AppBar() {
               <WrapperUserMenuDesktop>
                 <UserMenu />
               </WrapperUserMenuDesktop>
-              <Button />{' '}
+              <Button />
             </>
           ) : (
             <AuthNav />

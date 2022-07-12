@@ -34,6 +34,7 @@ const Button = styled.button`
 const Arrow = styled(FiCornerDownLeft)`
   @media only screen and (min-width: ${layoutStyles.tablet}) {
     display: none;
+    visibility: hidden;
   }
 `;
 
@@ -46,7 +47,7 @@ const List = styled.div`
 `;
 
 const ListItem = styled(NavLink)`
-  color: ${layoutStyles.placeholderColor}
+  color: ${layoutStyles.placeholderColor};
   font-family: ${layoutStyles.gothamPro};
   font-size: 14px;
   font-weight: 700;

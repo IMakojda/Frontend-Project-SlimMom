@@ -5,7 +5,7 @@ import logo from '../Image/Logo/logo.png';
 import logoBig from '../Image/Logo/logo@2x.png';
 import slim from '../Image/Logo/slim.png';
 import mom from '../Image/Logo/mom.png';
-import vector from '../Image/Logo/vector.png';
+
 import styled from 'styled-components';
 import AuthNav from './AuthNav';
 import UserMenu from './UserMenu';
@@ -13,7 +13,6 @@ import authSelectors from '../../redux/auth/selectors';
 
 import { NavState } from 'components/Burger/NavState/NavState';
 import MainMenu from 'components/Burger/MainMenu';
-
 
 const Header = styled.header`
   display: flex;
@@ -86,6 +85,11 @@ const Link = styled(NavLink)`
   display: flex;
   align-items: center;
   padding: 20px 0 16px 20px;
+
+  @media only screen and (min-width: ${layoutStyles.tablet}) {
+    margin-right: 330px;
+  }
+
   @media only screen and (min-width: ${layoutStyles.deskTop}) {
     position: relative;
     padding: 80px 0 0 16px;
@@ -128,22 +132,6 @@ const LogoMom = styled.span`
   background-size: cover;
 `;
 
-const Button = styled.button`
-  background-image: url(${vector});
-  border: none;
-  background-color: transparent;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-position: center;
-
-  @media only screen and (min-width: ${layoutStyles.deskTop}) {
-    display: none;
-  } ;
-`;
-
 export default function AppBar() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
@@ -175,15 +163,16 @@ export default function AppBar() {
               <WrapperUserMenuDesktop>
                 <UserMenu />
               </WrapperUserMenuDesktop>
-              <Button />
             </>
           ) : (
             <AuthNav />
           )}
         </NavHeader>
-        <NavState>
+        {isLoggedIn && (
+          <NavState>
             <MainMenu />
           </NavState>
+        )}
       </Header>
 
       {isLoggedIn && (

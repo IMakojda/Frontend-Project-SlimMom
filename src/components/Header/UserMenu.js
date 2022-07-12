@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiCornerDownLeft } from 'react-icons/fi';
 
@@ -27,26 +28,41 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-const List = styled.div`
-  display: flex;
-  margin-right: 630px;
-  @media only screen and (max-width: 1200px) {
+const Arrow = styled(FiCornerDownLeft)`
+  @media only screen and (min-width: 768px) {
     display: none;
   }
 `;
 
-const ListItem = styled.span`
+const List = styled.div`
+  display: flex;
+  margin-right: 630px;
+  @media only screen and (max-width: 1280px) {
+    display: none;
+  }
+`;
+
+const ListItem = styled(NavLink)`
+  color: #9b9faa;
+  font-family: Gotham Pro;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 13px;
+  letter-spacing: 0.04em;
   padding: 10px 10px 10px 0;
+  &.active {
+    color: #212121;
+  }
 `;
 export default function UserMenu() {
   return (
     <>
       <List>
-        <ListItem>Щоденник</ListItem>
-        <ListItem>Калькулятор</ListItem>
+        <ListItem to="/diary">Щоденник</ListItem>
+        <ListItem to="/calculator">Калькулятор</ListItem>
       </List>
       <Button type="button">
-        <FiCornerDownLeft color="black" size="20px" />
+        <Arrow color="black" size="20px" />
       </Button>
       <Title>Nic</Title>
       <Button type="button">Вихід</Button>

@@ -12,6 +12,9 @@ padding-top: 28px;
 margin-left: 0;
 margin-bottom: 28px;
 background: none;
+@media screen and (min-width: 768px){
+    display: none;
+}
 
 &.active{
     span:nth-of-type(1){

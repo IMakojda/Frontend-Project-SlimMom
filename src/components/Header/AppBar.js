@@ -9,6 +9,10 @@ import styled from 'styled-components';
 import AuthNav from './AuthNav';
 // import UserMenu from './UserMenu';
 
+import { NavState } from 'components/Burger/NavState/NavState';
+import MainMenu from 'components/Burger/MainMenu';
+
+
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
@@ -163,6 +167,9 @@ export default function AppBar() {
           </WrapperUserMenuDesktop>
           <Button /> */}
         </NavHeader>
+        <NavState>
+            <MainMenu />
+          </NavState>
       </Header>
 
       {/* <WrapperUserMenu>

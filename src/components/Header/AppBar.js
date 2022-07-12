@@ -4,10 +4,10 @@ import logo from '../Image/Logo/logo.png';
 import logoBig from '../Image/Logo/logo@2x.png';
 import slim from '../Image/Logo/slim.png';
 import mom from '../Image/Logo/mom.png';
-import vector from '../Image/Logo/vector.png';
+// import vector from '../Image/Logo/vector.png';
 import styled from 'styled-components';
 import AuthNav from './AuthNav';
-import UserMenu from './UserMenu';
+// import UserMenu from './UserMenu';
 
 const Header = styled.header`
   display: flex;
@@ -40,42 +40,42 @@ const Wrapper = styled.div`
   }
 `;
 
-const WrapperMobile = styled.div`
-  display: flex;
-  padding: 20px 0px 16px 10px;
+// const WrapperMobile = styled.div`
+//   display: flex;
+//   padding: 20px 0px 16px 10px;
 
-  @media only screen and (min-width: 1280px) {
-    position: absolute;
-    bottom: -15px;
-    left: 67px;
-    border-right: 2px solid #e0e0e0;
-    padding-right: 20px;
-  }
-`;
+//   @media only screen and (min-width: 1280px) {
+//     position: absolute;
+//     bottom: -15px;
+//     left: 67px;
+//     border-right: 2px solid #e0e0e0;
+//     padding-right: 20px;
+//   }
+// `;
 
-const WrapperUserMenu = styled.div`
-  width: 100%;
-  heigth: auto;
-  display: flex;
-  justify-content: space-between;
+// const WrapperUserMenu = styled.div`
+//   width: 100%;
+//   heigth: auto;
+//   display: flex;
+//   justify-content: space-between;
 
-  background-color: #eff1f3;
-  @media only screen and (min-width: 768px) {
-    display: none;
-  }
-`;
+//   background-color: #eff1f3;
+//   @media only screen and (min-width: 768px) {
+//     display: none;
+//   }
+// `;
 
-const WrapperUserMenuDesktop = styled.div`
-  width: 100%;
-  heigth: auto;
-  display: flex;
-  justify-content: space-between;
+// const WrapperUserMenuDesktop = styled.div`
+//   width: 100%;
+//   heigth: auto;
+//   display: flex;
+//   justify-content: space-between;
 
-  margin-right: 50px;
-  @media only screen and (max-width: 767px) {
-    display: none;
-  }
-`;
+//   margin-right: 50px;
+//   @media only screen and (max-width: 767px) {
+//     display: none;
+//   }
+// `;
 const Link = styled(NavLink)`
   display: flex;
   align-items: center;
@@ -122,21 +122,21 @@ const LogoMom = styled.span`
   background-size: cover;
 `;
 
-const Button = styled.button`
-  background-image: url(${vector});
-  border: none;
-  background-color: transparent;
-  width: 24px;
-  height: 24px;
-  padding: 0;
-  cursor: pointer;
-  background-repeat: no-repeat;
-  background-position: center;
+// const Button = styled.button`
+//   background-image: url(${vector});
+//   border: none;
+//   background-color: transparent;
+//   width: 24px;
+//   height: 24px;
+//   padding: 0;
+//   cursor: pointer;
+//   background-repeat: no-repeat;
+//   background-position: center;
 
-  @media only screen and (min-width: 1280px) {
-    display: none;
-  } ;
-`;
+//   @media only screen and (min-width: 1280px) {
+//     display: none;
+//   } ;
+// `;
 
 export default function AppBar() {
   return (

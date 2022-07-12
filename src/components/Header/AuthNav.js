@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { layoutStyles } from '../../stlyles/layoutStyles';
 const Link = styled(NavLink)`
-  color: #9b9faa;
-  font-family: Gotham Pro;
+  color: ${layoutStyles.placeholderColor};
+  font-family: ${layoutStyles.gothamPro};
   font-size: 14px;
   font-weight: 700;
   line-height: 13px;

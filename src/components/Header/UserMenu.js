@@ -1,18 +1,19 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiCornerDownLeft } from 'react-icons/fi';
+import { layoutStyles } from '../../stlyles/layoutStyles';
 
 const Title = styled.h2`
   margin: 0;
   display: inline;
-  font-family: Gotham Pro;
+  font-family: ${layoutStyles.gothamPro};
   font-size: 14px;
   font-weight: 700;
   line-height: 13px;
   letter-spacing: 0.04em;
   margin-left: auto;
   padding: 15px 16px 13px 0;
-  border-right: 2px solid #e0e0e0;
+  border-right: 2px solid ${layoutStyles.formBorderColor};
 `;
 
 const Button = styled.button`
@@ -21,7 +22,7 @@ const Button = styled.button`
   font-weight: 700;
   line-height: 13px;
   letter-spacing: 0.04em;
-  color: #9b9faa;
+  color: ${layoutStyles.placeholderColor};
   border: none;
   background-color: transparent;
   padding: 4px 10px 0 15px;
@@ -29,7 +30,7 @@ const Button = styled.button`
 `;
 
 const Arrow = styled(FiCornerDownLeft)`
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: ${layoutStyles.tablet}) {
     display: none;
   }
 `;
@@ -37,14 +38,14 @@ const Arrow = styled(FiCornerDownLeft)`
 const List = styled.div`
   display: flex;
   margin-right: 630px;
-  @media only screen and (max-width: 1280px) {
+  @media only screen and (max-width: ${layoutStyles.deskTop}) {
     display: none;
   }
 `;
 
 const ListItem = styled(NavLink)`
-  color: #9b9faa;
-  font-family: Gotham Pro;
+  color: ${layoutStyles.placeholderColor}
+  font-family: ${layoutStyles.gothamPro};
   font-size: 14px;
   font-weight: 700;
   line-height: 13px;

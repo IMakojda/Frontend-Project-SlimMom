@@ -47,7 +47,7 @@ export const SideMenu = ({ children }) => {
                     to="/diary"
                     onClick={clickHandler}
                 >
-                    Дневник
+                    Щоденник
                 </NavLink>
                 <NavLink
                     className={styles.linkCalc}

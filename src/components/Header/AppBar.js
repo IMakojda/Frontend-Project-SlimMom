@@ -11,6 +11,10 @@ import AuthNav from './AuthNav';
 import UserMenu from './UserMenu';
 import authSelectors from '../../redux/auth/selectors';
 
+import { NavState } from 'components/Burger/NavState/NavState';
+import MainMenu from 'components/Burger/MainMenu';
+
+
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
@@ -177,6 +181,9 @@ export default function AppBar() {
             <AuthNav />
           )}
         </NavHeader>
+        <NavState>
+            <MainMenu />
+          </NavState>
       </Header>
 
       {isLoggedIn && (

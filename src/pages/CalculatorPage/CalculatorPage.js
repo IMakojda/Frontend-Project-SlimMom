@@ -1,5 +1,5 @@
-export  default function CalculatorPage(){
-  return  <h1>
-      CalculatorPage
-    </h1>
+export  default function DiaryPage(){
+  return <h1>
+   Calculator Page
+  </h1>
 }

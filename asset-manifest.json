@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Frontend-Project-SlimMom/static/css/main.83a9112f.css",
-    "main.js": "/Frontend-Project-SlimMom/static/js/main.4d03d570.js",
+    "main.js": "/Frontend-Project-SlimMom/static/js/main.cab03509.js",
     "static/media/Verdana.ttf": "/Frontend-Project-SlimMom/static/media/Verdana.06356c47838279a6fe85.ttf",
     "static/media/Verdana-Bold.ttf": "/Frontend-Project-SlimMom/static/media/Verdana-Bold.8aec3990e9cd04b52419.ttf",
     "static/media/BackgroundDesc.webp": "/Frontend-Project-SlimMom/static/media/BackgroundDesc.564ff88196ba9e0990c8.webp",
@@ -10,10 +10,10 @@
     "static/media/gothampro.ttf": "/Frontend-Project-SlimMom/static/media/gothampro.4f71921a0823129cd8ba.ttf",
     "index.html": "/Frontend-Project-SlimMom/index.html",
     "main.83a9112f.css.map": "/Frontend-Project-SlimMom/static/css/main.83a9112f.css.map",
-    "main.4d03d570.js.map": "/Frontend-Project-SlimMom/static/js/main.4d03d570.js.map"
+    "main.cab03509.js.map": "/Frontend-Project-SlimMom/static/js/main.cab03509.js.map"
   },
   "entrypoints": [
     "static/css/main.83a9112f.css",
-    "static/js/main.4d03d570.js"
+    "static/js/main.cab03509.js"
   ]
 }

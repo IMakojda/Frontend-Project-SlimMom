@@ -22,7 +22,7 @@ export default function App(){
 
                 <Route path='/calculator' element={<CalculatorPage/>}/>
 
-                <Route path='/diary' element={<DiaryPage/>}/>
+                <Route path='/dairy' element={<DiaryPage/>}/>
 
                 <Route path='*' element={<NotFound />} />
 

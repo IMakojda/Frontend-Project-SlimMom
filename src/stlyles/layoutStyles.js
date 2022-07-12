@@ -6,6 +6,7 @@ export const layoutStyles={
   closeButtonColor:'#000',
   backDropColor:'#264061',
   footerBackground:'#E5E5E5',
+  formBorderColor: '#E0E0E0',
 
 //  breakpoint
   deskTop:'1280px',

@@ -6,10 +6,10 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
-import {layoutStyles} from '../../stlyles/layoutStyles';
+import { layoutStyles } from '../../stlyles/layoutStyles';
 import Button from '../button/Button.styled';
 
-import sprite from '../Image/icon/sprite.svg';
+import { FiX } from 'react-icons/fi';
 // import styles from "./ProductsList.module.css";
 
 const columns = [
@@ -111,15 +111,17 @@ export default function ProductsList() {
                       background={layoutStyles.mainBackground}
                       width="28px"
                       height="28px"
-                      
+
                       // clickOnBtn={() => {
                       //   setOpenCalendar(true);
                       // }}
                       // className={styles.iconRemove}
                     >
-                      <svg width="14" height="14" fill={layoutStyles.placeholderColor}>
-                        <use href={`${sprite}#icon-remove`}></use>
-                      </svg>
+                      <FiX
+                        width="14"
+                        height="14"
+                        fill={layoutStyles.placeholderColor}
+                      />
                     </Button>
                   </TableRow>
                 );

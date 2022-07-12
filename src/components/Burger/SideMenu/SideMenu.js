@@ -13,6 +13,7 @@ z-index: 293;
 display: block;
 width: 1280px;
 max-width: 100%;
+height: 100%;
 margin-top: 0px;
 padding-right: 0px;
 align-items: stretch;

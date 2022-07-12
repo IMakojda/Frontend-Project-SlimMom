@@ -8,7 +8,7 @@ transform-origin: 18px 12px;
 float: right;
 outline: 0;
 border: 0;
-padding-top: 28px;
+padding-top: 29px;
 margin-left: 0;
 margin-bottom: 28px;
 background: none;

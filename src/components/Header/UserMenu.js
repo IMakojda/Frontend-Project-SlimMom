@@ -2,7 +2,9 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiCornerDownLeft } from 'react-icons/fi';
 import { layoutStyles } from '../../stlyles/layoutStyles';
-
+import { useDispatch, useSelector } from 'react-redux';
+import authSelectors from '../../redux/auth/selectors';
+import authOperations from '../../redux/auth/authOperations';
 const Title = styled.h2`
   margin: 0;
   display: inline;
@@ -32,6 +34,7 @@ const Button = styled.button`
 const Arrow = styled(FiCornerDownLeft)`
   @media only screen and (min-width: ${layoutStyles.tablet}) {
     display: none;
+    visibility: hidden;
   }
 `;
 
@@ -44,7 +47,7 @@ const List = styled.div`
 `;
 
 const ListItem = styled(NavLink)`
-  color: ${layoutStyles.placeholderColor}
+  color: ${layoutStyles.placeholderColor};
   font-family: ${layoutStyles.gothamPro};
   font-size: 14px;
   font-weight: 700;
@@ -56,6 +59,8 @@ const ListItem = styled(NavLink)`
   }
 `;
 export default function UserMenu() {
+  const dispatch = useDispatch();
+  const name = useSelector(authSelectors.getUserName);
   return (
     <>
       <List>
@@ -65,8 +70,10 @@ export default function UserMenu() {
       <Button type="button">
         <Arrow color="black" size="20px" />
       </Button>
-      <Title>Nic</Title>
-      <Button type="button">Вихід</Button>
+      <Title>{name}</Title>
+      <Button type="button" onClick={() => dispatch(authOperations.logOut())}>
+        Вихід
+      </Button>
     </>
   );
 }

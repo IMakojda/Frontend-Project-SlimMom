@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-
+import { layoutStyles } from '../../stlyles/layoutStyles';
 import logo from '../Image/Logo/logo.png';
 import logoBig from '../Image/Logo/logo@2x.png';
 import slim from '../Image/Logo/slim.png';
@@ -13,9 +13,9 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 2px solid ${layoutStyles.formBorderColor};
 
-  @media only screen and (min-width: 1280px) {
+  @media only screen and (min-width: ${layoutStyles.deskTop}) {
     border-bottom: none;
     justify-content: start;
     align-items: baseline;
@@ -26,16 +26,16 @@ const Wrapper = styled.div`
   display: flex;
   padding: 20px 0px 16px 10px;
 
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: ${layoutStyles.tablet}) {
     display: none;
     padding: 20px 0 16px 20px;
   }
 
-  @media only screen and (min-width: 1280px) {
+  @media only screen and (min-width: ${layoutStyles.deskTop}) {
     position: absolute;
     bottom: -15px;
     left: 67px;
-    border-right: 2px solid #e0e0e0;
+    border-right: 2px solid ${layoutStyles.formBorderColor};
     padding-right: 20px;
   }
 `;
@@ -44,11 +44,11 @@ const Wrapper = styled.div`
 //   display: flex;
 //   padding: 20px 0px 16px 10px;
 
-//   @media only screen and (min-width: 1280px) {
+//   @media only screen and (min-width: ${layoutStyles.deskTop}) {
 //     position: absolute;
 //     bottom: -15px;
 //     left: 67px;
-//     border-right: 2px solid #e0e0e0;
+//     border-right: 2px solid ${layoutStyles.formBorderColor};
 //     padding-right: 20px;
 //   }
 // `;
@@ -60,7 +60,7 @@ const Wrapper = styled.div`
 //   justify-content: space-between;
 
 //   background-color: #eff1f3;
-//   @media only screen and (min-width: 768px) {
+//   @media only screen and (min-width: ${layoutStyles.tablet}) {
 //     display: none;
 //   }
 // `;
@@ -72,7 +72,7 @@ const Wrapper = styled.div`
 //   justify-content: space-between;
 
 //   margin-right: 50px;
-//   @media only screen and (max-width: 767px) {
+//   @media only screen and (max-width: ${layoutStyles.tablet}) {
 //     display: none;
 //   }
 // `;
@@ -80,7 +80,7 @@ const Link = styled(NavLink)`
   display: flex;
   align-items: center;
   padding: 20px 0 16px 20px;
-  @media only screen and (min-width: 1280px) {
+  @media only screen and (min-width: ${layoutStyles.deskTop}) {
     position: relative;
     padding: 80px 0 0 16px;
     margin-right: 135px;
@@ -90,7 +90,7 @@ const Link = styled(NavLink)`
 const NavHeader = styled.nav`
   padding: 20px 20px 16px 14px;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: ${layoutStyles.deskTop}) {
     display: flex;
     align-items: center;
   }
@@ -101,7 +101,7 @@ const Logo = styled.div`
 
   background-image: url(${logo});
   background-size: cover;
-  @media only screen and (min-width: 1280px) {
+  @media only screen and (min-width: ${layoutStyles.deskTop}) {
     min-height: 66px;
     min-width: 70px;
     background-image: url(${logoBig});
@@ -133,7 +133,7 @@ const LogoMom = styled.span`
 //   background-repeat: no-repeat;
 //   background-position: center;
 
-//   @media only screen and (min-width: 1280px) {
+//   @media only screen and (min-width: ${layoutStyles.deskTop}) {
 //     display: none;
 //   } ;
 // `;

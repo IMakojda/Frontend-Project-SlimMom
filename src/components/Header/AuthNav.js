@@ -21,7 +21,7 @@ const Link = styled(NavLink)`
 export default function AuthNav() {
   return (
     <>
-      <Link to="/register">Реєстрація</Link>
+      <Link to="/signup">Реєстрація</Link>
       <Link to="/login">Вхід</Link>
     </>
   );

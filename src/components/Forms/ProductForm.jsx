@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, Form, Formik, FormikProps } from 'formik';
+import { Field, Form, Formik } from 'formik';
 
 import styled, { createGlobalStyle } from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';

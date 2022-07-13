@@ -23,7 +23,9 @@ export default function DiaryPage() {
       {!isMobile && <ProductForm />}
       <ProductsList />
       {isMobile && (
-        <Button margin={'60px auto 0'}>
+        <Button 
+        margin={'60px auto 0'}
+        >
           <ImPlus width="20" height="20" fill={layoutStyles.mainBackground} />
         </Button>
       )}

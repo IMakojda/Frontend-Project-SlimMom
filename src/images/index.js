@@ -13,7 +13,7 @@ import StrawberryTablet from './Stravbery/StrawberryTablet.webp'
 import VectorTablet from  './VectorBackground/VectorTablet.webp';
 import VectorDesk from  './VectorBackground/VectorDesk.webp';
 
-export default {
+export  {
   BananaDesktop,
   BananaTablet,
   LeafDesk,

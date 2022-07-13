@@ -1,7 +1,7 @@
-import axios from "axios";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from 'axios';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = `heroku`
+axios.defaults.baseURL = `https://agile-cove-20040.herokuapp.com/`;
 
 const token = {
   set(token) {
@@ -9,28 +9,30 @@ const token = {
   },
   unset() {
     axios.defaults.headers.common.Authorization = ``;
+  },
+};
+const register = createAsyncThunk(
+  '/auth/register',
+  async (credential, thunkAPI) => {
+    try {
+      const { data } = await axios.post('/users/signup', credential);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
-
-}
-const register = createAsyncThunk('/auth/register', async (credential, thunkAPI) => {
-  try {
-    const { data } = await axios.post('/users/signup', credential);
-    token.set(data.token);
-    return data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error)
-  }
-});
+);
 
 const logIn = createAsyncThunk('/auth/login', async (credential, thunkAPI) => {
   try {
     const { data } = await axios.post('/users/login', credential);
     token.set(data.token);
-    return data
+    return data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error)
+    return thunkAPI.rejectWithValue(error);
   }
-})
+});
 
 const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
   try {

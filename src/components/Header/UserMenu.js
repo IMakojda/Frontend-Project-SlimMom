@@ -2,9 +2,11 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiCornerDownLeft } from 'react-icons/fi';
 import { layoutStyles } from '../../stlyles/layoutStyles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import authSelectors from '../../redux/auth/selectors';
 import authOperations from '../../redux/auth/authOperations';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Title = styled.h2`
   margin: 0;
   display: inline;
@@ -13,8 +15,8 @@ const Title = styled.h2`
   font-weight: 700;
   line-height: 13px;
   letter-spacing: 0.04em;
-  margin-left: auto;
   padding: 15px 16px 13px 0;
+  margin-left: 10px;
   border-right: 2px solid ${layoutStyles.formBorderColor};
 `;
 
@@ -29,6 +31,9 @@ const Button = styled.button`
   background-color: transparent;
   padding: 4px 10px 0 15px;
   cursor: pointer;
+  &:hover {
+    color: ${layoutStyles.activeButton};
+  }
 `;
 
 const Arrow = styled(FiCornerDownLeft)`
@@ -58,9 +63,69 @@ const ListItem = styled(NavLink)`
     color: #212121;
   }
 `;
+
+const ToastTitle = styled.h2`
+  padding: 20px;
+  font-family: ${layoutStyles.gothamPro};
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 13px;
+  letter-spacing: 0.04em;
+`;
+
+const Wrapper = styled.div`
+  margin-left: auto;
+  display: flex;
+`;
+const ImgAvatar = styled.img`
+  display: block;
+  width: 100%;
+  height: 35px;
+  object-fit: cover;
+`;
+const WrapperAvatar = styled.div`
+  width: 50px;
+  height: 45px;
+  overflow: hidden;
+`;
 export default function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUserName);
+  const avatar = useSelector(authSelectors.getUserAvatar);
+  const notify = () =>
+    toast(
+      <>
+        <ToastTitle>Ви впевнені,що хочете залишити цю сторінку?</ToastTitle>
+        <Button
+          type="button"
+          onClick={() => {
+            toast.dismiss();
+            dispatch(authOperations.logOut());
+          }}
+        >
+          Так
+        </Button>
+
+        <Button
+          type="button"
+          onClick={() => {
+            toast.dismiss();
+          }}
+        >
+          Ні
+        </Button>
+      </>,
+      {
+        position: 'top-center',
+        theme: 'light',
+        autoClose: false,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
   return (
     <>
       <List>
@@ -70,10 +135,17 @@ export default function UserMenu() {
       <Button type="button">
         <Arrow color="black" size="20px" />
       </Button>
-      <Title>{name}</Title>
-      <Button type="button" onClick={() => dispatch(authOperations.logOut())}>
-        Вихід
-      </Button>
+      <Wrapper>
+        <WrapperAvatar>
+          <ImgAvatar src={avatar} alt="avatar" />
+        </WrapperAvatar>
+
+        <Title>{name}</Title>
+        <Button type="button" onClick={notify}>
+          Вихід
+        </Button>
+      </Wrapper>
+      <ToastContainer toastStyle={{ border: '1px solid #FC842D' }} />
     </>
   );
 }

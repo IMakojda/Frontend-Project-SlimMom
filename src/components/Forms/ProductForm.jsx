@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import Button from '../button/Button.styled';
 import { ImPlus } from 'react-icons/im';
@@ -38,6 +38,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function ProductForm(styles) {
  
+
+
+
 //  const Div = styled.div`
 //     margin-bottom: 60px;
 //   `;

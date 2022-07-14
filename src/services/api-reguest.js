@@ -2,14 +2,14 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://agile-cove-20040.herokuapp.com/api";
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset(token) {
-    axios.defaults.headers.common.Authorization = "";
-  },
-};
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//   },
+//   unset(token) {
+//     axios.defaults.headers.common.Authorization = "";
+//   },
+// };
 
 export async function getAllProducts() {
   try {

@@ -1,11 +1,16 @@
+import { format } from 'date-fns'
 import { Wrapper, Flex, List, Item, Title, Text } from './SummaryForDay.styled'
 
 export default function SummaryForDay() {
   
+  const date = new Date(Date.now());
+
+  const formatedDate = format(date, 'MM/dd/yyyy');
+
   return (
       <Wrapper>
       <Flex>
-        <Title>Загалом за "вибрана дата"</Title>
+        <Title>Загалом за {formatedDate}</Title>
         <List>
         <Item>
           <Text>Втрачено</Text><Text>000 ккал</Text>

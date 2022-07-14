@@ -1,5 +1,5 @@
+import SummaryForDay from "components/SummaryForDay";
+
 export  default function DiaryPage(){
-  return <h1>
-   Calculator Page
-  </h1>
+  return <SummaryForDay/>
 }

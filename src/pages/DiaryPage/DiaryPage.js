@@ -22,10 +22,10 @@ export default function DiaryPage() {
         <DateCalendar />
       </div>
 
-      {isMobile && addProduct ? <ProductForm  /> : <ProductForm display={'none'} />} 
+      {isMobile && addProduct ? <ProductForm  /> : <ProductForm display={'none'} />}
       <ProductsList />
       {isMobile && (
-        <Button 
+        <Button
         onClick={()=>{setAddProduct(true)}}
         margin={'60px auto 0'}
         >

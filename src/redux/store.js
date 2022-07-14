@@ -12,6 +12,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import AuthReducer from "./auth/authSlice";
 import daySummaryReducer from "./dairy/dairyReducer";
+import loaderReducer from '../redux/loaderReducer/loaderSlice'
 
 const authPersistConfig = {
   key: 'auth',
@@ -24,6 +25,7 @@ export const store = configureStore({
   reducer: {
   auth: persistedReducer,
   dairy: daySummaryReducer,
+  loader:loaderReducer,
   },
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({

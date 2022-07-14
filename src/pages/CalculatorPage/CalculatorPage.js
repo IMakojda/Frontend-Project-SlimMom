@@ -1,5 +1,3 @@
-export  default function DiaryPage(){
-  return <h1>
-   Calculator Page
-  </h1>
+export default function DiaryPage() {
+  return <h1>Calculator Page</h1>;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Formik } from 'formik';
+import { useMediaQuery } from 'react-responsive';
 
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
@@ -29,22 +30,34 @@ const useStyles = makeStyles(theme => ({
     '& .MuiAutocomplete-endAdornment': {
       display: 'none',
     },
-   
+    '@media screen and (max-width: 768px': {
+      minWidth: '280px',
+    },
   },
 }));
 
-export default function ProductForm() {
+export default function ProductForm(styles) {
  
- const Div = styled.div`
-    margin-bottom: 60px;
-  `;
+//  const Div = styled.div`
+//     margin-bottom: 60px;
+//   `;
 
   const FormikWrapperStyles = createGlobalStyle`
- .ProductForm {
-  display: flex;
+  .wrapper{
+    position: absolute;
+    top: 0;
+    ${styles};
+    /* top: -170%; */
+
+  }
+   .ProductForm {
+    padding-top: 80px;
+    background-color: white;
+  display: block;
   margin: 0px;
   outline: none;
-  width: 240px;
+  width: 100%;
+  height: 100vh;
 }
 .ProductWeight {
   margin-right: 87px;
@@ -52,7 +65,25 @@ export default function ProductForm() {
 .ProductName {
   margin-right: 32px;
 }
-
+  @media screen and (min-width: ${layoutStyles.tablet}) {
+    .wrapper{
+    position: relative;
+    display: block;
+  }
+ .ProductForm {
+  display: flex;
+  margin: 0px;
+  outline: none;
+  width: 240px;
+  height: 100%;
+}
+.ProductWeight {
+  margin-right: 87px;
+}
+.ProductName {
+  margin-right: 32px;
+}
+  }
 @media screen and (min-width: ${layoutStyles.deskTop}) {
   .ProductName {
     margin-right: 48px;
@@ -63,11 +94,14 @@ export default function ProductForm() {
 }
 
 `;
+const isMobile = useMediaQuery({
+  query: `(max-width: ${layoutStyles.tablet})`,
+});
 
   const classes = useStyles();
 
   return (
-    <Div>
+    <div className={'wrapper'}>
       <Formik
         initialValues={{ product: '', weight: '' }}
         onSubmit={(values, actions) => {
@@ -99,25 +133,27 @@ export default function ProductForm() {
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                 minWidth: '140px',
-                marginRight: '32px',
+                margin: '0 32px 60px 0',
               }}
               classes={classes}
               label="Вага продукта"
             />
           </div>
           <Button
+          margin='0 auto 0'
           // clickOnBtn={() => {
           //   setOpenCalendar(true);
           // }}
           // className={styles.iconPlus}
           >
-            <ImPlus width="20" height="20" fill={layoutStyles.mainBackground} />
+            {isMobile ? <p weight='176px'>Додати</p> : <ImPlus width="20" height="20" fill={layoutStyles.mainBackground} /> } 
+            
           </Button>
         </Form>
       </Formik>
 
       <FormikWrapperStyles />
-    </Div>
+    </div>
   );
 }
 

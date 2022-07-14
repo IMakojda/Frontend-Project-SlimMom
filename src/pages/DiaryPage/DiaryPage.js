@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import DateCalendar from '../../components/DateCalendar/DateCalendar';
@@ -10,6 +11,7 @@ import { ImPlus } from 'react-icons/im';
 import styles from './DiaryPage.module.css';
 
 export default function DiaryPage() {
+  const [addProduct, setAddProduct] = useState(false);
   const isMobile = useMediaQuery({
     query: `(max-width: ${layoutStyles.tablet})`,
   });
@@ -20,10 +22,11 @@ export default function DiaryPage() {
         <DateCalendar />
       </div>
 
-      {!isMobile && <ProductForm />}
+      {isMobile && addProduct ? <ProductForm  /> : <ProductForm display={'none'} />} 
       <ProductsList />
       {isMobile && (
         <Button 
+        onClick={()=>{setAddProduct(true)}}
         margin={'60px auto 0'}
         >
           <ImPlus width="20" height="20" fill={layoutStyles.mainBackground} />

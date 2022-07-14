@@ -9,7 +9,7 @@ import {
   Text,
 } from './SummaryForDay.styled';
 
-//
+//доделать стили для десктопа
 
 export default function SummaryForDay() {
   

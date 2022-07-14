@@ -10,12 +10,10 @@ background-color: #F0F1F3;
 
 @media screen and (min-width: 768px) {
 flex-direction: row;
-justify-content: space-around;
+justify-content: flex-start;
 }
 
 @media screen and (min-width: 1280px) {
-position: absolute;
-
 flex-direction: column;
 justify-content: center;
 align-items: center;
@@ -26,10 +24,9 @@ max-width: 500px;
 export const SummaryWrap = styled.div`
 width: 288px;
 
- ${'' /* @media screen and (min-width: 768px) {
-  display: flex;
-  flex-direction: column;
-  } */}
+ @media screen and (min-width: 768px) and (max-width: 1279px) {
+  margin-right: 80px;
+  }
 `;
 
 export const FoodRecWrap = styled.div`

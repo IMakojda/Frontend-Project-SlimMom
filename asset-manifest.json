@@ -1,7 +1,21 @@
 {
   "files": {
-    "main.css": "/Frontend-Project-SlimMom/static/css/main.9636d403.css",
-    "main.js": "/Frontend-Project-SlimMom/static/js/main.cbdf0a48.js",
+    "main.css": "/Frontend-Project-SlimMom/static/css/main.8a71a1ac.css",
+    "main.js": "/Frontend-Project-SlimMom/static/js/main.04bbe7ab.js",
+    "static/css/865.20adf84d.chunk.css": "/Frontend-Project-SlimMom/static/css/865.20adf84d.chunk.css",
+    "static/js/865.0df5eaa3.chunk.js": "/Frontend-Project-SlimMom/static/js/865.0df5eaa3.chunk.js",
+    "static/js/498.fba857d9.chunk.js": "/Frontend-Project-SlimMom/static/js/498.fba857d9.chunk.js",
+    "static/js/5.8c857e30.chunk.js": "/Frontend-Project-SlimMom/static/js/5.8c857e30.chunk.js",
+    "static/js/839.f406bc62.chunk.js": "/Frontend-Project-SlimMom/static/js/839.f406bc62.chunk.js",
+    "static/css/901.7da5e815.chunk.css": "/Frontend-Project-SlimMom/static/css/901.7da5e815.chunk.css",
+    "static/js/901.74588a46.chunk.js": "/Frontend-Project-SlimMom/static/js/901.74588a46.chunk.js",
+    "static/js/622.96325ae7.chunk.js": "/Frontend-Project-SlimMom/static/js/622.96325ae7.chunk.js",
+    "static/js/697.e880e2f4.chunk.js": "/Frontend-Project-SlimMom/static/js/697.e880e2f4.chunk.js",
+    "static/js/349.4b3df2a9.chunk.js": "/Frontend-Project-SlimMom/static/js/349.4b3df2a9.chunk.js",
+    "static/js/929.841632b6.chunk.js": "/Frontend-Project-SlimMom/static/js/929.841632b6.chunk.js",
+    "static/js/209.2d9da521.chunk.js": "/Frontend-Project-SlimMom/static/js/209.2d9da521.chunk.js",
+    "static/js/780.13ad37ba.chunk.js": "/Frontend-Project-SlimMom/static/js/780.13ad37ba.chunk.js",
+    "static/js/195.52031ed1.chunk.js": "/Frontend-Project-SlimMom/static/js/195.52031ed1.chunk.js",
     "static/media/apple.webp": "/Frontend-Project-SlimMom/static/media/apple.5f82ccf849d6703b74a6.webp",
     "static/media/watermelon.webp": "/Frontend-Project-SlimMom/static/media/watermelon.f0299c91849e14e8e0ab.webp",
     "static/media/Verdana.ttf": "/Frontend-Project-SlimMom/static/media/Verdana.06356c47838279a6fe85.ttf",
@@ -30,11 +44,25 @@
     "static/media/VectorDesk.webp": "/Frontend-Project-SlimMom/static/media/VectorDesk.afe05df8dc13c3c5149d.webp",
     "static/media/VectorTablet.webp": "/Frontend-Project-SlimMom/static/media/VectorTablet.c2596e231c76db1a5bb1.webp",
     "index.html": "/Frontend-Project-SlimMom/index.html",
-    "main.9636d403.css.map": "/Frontend-Project-SlimMom/static/css/main.9636d403.css.map",
-    "main.cbdf0a48.js.map": "/Frontend-Project-SlimMom/static/js/main.cbdf0a48.js.map"
+    "main.8a71a1ac.css.map": "/Frontend-Project-SlimMom/static/css/main.8a71a1ac.css.map",
+    "main.04bbe7ab.js.map": "/Frontend-Project-SlimMom/static/js/main.04bbe7ab.js.map",
+    "865.20adf84d.chunk.css.map": "/Frontend-Project-SlimMom/static/css/865.20adf84d.chunk.css.map",
+    "865.0df5eaa3.chunk.js.map": "/Frontend-Project-SlimMom/static/js/865.0df5eaa3.chunk.js.map",
+    "498.fba857d9.chunk.js.map": "/Frontend-Project-SlimMom/static/js/498.fba857d9.chunk.js.map",
+    "5.8c857e30.chunk.js.map": "/Frontend-Project-SlimMom/static/js/5.8c857e30.chunk.js.map",
+    "839.f406bc62.chunk.js.map": "/Frontend-Project-SlimMom/static/js/839.f406bc62.chunk.js.map",
+    "901.7da5e815.chunk.css.map": "/Frontend-Project-SlimMom/static/css/901.7da5e815.chunk.css.map",
+    "901.74588a46.chunk.js.map": "/Frontend-Project-SlimMom/static/js/901.74588a46.chunk.js.map",
+    "622.96325ae7.chunk.js.map": "/Frontend-Project-SlimMom/static/js/622.96325ae7.chunk.js.map",
+    "697.e880e2f4.chunk.js.map": "/Frontend-Project-SlimMom/static/js/697.e880e2f4.chunk.js.map",
+    "349.4b3df2a9.chunk.js.map": "/Frontend-Project-SlimMom/static/js/349.4b3df2a9.chunk.js.map",
+    "929.841632b6.chunk.js.map": "/Frontend-Project-SlimMom/static/js/929.841632b6.chunk.js.map",
+    "209.2d9da521.chunk.js.map": "/Frontend-Project-SlimMom/static/js/209.2d9da521.chunk.js.map",
+    "780.13ad37ba.chunk.js.map": "/Frontend-Project-SlimMom/static/js/780.13ad37ba.chunk.js.map",
+    "195.52031ed1.chunk.js.map": "/Frontend-Project-SlimMom/static/js/195.52031ed1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9636d403.css",
-    "static/js/main.cbdf0a48.js"
+    "static/css/main.8a71a1ac.css",
+    "static/js/main.04bbe7ab.js"
   ]
 }

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkFrontend_Project_SlimMom=self.webpackChunkFrontend_Project_SlimMom||[]).push([[622],{8622:function(n,e,r){r.r(e),r.d(e,{default:function(){return u}});var t=r(184);function u(){return(0,t.jsx)("h1",{children:"Calculator Page"})}}}]);
+//# sourceMappingURL=622.96325ae7.chunk.js.map

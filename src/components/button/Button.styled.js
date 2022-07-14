@@ -3,16 +3,16 @@ import { layoutStyles } from '../../stlyles/layoutStyles';
 
 const Btn = styled.button`
   cursor: ${({ cursor }) => cursor || 'pointer'};
-  display: flex;
+  display: ${props => props.display || 'flex'};
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: ${props => props.borderRadius || '50%'};
   border: none;
   background-color: ${props => props.background || layoutStyles.activeButton};
   min-width: ${props => props.width || '48px'};
   max-height: 48px;
   min-height: ${props => props.height || '48px'};
-  margin: ${props => props.margin};
+  margin: ${props => props.margin || 'auto'};
   padding: 0;
   :hover{
     border-radius: 50%;
@@ -21,6 +21,7 @@ const Btn = styled.button`
   }
 `;
 const Button = props => {
+  console.log(props);
   return <Btn {...props} />;
 };
 

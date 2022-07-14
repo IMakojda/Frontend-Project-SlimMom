@@ -1,7 +1,11 @@
-import Loader from '../../components/Loader/loader';
 
-export default function MainPage(){
-  return <main>
-    <Loader/>
-  </main>
+import Container from '../../components/Container';
+import CalculatorFormWrapper from '../../components/Forms/CalculatorFormWrapper';
+
+export default function MainPage() {
+  return (
+    <Container>
+      <CalculatorFormWrapper />
+    </Container>
+  );
 }

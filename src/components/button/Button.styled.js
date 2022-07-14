@@ -10,9 +10,15 @@ const Btn = styled.button`
   border: none;
   background-color: ${props => props.background || layoutStyles.activeButton};
   min-width: ${props => props.width || '48px'};
+  max-height: 48px;
   min-height: ${props => props.height || '48px'};
   margin: ${props => props.margin};
   padding: 0;
+  :hover{
+    border-radius: 50%;
+    background-color: ${props => props.backgroundHover || 'none'};
+    color: ${props => props.fill || 'none'};
+  }
 `;
 const Button = props => {
   return <Btn {...props} />;

@@ -7,6 +7,8 @@ export const layoutStyles={
   backDropColor:'#264061',
   footerBackground:'#E5E5E5',
   formBorderColor: '#E0E0E0',
+  scrollbarTrack: '#F0F1F3',
+  scrollbarTumb: '#264061',
 
 //  breakpoint
   deskTop:'1280px',

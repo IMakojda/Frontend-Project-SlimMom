@@ -1,10 +1,10 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-export const getProducts = (state) => state.products.products;
-const getFilter = (state) => state.products.filter;
+export const getDairy = (state) => state.dairy.products; // перепроверить
+const getFilter = (state) => state.dairy.products;
 
 export const getContactsByFilter = createSelector(
-  [getProducts, getFilter],
+  [getDairy, getFilter],
   (products, filter) => {
     return products.filter((products) =>
     products.name.toLowerCase().includes(filter) // products.name сверить с беком

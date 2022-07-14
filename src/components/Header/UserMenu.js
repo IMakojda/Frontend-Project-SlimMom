@@ -7,6 +7,7 @@ import authSelectors from '../../redux/auth/selectors';
 import authOperations from '../../redux/auth/authOperations';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const Title = styled.h2`
   margin: 0;
   display: inline;
@@ -46,6 +47,7 @@ const Arrow = styled(FiCornerDownLeft)`
 const List = styled.div`
   display: flex;
   margin-right: 630px;
+
   @media only screen and (max-width: ${layoutStyles.deskTop}) {
     display: none;
   }
@@ -76,11 +78,12 @@ const ToastTitle = styled.h2`
 const Wrapper = styled.div`
   margin-left: auto;
   display: flex;
+  align-items: center;
 `;
 const ImgAvatar = styled.img`
   display: block;
   width: 100%;
-  height: 35px;
+  height: 100%;
   object-fit: cover;
 `;
 const WrapperAvatar = styled.div`
@@ -137,7 +140,7 @@ export default function UserMenu() {
       </Button>
       <Wrapper>
         <WrapperAvatar>
-          <ImgAvatar src={avatar} alt="avatar" />
+          <ImgAvatar src={avatar} alt="" />
         </WrapperAvatar>
 
         <Title>{name}</Title>

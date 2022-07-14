@@ -18,6 +18,7 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: -20px -20px 0 -20px;
   border-bottom: 2px solid ${layoutStyles.formBorderColor};
 
   @media only screen and (min-width: ${layoutStyles.deskTop}) {
@@ -59,11 +60,11 @@ const WrapperMobile = styled.div`
 `;
 
 const WrapperUserMenu = styled.div`
-  width: 100%;
+  width: auto;
   heigth: auto;
   display: flex;
   justify-content: space-between;
-
+  margin: 0 -20px 0 -20px;
   background-color: #eff1f3;
   @media only screen and (min-width: ${layoutStyles.tablet}) {
     display: none;

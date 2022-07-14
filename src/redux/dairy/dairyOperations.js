@@ -1,17 +1,29 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-    getAllProducts,
-    // getDairy,
+  searchProduct,
+    getDairy,
     addProductForUser,
     deleteProductRequest,
 } from "../../services/api-reguest";
 
+const fetchDairy= createAsyncThunk(
+  "product/fetchProducts",
+  async function (_, { rejectWithValue }) {
+    try {
+      const contacts = await getDairy();
+      return contacts;
+    } catch (error) {
+      console.error(error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const fetchProducts= createAsyncThunk(
   "product/fetchProducts",
   async function (_, { rejectWithValue }) {
     try {
-      const contacts = await getAllProducts();
+      const contacts = await searchProduct();
       return contacts;
     } catch (error) {
       console.error(error.message);
@@ -48,5 +60,6 @@ const removeProduct = createAsyncThunk(
 
 export { 
     fetchProducts, 
+    fetchDairy,
     addProduct, 
     removeProduct };

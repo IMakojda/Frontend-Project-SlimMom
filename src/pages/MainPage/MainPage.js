@@ -1,3 +1,11 @@
-export default function MainPage(){
-  return <h1>Main Page</h1>
+
+import Container from '../../components/Container';
+import CalculatorFormWrapper from '../../components/Forms/CalculatorFormWrapper';
+
+export default function MainPage() {
+  return (
+    <Container>
+      <CalculatorFormWrapper />
+    </Container>
+  );
 }

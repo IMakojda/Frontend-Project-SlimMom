@@ -1,3 +1,7 @@
+import Loader from '../../components/Loader/loader';
+
 export default function MainPage(){
-  return <h1>Main Page</h1>
+  return <main>
+    <Loader/>
+  </main>
 }

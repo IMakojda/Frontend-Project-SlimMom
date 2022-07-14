@@ -1,6 +1,8 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { MenuContext } from '../NavState/NavState';
+// import { MenuContext } from '../NavState/NavState';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { GrClose } from 'react-icons/gr';
 
 const MenuButton = styled.button`
 display:block;
@@ -38,30 +40,37 @@ span:nth-of-type(3) {
 }
 `;
 
-const Bar = styled.span`
-display: block;
-width: 24px;
-height: 3px;
-margin-bottom: 4px;
-background-color: #212121;
-`;
+// const Bar = styled.span`
+// display: block;
+// width: 24px;
+// height: 3px;
+// margin-bottom: 4px;
+// background-color: #212121;
+// `;
 
 const BurgerButton = () => {
-    const { isMenuOpen, toggleMenuMode } = useContext(MenuContext);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const clickHandler = () => {
-        toggleMenuMode();
-    };
+    // const { toggleMenuMode } = useContext(MenuContext);
+
+    // const clickHandler = () => {
+    //     toggleMenuMode();
+    // };
 
     return (
         <MenuButton
-            className={isMenuOpen ? "active" : ""}
-            aria-label="Открыть главное меню"
-            onClick={clickHandler}
+            // className={isMenuOpen ? "active" : ""}
+            // aria-label="Открыть главное меню"
+            // onClick={clickHandler}
+
+            onClick={()=> setIsMenuOpen(!isMenuOpen)}
         >
+            {isMenuOpen? <GrClose />:<GiHamburgerMenu />}
+            {/* <Bar />
             <Bar />
-            <Bar />
-            <Bar />
+            <Bar /> */}
+
+
         </MenuButton>
     );
 };

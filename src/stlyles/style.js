@@ -52,7 +52,6 @@ const GlobalStyle = createGlobalStyle`
      }
 
     body {
-      position: relative;
       overflow-x: hidden;
       margin: 0;
       font-family: Verdana, Roboto;

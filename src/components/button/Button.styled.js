@@ -10,11 +10,15 @@ const Btn = styled.button`
   border: none;
   background-color: ${props => props.background || layoutStyles.activeButton};
   min-width: ${props => props.width || '48px'};
+  max-height: 48px;
   min-height: ${props => props.height || '48px'};
   margin: ${props => props.margin || 'auto'};
   padding: 0;
-  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  color: ${props => props.color || '#fff'};
+  :hover{
+    border-radius: 50%;
+    background-color: ${props => props.backgroundHover || 'none'};
+    color: ${props => props.fill || 'none'};
+  }
 `;
 const Button = props => {
   console.log(props);

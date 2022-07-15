@@ -1,18 +1,18 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { filterProduct } from "./productsAction";
+import { filterProduct } from "./dairyAction";
 
 import {
-fetchProducts, 
-addProduct, 
-removeProduct 
-} from "./productsOperations";
+fetchProducts,
+fetchDairy,
+addProduct,
+removeProduct
+} from "./dairyOperations";
 
-
-
-const getProducts = createReducer([], {
+const getDairy = createReducer([], {
   [fetchProducts.fulfilled]: (state, action) => action.payload,
   [addProduct.fulfilled]: (state, action) => [...state, action.payload],
+  [fetchDairy.fulfilled]: (state, action) => action.payload,
   [removeProduct.fulfilled]: (state, action) =>
     state.filter((el) => el.id !== action.payload),
 });
@@ -22,6 +22,8 @@ const error = createReducer(null, {
   [fetchProducts.pending]: () => null,
   [addProduct.rejected]: (_, action) => action.payload,
   [addProduct.pending]: () => null,
+  [fetchDairy.rejected]: (_, action) => action.payload,
+  [fetchDairy.pending]: () => null,
   [removeProduct.rejected]: (_, action) => action.payload,
   [removeProduct.pending]: () => null,
 });
@@ -31,7 +33,7 @@ const filter = createReducer("", {
 });
 
 export default combineReducers({
-    products: getProducts,
+  daySummary: getDairy,
   filter,
   error,
 });

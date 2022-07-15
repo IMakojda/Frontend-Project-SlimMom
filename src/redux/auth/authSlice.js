@@ -22,6 +22,7 @@ const authSlice = createSlice({
 
     [authOperations.logOut.fulfilled](state, action) {},
 
+
     // [authOperations.refreshUser.pending](state) {
 
     // },

@@ -1,5 +1,22 @@
-export default function LoginPage(){
-  return <h1>
-    Login Page
-  </h1>
-}
+
+import Container from "../../components/Container";
+import LoginForm from "../../components/Forms/LoginForm/LoginForm";
+
+export default function LoginPage() {
+
+
+  return (
+    <>
+      <Container>
+        <LoginForm />
+      </Container>
+    </>
+  );
+  }
+
+
+
+
+
+
+

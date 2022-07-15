@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { filterProduct } from "./dairyAction";
+import { findDate } from "./dairyAction";
 
 import {
 fetchProducts, 
@@ -10,13 +10,13 @@ removeProduct
 } from "./dairyOperations";
 
 
+const getSearchProduct = createReducer([], {
+  [fetchProducts.fulfilled]: (state, action) => action.payload,
+
+});
 
 const getDairy = createReducer([], {
-  [fetchProducts.fulfilled]: (state, action) => action.payload,
-  [addProduct.fulfilled]: (state, action) => [...state, action.payload],
   [fetchDairy.fulfilled]: (state, action) => action.payload,
-  [removeProduct.fulfilled]: (state, action) =>
-    state.filter((el) => el.id !== action.payload),
 });
 
 const error = createReducer(null, {
@@ -30,12 +30,13 @@ const error = createReducer(null, {
   [removeProduct.pending]: () => null,
 });
 
-const filter = createReducer("", {
-  [filterProduct]: (state, action) => action.payload,
+const dateFind = createReducer("", {
+  [findDate ]: (state, action) => action.payload,
 });
 
 export default combineReducers({
     daySummary: getDairy,
-  filter,
-  error,
+    productsList: getSearchProduct,
+    dateFind,
+    error,
 });

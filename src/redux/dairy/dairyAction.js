@@ -1,4 +1,4 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const filterProduct = createAction("product/Filter");
-export { filterProduct };
+const findDate = createAction("user/date");
+export {  findDate };

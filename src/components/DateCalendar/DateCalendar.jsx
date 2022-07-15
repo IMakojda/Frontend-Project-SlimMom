@@ -1,4 +1,8 @@
 import { useState } from 'react';
+// import { useSelector } from "react-redux";
+// import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
 import Datetime from 'react-datetime';
 import Button from '../button/Button.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
@@ -6,10 +10,40 @@ import 'react-datetime/css/react-datetime.css';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { RiCalendar2Fill } from 'react-icons/ri';
+// import {fetchDairy} from '../../redux/dairy/dairyOperations'
+
+// import {fetchProducts, fetchDairy} from '../../redux/dairy/dairyOperations'
+// import {getDairy} from '../../redux/dairy/dairySelector'
+import { findDate } from '../../redux/dairy/dairyAction';
 
 export default function DateCalendar() {
   const [value, setValue] = useState(new Date());
   const [openCalendar, setOpenCalendar] = useState(false);
+
+
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchDairy('тома'));
+  // }, [dispatch]);
+
+  // const dairy = (date) => {
+  //   dispatch(fetchDairy(date));
+  // };
+
+
+  const setDate = (date) => {
+    dispatch(findDate(date));
+  };
+  setDate(value)
+
+
+// let temp =new Date('2022-07-13T00:00:00.000Z')
+//  console.log(temp.getTime())
+//  console.log(dairy(temp.getTime()))
+//  const dairyOnDay = useSelector(getDairy); // список усіх даних за вибрану дату
+//  console.log('products', dairyOnDay)
+
 
   const Div = styled.div`
     display: flex;
@@ -54,12 +88,16 @@ export default function DateCalendar() {
         onChange={newValue => {
           setValue(newValue);
           setOpenCalendar(false);
+          
         }}
       />
       <DatePickerWrapperStyles />
       <Button
         onClick={() => {
           setOpenCalendar(true);
+          // console.log(findProduct("риба"))
+          // console.log(dairy({'data': '2022-07-13 00:00:00'}))
+          // console.log(dairy())
         }}
         background={layoutStyles.mainBackground}
         width={'23px'}

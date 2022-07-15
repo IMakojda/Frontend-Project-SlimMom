@@ -4,14 +4,14 @@ import {
     getDairy,
     addProductForUser,
     deleteProductRequest,
-} from "../../services/api-reguest";
+} from "../services/api-reguest";
 
 const fetchDairy= createAsyncThunk(
-  "product/fetchProducts",
-  async function (_, { rejectWithValue }) {
+  "product/dairy",
+  async function (data, { rejectWithValue }) {
     try {
-      const contacts = await getDairy();
-      return contacts;
+      const user = await getDairy(data);
+      return user;
     } catch (error) {
       console.error(error.message);
       return rejectWithValue(error.message);
@@ -21,10 +21,10 @@ const fetchDairy= createAsyncThunk(
 
 const fetchProducts= createAsyncThunk(
   "product/fetchProducts",
-  async function (_, { rejectWithValue }) {
+  async function (search, { rejectWithValue }) {
     try {
-      const contacts = await searchProduct();
-      return contacts;
+      const products = await searchProduct(search);
+      return products;
     } catch (error) {
       console.error(error.message);
       return rejectWithValue(error.message);

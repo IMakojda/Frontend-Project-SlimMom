@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { useMediaQuery } from 'react-responsive';
 
@@ -9,6 +10,9 @@ import { createGlobalStyle } from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import Button from '../button/Button.styled';
 import { ImPlus } from 'react-icons/im';
+
+import { fetchProducts, addProduct } from '../../redux/dairy/dairyOperations';
+import { getProducts, getDate } from '../../redux/dairy/dairySelector';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -37,13 +41,45 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ProductForm(styles) {
- 
+  const [productId, setProductId] = useState('');
+  const [productWeight, setWeight] = useState('');
 
+  const dispatch = useDispatch();
 
+  const products = useSelector(getProducts); // список найденных продуктов
+  const date = useSelector(getDate);
 
-//  const Div = styled.div`
-//     margin-bottom: 60px;
-//   `;
+  const findProduct = name => {
+    dispatch(fetchProducts(name));
+  };
+
+  // formatted array for legend
+
+  let list = products.reduce(function (newArr, item) {
+    const _id = item._id,
+          label = item.title.ua;
+    const newObj = { _id, label };
+    newArr.push(newObj);
+
+    return newArr;
+  }, []);
+
+  function onSubmit() {
+    // console.log('date',date.getTime())
+    // console.log('productId',productId)
+    // console.log(' productWeight', productWeight)
+
+    console.log('onSubmit', { date, productId, productWeight });
+    dispatch(addProduct({ date, productId, productWeight }));
+    setProductId('');
+    setWeight('');
+  };
+// 
+  // // findProduct('плас')
+  // console.log('date',date)
+  // console.log('productId',productId)
+  // console.log(' productWeight', productWeight)
+  
 
   const FormikWrapperStyles = createGlobalStyle`
   .wrapper{
@@ -97,9 +133,9 @@ export default function ProductForm(styles) {
 }
 
 `;
-const isMobile = useMediaQuery({
-  query: `(max-width: ${layoutStyles.tablet})`,
-});
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${layoutStyles.tablet})`,
+  });
 
   const classes = useStyles();
 
@@ -107,50 +143,75 @@ const isMobile = useMediaQuery({
     <div className={'wrapper'}>
       <Formik
         initialValues={{ product: '', weight: '' }}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-          }, 1000);
-        }}
+        //   onSubmit={(values, actions) => {
+        //     setTimeout(() => {
+        //       alert(JSON.stringify(values, null, 2));
+        //       actions.setSubmitting(false);
+        //     }, 1000);
+        //   }}
+
+        // onSubmit={onSubmit}
       >
         <Form className={'ProductForm'}>
           <div className={'ProductName'}>
             <Autocomplete
               disablePortal
+              autoSelect
+              selectOnFocus
               id="product"
-              options={top100Films}
+              options={list}
+              noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
               classes={classes}
+              onChange={(_, v) => {setProductId(v._id)}}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                 minWidth: '240px',
               }}
               renderInput={params => (
-                <TextField {...params} label="Введіть назву продукту" />
+                <TextField
+                  fullWidth
+                  required
+                  onChange={e => findProduct(e.currentTarget.value)}
+                  {...params}
+                  label="Введіть назву продукту"
+                />
               )}
             />
           </div>
           <div className={'ProductWeight'}>
             <TextField
+              required
+              fullWidth
               id="weight"
+              type="number"
+              step="1"
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                 minWidth: '140px',
                 margin: '0 32px 60px 0',
+                // textAlign: "right", // не работает
               }}
+              onChange={e => {setWeight(e.currentTarget.value)}}
               classes={classes}
               label="Вага продукта"
             />
           </div>
           <Button
-          margin='0 auto 0'
-          // clickOnBtn={() => {
-          //   setOpenCalendar(true);
-          // }}
-          // className={styles.iconPlus}
-          >
-            {isMobile ? <p weight='176px'>Додати</p> : <ImPlus width="20" height="20" fill={layoutStyles.mainBackground} /> } 
-            
+            margin="0 auto 0"
+            type='submit'
+            onClick={() => {
+              onSubmit();
+            }}
+            >
+            {isMobile ? (
+              <p weight="176px">Додати</p>
+            ) : (
+              <ImPlus
+                width="20"
+                height="20"
+                fill={layoutStyles.mainBackground}
+              />
+            )}
           </Button>
         </Form>
       </Formik>
@@ -159,22 +220,3 @@ const isMobile = useMediaQuery({
     </div>
   );
 }
-
-
-const top100Films = [
-  { label: 'The Shawshank Redemption', year: 1994 },
-  { label: 'The Godfather', year: 1972 },
-  { label: 'The Godfather: Part II', year: 1974 },
-  { label: 'The Dark Knight', year: 2008 },
-  { label: '12 Angry Men', year: 1957 },
-  { label: "Schindler's List", year: 1993 },
-  { label: 'Pulp Fiction', year: 1994 },
-  {
-    label: 'The Lord of the Rings: The Return of the King',
-    year: 2003,
-  },
-  { label: 'The Good, the Bad and the Ugly', year: 1966 },
-  { label: 'Fight Club', year: 1999 },
- 
- 
-];

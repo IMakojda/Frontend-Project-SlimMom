@@ -176,21 +176,20 @@ export default function RegisterForm() {
   });
 
   const dispatch = useDispatch();
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const onSubmit = async e => {
-    dispatch(authOperations.register(values));
-    // setName('');
-    // setEmail('');
-    // setPassword('');
+    dispatch(authOperations.register({ name, email, password }));
+    setName('');
+    setEmail('');
+    setPassword('');
   };
 
   return (
     <Div>
       <Formik
-
         initialValues={{
           name: '',
           email: '',

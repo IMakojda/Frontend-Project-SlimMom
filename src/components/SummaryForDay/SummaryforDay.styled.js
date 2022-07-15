@@ -14,9 +14,6 @@ padding-left: 35px;
 }
 
 @media screen and (min-width: 1280px) {
-position: absolute;
-top: 0;
-right: 0;
 flex-direction: column;
 justify-content: center;
 align-items: center;

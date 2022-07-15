@@ -1,4 +1,5 @@
+import Loader from '../../components/Loader/loader';
 export default function DiaryPage() {
-  return <h1>Calculator Page</h1>;
+  return <Loader/>;
 }
 

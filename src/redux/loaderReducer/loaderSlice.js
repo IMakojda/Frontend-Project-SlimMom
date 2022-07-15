@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
+import authOperations from '../auth/authOperations';
+
+const {register,logIn}=authOperations
 
 export const loaderSlice = createSlice({
   name: "loader",
   initialState: {
-    show: true
+    show: true,
   },
   reducers: {
     showLoader: (state) => {
@@ -15,7 +18,16 @@ export const loaderSlice = createSlice({
     toggleLoader: (state) => {
       state.show = !state.show;
     }
-  }
+  },
+  extraReducers:{
+    [register.pending]:()=>true,
+    [register.fulfilled]:()=>false,
+    [register.rejected]:()=>false,
+
+    [logIn.pending]:()=>true,
+    [logIn.fulfilled]:()=>true,
+    [logIn.rejected]:()=>true,
+  },
 });
 
 export const { showLoader, hideLoader } = loaderSlice.actions;

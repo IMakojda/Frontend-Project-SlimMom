@@ -18,13 +18,16 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: -20px -20px 0 -20px;
+  padding: 20px 20px 16px 20px;
   border-bottom: 2px solid ${layoutStyles.formBorderColor};
-
+  @media only screen and (min-width: ${layoutStyles.tablet}) {
+    padding: 20px 32px 16px 32px;
+  }
   @media only screen and (min-width: ${layoutStyles.deskTop}) {
     border-bottom: none;
     justify-content: start;
     align-items: baseline;
+    padding: 80px 0 0 16px;
   }
 `;
 
@@ -40,7 +43,7 @@ const Wrapper = styled.div`
   @media only screen and (min-width: ${layoutStyles.deskTop}) {
     position: absolute;
     bottom: -15px;
-    left: 67px;
+    left: 51px;
     border-right: 2px solid ${layoutStyles.formBorderColor};
     padding-right: 20px;
   }
@@ -53,7 +56,7 @@ const WrapperMobile = styled.div`
   @media only screen and (min-width: ${layoutStyles.deskTop}) {
     position: absolute;
     bottom: -15px;
-    left: 67px;
+    left: 51px;
     border-right: 2px solid ${layoutStyles.formBorderColor};
     padding-right: 20px;
   }
@@ -64,7 +67,6 @@ const WrapperUserMenu = styled.div`
   heigth: auto;
   display: flex;
   justify-content: space-between;
-  margin: 0 -20px 0 -20px;
   background-color: #eff1f3;
   @media only screen and (min-width: ${layoutStyles.tablet}) {
     display: none;
@@ -72,12 +74,10 @@ const WrapperUserMenu = styled.div`
 `;
 
 const WrapperUserMenuDesktop = styled.div`
-  width: 100%;
   heigth: auto;
   display: flex;
   justify-content: space-between;
-
-  margin-right: 50px;
+  align-items: center;
   @media only screen and (max-width: ${layoutStyles.tablet}) {
     display: none;
   }
@@ -85,7 +85,6 @@ const WrapperUserMenuDesktop = styled.div`
 const Link = styled(NavLink)`
   display: flex;
   align-items: center;
-  padding: 20px 0 16px 20px;
 
   @media only screen and (min-width: ${layoutStyles.tablet}) {
     margin-right: 330px;
@@ -93,13 +92,11 @@ const Link = styled(NavLink)`
 
   @media only screen and (min-width: ${layoutStyles.deskTop}) {
     position: relative;
-    padding: 80px 0 0 16px;
-    margin-right: 135px;
+    margin-right: 150px;
   }
 `;
 
 const NavHeader = styled.nav`
-  padding: 20px 20px 16px 14px;
   display: flex;
   @media only screen and (min-width: ${layoutStyles.deskTop}) {
     display: flex;

@@ -9,11 +9,10 @@ import visibility from './visibility.svg';
 import visibility_off from './visibility_off.svg';
 
 export default function RegisterForm() {
-  const Div = styled.div`
-    margin-top: 60px;
-  `;
-
   const RegisterFormStyle = createGlobalStyle`
+  .Wrapper {
+    margin-top: 60px;
+  }
 
   .Form{
     display: flex;
@@ -158,12 +157,14 @@ export default function RegisterForm() {
   const validationSchema = yup.object().shape({
     name: yup
       .string()
-      .min(2, 'Має бути 2 символа або більше!')
+      .min(3, 'Має бути 3 символа або більше!')
       .max(50, 'Має бути 50 символів або менше!')
       .required("Обов'язкове поле"),
     email: yup
       .string()
       .email('Невірна адреса електронної пошти')
+      .min(6, 'Має бути 6 символа або більше!')
+      .max(50, 'Має бути 50 символів або менше!')
       .required("Обов'язкове поле"),
     password: yup
       .string()
@@ -191,7 +192,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <Div>
+    <div className="Wrapper">
       <Formik
         initialValues={{
           name: '',
@@ -256,17 +257,17 @@ export default function RegisterForm() {
               <div className="PasswordEye" onClick={handleClick}>
                 {eyeOutlined ? (
                   <img
-                    src={visibility_off}
-                    width="24px"
-                    height="24px"
-                    alt="visibility_off"
-                  />
-                ) : (
-                  <img
                     src={visibility}
                     width="24px"
                     height="24px"
                     alt="visibility"
+                  />
+                ) : (
+                  <img
+                    src={visibility_off}
+                    width="24px"
+                    height="24px"
+                    alt="visibility_off"
                   />
                 )}
               </div>
@@ -291,6 +292,6 @@ export default function RegisterForm() {
         )}
       </Formik>
       <RegisterFormStyle />
-    </Div>
+    </div>
   );
 }

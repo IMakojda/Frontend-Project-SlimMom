@@ -5,12 +5,15 @@ import AppBar from '../../components/Header/AppBar';
 
 
 export default function Layout() {
-  return (
-    <Container>
+  return (<>
       <AppBar />
-        <Suspense fallback={null}>
-          <Outlet/>
-        </Suspense>
-    </Container>
+        <Container>
+          <Suspense fallback={null}>
+            <Outlet/>
+          </Suspense>
+        </Container>
+  </>
+
+
   )
 };

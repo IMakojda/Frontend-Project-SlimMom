@@ -20,16 +20,16 @@ export const GridDiv=styled.div`
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  width: 150px;
-  height: 150px;
+  width: 210px;
+  height: 210px;
   margin-right: auto;
   margin-left: auto;
   margin-top:100px
 `
 
  export const DivComponent=styled.div`
-width: 50px;
-height: 50px;
+width: 70px;
+height: 70px;
 border-radius: 50%;
 background: transparent;
 animation: ${animR} 1.2s linear infinite;
@@ -39,8 +39,8 @@ export const Img=styled.img`
   //position: absolute;
   // top: ${props => props.top};
   // left: ${props => props.left};
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   animation: ${animationDiv} ${props => props.delay} 1.5s linear infinite;
   src: url(${props => props.img})
 `

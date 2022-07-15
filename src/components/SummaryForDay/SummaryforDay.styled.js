@@ -7,8 +7,6 @@ align-items: center;
 padding-top: 40px;
 padding-bottom: 85px;
 
-background-color: #F0F1F3;
-
 @media screen and (min-width: 768px) and (max-width: 1279px) {
 flex-direction: row;
 justify-content: flex-start;
@@ -23,15 +21,6 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 width: 500px;
-height: 100vh;
-
-padding: 0;
-
-${'' /* margin-top: -30%;
-margin-left: auto;
-margin-right: -63px;
-padding-top: 19%; */}
-${'' /* background-color: white; */}
 }
 `;
 

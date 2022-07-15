@@ -1,4 +1,3 @@
-import { createPortal } from 'react-dom';
 import { format } from 'date-fns'
 import {
   Wrapper,
@@ -10,15 +9,13 @@ import {
   Text,
 } from './SummaryForDay.styled';
 
-const sideBarRoot = document.getElementById('side-bar')
-
 export default function SummaryForDay() {
   
   const date = new Date(Date.now());
 
   const formatedDate = format(date, 'MM/dd/yyyy');
 
-  return createPortal(
+  return (
     <Wrapper>
       <SummaryWrap>
         <Title>Загалом за {formatedDate}</Title>
@@ -42,7 +39,6 @@ export default function SummaryForDay() {
         <Title>Не рекомендована їжа</Title>
         <Text>Ваша діета буде відображатись тут</Text>
       </FoodRecWrap> 
-    </Wrapper>,
-    sideBarRoot
+    </Wrapper>
   )
 };

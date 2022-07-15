@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 import authOperations from 'redux/auth/authOperations';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import visibility from './visibility.svg';
 import visibility_off from './visibility_off.svg';
 

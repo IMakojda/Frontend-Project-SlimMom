@@ -4,14 +4,15 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Link } from 'react-router-dom';
 import authOperations from 'redux/auth/authOperations';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+import visibility from './visibility.svg';
+import visibility_off from './visibility_off.svg';
 
 export default function RegisterForm() {
-  const Div = styled.div`
-    margin-top: 60px;
-  `;
-
   const RegisterFormStyle = createGlobalStyle`
+  .Wrapper {
+    margin-top: 60px;
+  }
 
   .Form{
     display: flex;
@@ -70,7 +71,7 @@ export default function RegisterForm() {
 }
 
 .Input:focus ~ .Placeholder {
-  color: #dc2f55;
+  color: #FC842D;
 }
 
 .InputBlock input {
@@ -82,8 +83,9 @@ export default function RegisterForm() {
 }
 
 .InputBlock p {
-    font-size: 12px;
-    color: red;
+  text-align: start;
+  font-size: 12px;
+  color: red;
 }
 
 
@@ -119,6 +121,12 @@ export default function RegisterForm() {
     cursor: pointer;
 }
 
+.PasswordEye{
+   position: absolute;
+   top: 15%;
+   right: 1%;
+}
+
  @media screen and (min-device-width: 768px) {
     .Form{
     margin-left: 32px;
@@ -136,7 +144,6 @@ export default function RegisterForm() {
 
     .InputBlock {
       margin-left: 0;
-      margin-right: 0;
     }
   }
 
@@ -150,45 +157,42 @@ export default function RegisterForm() {
   const validationSchema = yup.object().shape({
     name: yup
       .string()
-      .min(2, 'Має бути 2 символа або більше!')
+      .min(3, 'Має бути 3 символа або більше!')
       .max(50, 'Має бути 50 символів або менше!')
       .required("Обов'язкове поле"),
     email: yup
       .string()
       .email('Невірна адреса електронної пошти')
+      .min(6, 'Має бути 6 символа або більше!')
+      .max(50, 'Має бути 50 символів або менше!')
       .required("Обов'язкове поле"),
     password: yup
       .string()
-      .min(8, 'Пароль повинен складатися не менше, ніж з 8 символів')
-      .matches(
-        RegExp('(.*[a-z].*)'),
-        'Пароль повинен містити принаймні одну малу літеру'
-      )
-      .matches(
-        RegExp('(.*[A-Z].*)'),
-        'Пароль повинен містити принаймні одну велику літеру'
-      )
-      .matches(
-        RegExp('(.*\\d.*)'),
-        'Пароль повинен містити принаймні одну цифру'
-      )
+      .min(8, 'Введіть не менше, ніж 8 символів')
+      .matches(RegExp('(.*[a-z].*)'), 'Введіть принаймні одну малу літеру')
+      .matches(RegExp('(.*[A-Z].*)'), 'Введіть принаймні одну велику літеру')
+      .matches(RegExp('(.*\\d.*)'), 'Введіть принаймні одну цифру')
       .required("Обов'язкове поле"),
   });
 
   const dispatch = useDispatch();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  // const [name, setName] = useState('');
+  // const [email, setEmail] = useState('');
+  // const [password, setPassword] = useState('');
+  const [eyeOutlined, setEyeOutlined] = useState(true);
 
-  const onSubmit = async e => {
-    dispatch(authOperations.register({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
+  const handleClick = () => {
+    setEyeOutlined(!eyeOutlined);
+  };
+
+  const onSubmit = async (values, { resetForm }) => {
+    dispatch(authOperations.register(values));
+    console.log(values);
+    resetForm();
   };
 
   return (
-    <Div>
+    <div className="Wrapper">
       <Formik
         initialValues={{
           name: '',
@@ -241,7 +245,7 @@ export default function RegisterForm() {
             </div>
             <div className="InputBlock">
               <input
-                type={'password'}
+                type={eyeOutlined ? 'password' : 'text'}
                 name={'password'}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -249,8 +253,24 @@ export default function RegisterForm() {
                 placeholder=" "
                 className="Input"
                 autoComplete="off"
-                id="password-input"
               />
+              <div className="PasswordEye" onClick={handleClick}>
+                {eyeOutlined ? (
+                  <img
+                    src={visibility}
+                    width="24px"
+                    height="24px"
+                    alt="visibility"
+                  />
+                ) : (
+                  <img
+                    src={visibility_off}
+                    width="24px"
+                    height="24px"
+                    alt="visibility_off"
+                  />
+                )}
+              </div>
               <label htmlFor={'password'} className="Placeholder">
                 Пароль *
               </label>
@@ -272,6 +292,6 @@ export default function RegisterForm() {
         )}
       </Formik>
       <RegisterFormStyle />
-    </Div>
+    </div>
   );
 }

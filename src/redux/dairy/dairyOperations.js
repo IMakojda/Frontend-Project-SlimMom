@@ -6,6 +6,7 @@ import {
     deleteProductRequest,
 } from "../services/api-reguest";
 
+
 const fetchDairy= createAsyncThunk(
   "product/dairy",
   async function (data, { rejectWithValue }) {
@@ -58,8 +59,8 @@ const removeProduct = createAsyncThunk(
 );
 
 
-export { 
-    fetchProducts, 
+export {
+    fetchProducts,
     fetchDairy,
-    addProduct, 
+    addProduct,
     removeProduct };

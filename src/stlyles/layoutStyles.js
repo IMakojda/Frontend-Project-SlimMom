@@ -9,6 +9,7 @@ export const layoutStyles={
   formBorderColor: '#E0E0E0',
   scrollbarTrack: '#F0F1F3',
   scrollbarTumb: '#264061',
+  modalWrapperColor: '#212121',
 
 //  breakpoint
   deskTop:'1280px',

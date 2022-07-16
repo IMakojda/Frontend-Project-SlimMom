@@ -3,12 +3,11 @@ import { combineReducers } from "redux";
 import { findDate } from "./dairyAction";
 
 import {
-fetchProducts, 
+fetchProducts,
 fetchDairy,
-addProduct, 
-removeProduct 
+addProduct,
+removeProduct
 } from "./dairyOperations";
-
 
 const getSearchProduct = createReducer([], {
   [fetchProducts.fulfilled]: (state, action) => action.payload,
@@ -35,8 +34,12 @@ const dateFind = createReducer("", {
 });
 
 export default combineReducers({
+
     daySummary: getDairy,
     productsList: getSearchProduct,
     dateFind,
+    filter,
     error,
 });
+
+

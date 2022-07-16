@@ -1,14 +1,27 @@
-import { Wrapper, Flex, List, Item, Title, Text } from './SummaryForDay.styled'
+import { format } from 'date-fns'
+import {
+  Wrapper,
+  SummaryWrap,
+  FoodRecWrap,
+  List,
+  Item,
+  Title,
+  Text,
+} from './SummaryForDay.styled';
 
 export default function SummaryForDay() {
   
+  const date = new Date(Date.now());
+
+  const formatedDate = format(date, 'MM/dd/yyyy');
+
   return (
-      <Wrapper>
-      <Flex>
-        <Title>Загалом за "вибрана дата"</Title>
+    <Wrapper>
+      <SummaryWrap>
+        <Title>Загалом за {formatedDate}</Title>
         <List>
         <Item>
-          <Text>Втрачено</Text><Text>000 ккал</Text>
+          <Text>Залишилось</Text><Text>000 ккал</Text>
         </Item>
         <Item>
           <Text>Спожито</Text><Text>000 ккал</Text>
@@ -20,12 +33,12 @@ export default function SummaryForDay() {
           <Text>n% від норми</Text><Text>000 %</Text>
         </Item>
         </List>
-      </Flex>
+      </SummaryWrap>
 
-      <Flex>
+      <FoodRecWrap>
         <Title>Не рекомендована їжа</Title>
         <Text>Ваша діета буде відображатись тут</Text>
-      </Flex> 
-      </Wrapper>    
+      </FoodRecWrap> 
+    </Wrapper>
   )
 };

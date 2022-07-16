@@ -28,7 +28,7 @@ export default function ProductsList() {
           <tbody>
             {rows.map(row => {
               return (
-                <tr key={row.id}>
+                <tr key={row.name}>
                   <td className="td-name">{row.name}</td>
                   <td className="td-weight">{row.weight}</td>
                   <td className="td-calories">{row.calorie}</td>

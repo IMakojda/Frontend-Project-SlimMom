@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import { MdClose } from 'react-icons/md';
 
-const { footerBackground, mainBackground, modalWrapperColor, verdanaBold } =
+const { transparentGrey, mainBackground, modalWrapperColor, verdanaBold } =
   layoutStyles;
 
 export const Background = styled.div`
@@ -12,7 +12,7 @@ export const Background = styled.div`
   top: 0;
   left: 0;
   overflow-y: scroll;
-  background: ${footerBackground};
+  background: ${transparentGrey};
 `;
 
 export const ModalWrapper = styled.div`

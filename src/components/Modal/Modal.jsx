@@ -1,39 +1,44 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 import { Background, ModalWrapper } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal = ({ showModal, setShowModal, children }) => {
-  const modalRef = useRef();
-
+export const Modal = ({ setShowModal, showModal, children }) => {
   const closeModal = e => {
-    if (modalRef.current === e.target) {
-      setShowModal(false);
+    if (e.target === e.currentTurget) {
+      setShowModal();
     }
   };
 
   const closeOnEscapeKey = useCallback(
     e => {
-      if (e.key === 'Escape' && showModal) {
-        setShowModal(false);
+      if (e.code === 'Escape') {
+        setShowModal();
       }
     },
-    [setShowModal, showModal]
+    []
   );
 
   useEffect(() => {
-    document.addEventListener('keydown', closeOnEscapeKey);
-    return () => document.removeEventListener('keydown', closeOnEscapeKey);
+    window.addEventListener('keydown', closeOnEscapeKey);
+
+    return () => window.removeEventListener('keydown', closeOnEscapeKey);
   }, [closeOnEscapeKey]);
+
   return createPortal(
     <>
-      {showModal && (
-        <Background ref={modalRef} onClick={closeModal}>
+        <Background onClick={closeModal}>
           <ModalWrapper showModal={showModal}>{children}</ModalWrapper>
         </Background>
-      )}
+
     </>,
     modalRoot
   );
+};
+
+Modal.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func,
 };

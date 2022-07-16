@@ -1,5 +1,5 @@
-import { createReducer } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
+import { createReducer } from '@reduxjs/toolkit';
+import { combineReducers } from '@reduxjs/toolkit';
 import { findDate } from "./dairyAction";
 
 import {
@@ -34,7 +34,6 @@ const dateFind = createReducer("", {
 });
 
 export default combineReducers({
-
     daySummary: getDairy,
     productsList: getSearchProduct,
     dateFind,

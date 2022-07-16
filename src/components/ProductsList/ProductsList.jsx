@@ -23,7 +23,9 @@ export default function ProductsList() {
   //   dispatch(fetchDairy(date));
   // };
 
+// if (Array.isArray(products))
   const products = useSelector(getEatProducts);
+  // const products = []
 
   return (
     <>
@@ -34,8 +36,8 @@ export default function ProductsList() {
               return (
                 <tr key={row.name}>
                   <td className="td-name">{row.title.ua}</td>
-                  <td className="td-weight">{row.weight}</td>
-                  <td className="td-calories">{row.calories}</td>
+                  <td className="td-weight">{row.weight} гр</td>
+                  <td className="td-calories">{row.calories} ккал</td>
                   <td>
                     <Button
                       background={layoutStyles.mainBackground}

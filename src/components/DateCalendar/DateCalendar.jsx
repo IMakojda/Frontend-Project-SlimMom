@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 // import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import moment from 'moment';
@@ -22,10 +22,10 @@ export default function DateCalendar() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    // dispatch(fetchDairy(dateFormat(value)));
-    getDairy(dateFormat(value))
-  }, [dispatch]);
+  // useEffect(() => {
+  //   // dispatch(fetchDairy(dateFormat(value)));
+  //   getDairy(dateFormat(value))
+  // }, [dispatch]);
 
   const getDairy = (date) => {
     dispatch(fetchDairy(date));

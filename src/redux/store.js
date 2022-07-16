@@ -2,16 +2,17 @@ import { configureStore } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
+  // FLUSH,
+  // REHYDRATE,
+  // PAUSE,
+  // PERSIST,
+  // PURGE,
+  // REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import AuthReducer from "./auth/authSlice";
 import daySummaryReducer from "./dairy/dairyReducer";
+import CalcReducer from '../redux/calculatorSlice/calcSlice'
 import loaderReducer from '../redux/loaderReducer/loaderSlice'
 
 const authPersistConfig = {
@@ -19,21 +20,25 @@ const authPersistConfig = {
   storage,
   whitelist: ['token'],
 }
-const persistedReducer = persistReducer(authPersistConfig,AuthReducer)
+const calcPersistConfig={
+  key:'calculator',
+  storage,
+}
+const persistedReducer = persistReducer(authPersistConfig,AuthReducer);
+const calcReduser=persistReducer(calcPersistConfig,CalcReducer);
 
 export const store = configureStore({
   reducer: {
   auth: persistedReducer,
   dairy: daySummaryReducer,
   loader:loaderReducer,
+  calculator:calcReduser,
   },
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }),
-
+      serializableCheck: false
+      }
+    ),
   ],
   devTools: process.env.NODE_ENV === 'development',
 })

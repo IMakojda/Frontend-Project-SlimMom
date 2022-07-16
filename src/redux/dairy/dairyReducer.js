@@ -38,7 +38,6 @@ export default combineReducers({
     daySummary: getDairy,
     productsList: getSearchProduct,
     dateFind,
-    filter,
     error,
 });
 

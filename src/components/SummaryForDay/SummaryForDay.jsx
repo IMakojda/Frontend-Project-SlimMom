@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getSummary, getDate, getNotRecFood } from 'redux/dairy/dairySelector';
 // import { addDate } from 'redux/dairy/dairyReducer';
 import {
@@ -45,9 +45,9 @@ export default function SummaryForDay() {
         <Text>{
           notRecFoodArr.length === 0
             ? 'Ваша діета буде відображатись тут'
-            : 
+            :
             notRecFoodArr.map(product=>product.title.ua).join(', ').toLowerCase() }</Text>
-      </FoodRecWrap> 
+      </FoodRecWrap>
 
     </Wrapper>
   )

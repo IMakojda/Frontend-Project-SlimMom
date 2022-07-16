@@ -13,21 +13,23 @@ import storage from "redux-persist/lib/storage";
 import AuthReducer from "./auth/authSlice";
 import daySummaryReducer from "./dairy/dairyReducer";
 import CalcReducer from '../redux/calculatorSlice/calcSlice'
-import loaderReducer from '../redux/loaderReducer/loaderSlice'
 
 const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 }
+
 const calcPersistConfig={
   key:'calculator',
   storage,
 }
+
 const dairyPersistConfig={
   key:'dairy',
   storage,
 }
+
 const persistedReducer = persistReducer(authPersistConfig,AuthReducer);
 const calcReduser=persistReducer(calcPersistConfig,CalcReducer);
 const dairyReduser=persistReducer(dairyPersistConfig,daySummaryReducer);
@@ -35,8 +37,7 @@ const dairyReduser=persistReducer(dairyPersistConfig,daySummaryReducer);
 export const store = configureStore({
   reducer: {
   auth: persistedReducer,
-  dairy: dairyReduser,
-  loader:loaderReducer,
+  dairy: daySummaryReducer,
   calculator:calcReduser,
   },
   middleware: (getDefaultMiddleware) => [

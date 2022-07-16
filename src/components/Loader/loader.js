@@ -1,14 +1,11 @@
 import FruitItem from './LoaderDivItem';
-import { Overlay } from './loader.styled';
-import { useSelector} from 'react-redux';
-import { selectorShowLoader } from '../../redux/loaderReducer/loaderSlice';
+// import { Overlay } from './loader.styled';
 
 export default function Loader (){
-  const loadingShow=useSelector(selectorShowLoader)
-  return (loadingShow &&
+
+  return (
     <div className='absolut'>
-      <Overlay/>
-        <FruitItem/>
+         <FruitItem/>
     </div>
   )
 }

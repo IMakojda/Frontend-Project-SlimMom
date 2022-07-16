@@ -4,20 +4,25 @@ export const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-padding-top: 40px;
+
+@media screen and (max-width: 767px) {
 padding-bottom: 85px;
+}
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
 flex-direction: row;
 justify-content: flex-start;
-padding-left: 35px;
+padding-left: 15px;
+padding-bottom: 85px;
 }
 
 @media screen and (min-width: 1280px) {
 flex-direction: column;
 justify-content: center;
 align-items: center;
-width: 500px;
+width: 288px;
+margin-left: auto;
+padding-right: 120px;
 }
 `;
 

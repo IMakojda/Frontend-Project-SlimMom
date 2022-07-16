@@ -47,39 +47,20 @@ export default function ProductForm(styles) {
   const dispatch = useDispatch();
 
   const products = useSelector(getProducts); // список найденных продуктов
-  const date = useSelector(getDate);
+  const date = useSelector(getDate);        // форматированная дата на которую добавляем проукт
 
   const findProduct = name => {
     dispatch(fetchProducts(name));
   };
 
-  // formatted array for legend
-
-  let list = products.reduce(function (newArr, item) {
-    const _id = item._id,
-          label = item.title.ua;
-    const newObj = { _id, label };
-    newArr.push(newObj);
-
-    return newArr;
-  }, []);
-
   function onSubmit() {
-    // console.log('date',date.getTime())
-    // console.log('productId',productId)
-    // console.log(' productWeight', productWeight)
-
+  
     console.log('onSubmit', { date, productId, productWeight });
     dispatch(addProduct({ date, productId, productWeight }));
     setProductId('');
     setWeight('');
   };
-// 
-  // // findProduct('плас')
-  // console.log('date',date)
-  // console.log('productId',productId)
-  // console.log(' productWeight', productWeight)
-  
+ 
 
   const FormikWrapperStyles = createGlobalStyle`
   .wrapper{
@@ -159,10 +140,10 @@ export default function ProductForm(styles) {
               autoSelect
               selectOnFocus
               id="product"
-              options={list}
+              options={products}
               noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
               classes={classes}
-              onChange={(_, v) => {setProductId(v._id)}}
+              onChange={(_, v) => {setProductId(v.id)}}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                 minWidth: '240px',

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDispatch } from "react-redux";
 
 import Datetime from 'react-datetime';
+import {format} from 'date-fns'
 import Button from '../button/Button.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import 'react-datetime/css/react-datetime.css';
@@ -30,20 +31,17 @@ export default function DateCalendar() {
   // const dairy = (date) => {
   //   dispatch(fetchDairy(date));
   // };
-
-
+  
   const setDate = (date) => {
     dispatch(findDate(date));
   };
-  setDate(value)
 
-
-// let temp =new Date('2022-07-13T00:00:00.000Z')
-//  console.log(temp.getTime())
-//  console.log(dairy(temp.getTime()))
-//  const dairyOnDay = useSelector(getDairy); // список усіх даних за вибрану дату
-//  console.log('products', dairyOnDay)
-
+  function dateFormat(date) {
+    return `${format(date, 'yyyy.MM.dd')}Z`
+  }
+  setDate(dateFormat(value))
+ 
+  
 
   const Div = styled.div`
     display: flex;
@@ -88,6 +86,7 @@ export default function DateCalendar() {
         onChange={newValue => {
           setValue(newValue);
           setOpenCalendar(false);
+            setDate(dateFormat(newValue))
           
         }}
       />

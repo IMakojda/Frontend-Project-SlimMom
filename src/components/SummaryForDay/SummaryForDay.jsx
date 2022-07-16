@@ -1,4 +1,5 @@
-import { format } from 'date-fns'
+import { format } from 'date-fns';
+import { useDispatch } from 'react-redux';
 import {
   Wrapper,
   SummaryWrap,
@@ -9,20 +10,20 @@ import {
   Text,
 } from './SummaryForDay.styled';
 
-import {getDairy} from 'services/api-reguest'
+import { getDairy } from 'redux/services/api-reguest'
+import { fetchDairy } from 'redux/dairy/dairyOperations';
+import { addDate } from 'redux/dairy/dairyReducer';
+
 
 export default function SummaryForDay() {
-  
+  const dispatch = useDispatch();
   const date = new Date();
 
   const formatedDate = format(date, 'MM/dd/yyyy');
   const testDate = format(date, 'yyyy.MM.dd');
 
-  
 
-  console.log(`${testDate}Z`);
-
-  getDairy(`${testDate}Z`);
+  // dispatch(fetchDairy(`${testDate}Z`));
 
   return (
     <Wrapper>
@@ -66,34 +67,4 @@ export default function SummaryForDay() {
 //   }
 // }
 
-// const initialState = {
-//   user: null,
-//   date: null,
-//   products: [],
-//   summary: {
-//     dailyRate: null,
-//     consumed: null,
-//     left: null,
-//     nOfNorm: null,
-//   },
-//   notRecFood: [],
-//   dateFind: '',
-//   error: null,
-//   productList:[],
-// };
 
-// const counterSlice = createSlice({
-//   name: 'daySummary',
-//   initialState,
-//   reducers: {
-//     filterProduct(state, action) {
-//       state.filter = action.payload;
-//     },
-//   },
-//   extraReducers: {
-    
-//   }
-// });
-
-// export const { increment, decrement, incrementByAmount } = counterSlice.actions
-// export default counterSlice.reducer

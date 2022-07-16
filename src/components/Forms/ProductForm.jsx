@@ -11,7 +11,7 @@ import { layoutStyles } from '../../stlyles/layoutStyles';
 import Button from '../button/Button.styled';
 import { ImPlus } from 'react-icons/im';
 
-import { fetchProducts, addProduct, fetchDairy } from '../../redux/dairy/dairyOperations';
+import { fetchProducts, addProduct } from '../../redux/dairy/dairyOperations';
 import { getProducts, getDate } from '../../redux/dairy/dairySelector';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -45,9 +45,9 @@ export default function ProductForm(styles) {
 
   const dispatch = useDispatch();
 
-  const getDairy = (date) => {
-    dispatch(fetchDairy(date));
-  };
+  // const getDairy = (date) => {
+  //   dispatch(fetchDairy(date));
+  // };
 
   const products = useSelector(getProducts); // список найденных продуктов
   const date = useSelector(getDate);        // форматированная дата на которую добавляем проукт
@@ -61,7 +61,7 @@ export default function ProductForm(styles) {
     dispatch(addProduct({ date, productId, productWeight }));
     setProductId('');
     setWeight('');
-    getDairy(date)
+    // getDairy(date)
   };
  
 

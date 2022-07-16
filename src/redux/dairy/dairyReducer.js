@@ -5,7 +5,7 @@ import {  createSlice } from "@reduxjs/toolkit";
 import {
 fetchProducts,
 fetchDairy,
-// addProduct,
+addProduct,
 // removeProduct
 } from "./dairyOperations";
 
@@ -42,7 +42,9 @@ const summaryForDaySlice = createSlice({
     [fetchProducts.fulfilled]: (state, action) => {
       state.productList = action.payload
     },
-    
+    // [addProduct.fulfilled]: (state, action) => {
+    //   state.products.push(action.payload)
+    // },
     
   }
 });

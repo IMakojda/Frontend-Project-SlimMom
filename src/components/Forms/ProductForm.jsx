@@ -11,13 +11,17 @@ import { layoutStyles } from '../../stlyles/layoutStyles';
 import Button from '../button/Button.styled';
 import { ImPlus } from 'react-icons/im';
 
-import { fetchProducts, addProduct } from '../../redux/dairy/dairyOperations';
+import {
+  fetchProducts,
+  addProduct,
+  fetchDairy,
+} from '../../redux/dairy/dairyOperations';
 import { getProducts, getDate } from '../../redux/dairy/dairySelector';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    '& .MuiInputLabel-outlined': {
+    '& .MuiInputLabel-root': {
       color: layoutStyles.placeholderColor,
       fontFamily: layoutStyles.verdana,
       fontWeight: 700,
@@ -27,9 +31,25 @@ const useStyles = makeStyles(theme => ({
       border: 'none',
       textAlign: 'end',
       padding: 0,
+      fontFamily: layoutStyles.verdana,
+      fontWeight: 700,
+      fontSize: '13px',
+    },
+    '& .MuiOutlinedInput-input': {
+      textAlign: 'right',
+      fontFamily: layoutStyles.verdana,
+      fontWeight: 700,
+      fontSize: '13px',
+      paddingRight: '2px',
+      paddingLeft: '2px',
     },
   },
   inputRoot: {
+    '& .MuiAutocomplete-input': {
+      fontFamily: layoutStyles.verdana,
+      fontWeight: 700,
+      fontSize: '14px',
+    },
     '& .MuiAutocomplete-endAdornment': {
       display: 'none',
     },
@@ -40,30 +60,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ProductForm(styles) {
+  // const [value, setValue] = useState('');
   const [productId, setProductId] = useState('');
   const [productWeight, setWeight] = useState('');
 
   const dispatch = useDispatch();
 
-  // const getDairy = (date) => {
-  //   dispatch(fetchDairy(date));
-  // };
+  const getDairy = date => {
+    dispatch(fetchDairy(date));
+  };
 
   const products = useSelector(getProducts); // список найденных продуктов
-  const date = useSelector(getDate);        // форматированная дата на которую добавляем проукт
+  const date = useSelector(getDate); // форматированная дата на которую добавляем проукт
 
   const findProduct = name => {
     dispatch(fetchProducts(name));
   };
 
   function onSubmit() {
-
     dispatch(addProduct({ date, productId, productWeight }));
     setProductId('');
     setWeight('');
-    // getDairy(date)
-  };
- 
+    getDairy(date);
+    // setValue('')
+  }
 
   const FormikWrapperStyles = createGlobalStyle`
   .wrapper{
@@ -127,12 +147,12 @@ export default function ProductForm(styles) {
     <div className={'wrapper'}>
       <Formik
         initialValues={{ product: '', weight: '' }}
-        //   onSubmit={(values, actions) => {
-        //     setTimeout(() => {
-        //       alert(JSON.stringify(values, null, 2));
-        //       actions.setSubmitting(false);
-        //     }, 1000);
-        //   }}
+        onSubmit={(values, actions) => {
+          setTimeout(() => {
+            // alert(JSON.stringify(values, null, 2));
+            actions.setSubmitting(false);
+          }, 1000);
+        }}
 
         // onSubmit={onSubmit}
       >
@@ -146,7 +166,9 @@ export default function ProductForm(styles) {
               options={products}
               noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
               classes={classes}
-              onChange={(_, v) => {setProductId(v.id)}}
+              onChange={(_, v) => {
+                setProductId(v.id);
+              }}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                 minWidth: '240px',
@@ -155,6 +177,7 @@ export default function ProductForm(styles) {
                 <TextField
                   fullWidth
                   required
+                  // value={value}
                   onChange={e => findProduct(e.currentTarget.value)}
                   {...params}
                   label="Введіть назву продукту"
@@ -169,24 +192,27 @@ export default function ProductForm(styles) {
               id="weight"
               type="number"
               step="1"
+              // inputValue={value}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
-                minWidth: '140px',
+                minWidth: '110px',
+                paddingRight: '50px',
                 margin: '0 32px 60px 0',
-                // textAlign: "right", // не работает
               }}
-              onChange={e => {setWeight(e.currentTarget.value)}}
+              onChange={e => {
+                setWeight(e.currentTarget.value);
+              }}
               classes={classes}
               label="Вага продукта"
             />
           </div>
           <Button
             margin="0 auto 0"
-            type='submit'
+            type="submit"
             onClick={() => {
               onSubmit();
             }}
-            >
+          >
             {isMobile ? (
               <p weight="176px">Додати</p>
             ) : (

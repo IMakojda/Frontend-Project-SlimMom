@@ -1,12 +1,12 @@
-import { createReducer, createSlice } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
-import { findDate } from "./dairyAction";
+import {  createSlice } from "@reduxjs/toolkit";
+// import { combineReducers } from "redux";
+// import { findDate } from "./dairyAction";
 
 import {
-fetchProducts,
+// fetchProducts,
 fetchDairy,
-addProduct,
-removeProduct
+// addProduct,
+// removeProduct
 } from "./dairyOperations";
 
 const initialState = {

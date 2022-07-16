@@ -12,10 +12,7 @@ import {
   Text,
 } from './SummaryForDay.styled';
 
-
 export default function SummaryForDay() {
-
-  // const dispatch = useDispatch();
 
   const date = new Date();
   const reduxDate = useSelector(getDate)
@@ -51,6 +48,7 @@ export default function SummaryForDay() {
             : 
             notRecFoodArr.map(product=>product.title.ua).join(', ').toLowerCase() }</Text>
       </FoodRecWrap> 
+
     </Wrapper>
   )
 };

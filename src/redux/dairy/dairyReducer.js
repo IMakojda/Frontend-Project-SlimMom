@@ -3,7 +3,7 @@ import {  createSlice } from "@reduxjs/toolkit";
 // import { findDate } from "./dairyAction";
 
 import {
-// fetchProducts,
+fetchProducts,
 fetchDairy,
 // addProduct,
 // removeProduct
@@ -11,7 +11,7 @@ fetchDairy,
 
 const initialState = {
   user: null,
-  date: null,
+  date: '',
   test: {},
   products: [],
   summary: {
@@ -36,8 +36,14 @@ const summaryForDaySlice = createSlice({
   },
   extraReducers: {
     [fetchDairy.fulfilled]: (state, action) => {
-      state.test = action.payload
-    }
+      state.products = action.payload.result.products
+      state.date = action.payload.result.date
+    },
+    [fetchProducts.fulfilled]: (state, action) => {
+      state.productList = action.payload
+    },
+    
+    
   }
 });
 

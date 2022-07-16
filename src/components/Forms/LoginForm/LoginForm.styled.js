@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form, Field, ErrorMessage } from "formik";
+import { Form } from "formik";
 
 export const Wrapper = styled.section`
   display: flex;
@@ -62,13 +62,13 @@ export const WrapperInputPassword = styled.div`
   position: relative;
 `;
 
-export const Input = styled(Field)`
+export const Input = styled.input`
   width: 100%;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
   color: #9B9FAA;
-  padding-top: 10px;
+  padding-top: 5px;
   padding-bottom: 5px;
   border: none;
   border-bottom: 1px solid #ececec;
@@ -88,9 +88,19 @@ export const Label = styled.label`
   font-size: 14px;
   line-height: 17px;
   color: #9B9FAA;
+  position: absolute;
+  transition: 0.2s ease all;
+  top: -10px;
+  background-color: transparent;
+
+  ${Input}:focus ~ & {
+    top: -18px;
+    font-size: 12px;
+    color: #9B9FAA;
+  }
 `;
 
-export const Error = styled(ErrorMessage)`
+export const Error = styled.div`
   color: red;
   font-size: 12px;
   margin-top: 6px;
@@ -108,16 +118,18 @@ export const WrapperButtons = styled.div`
   }
 `;
 
-
 export const Button = styled.button`
-  min-height: 44px;
-  min-width: 182px;
+  height: 44px;
+  width: 182px;
+  font-weight: 700;
   font-size: 14px;
-  background: ${props => props.primary ? "#FC842D" : "#FFFFFF"};
-  color: ${props => props.primary ? "#FFFFFF" : "#FC842D"};
+  background: #FC842D;
+  color: #FFFFFF;
   border: 2px solid #FC842D;
-  border-radius: 10px;
-  padding: 13px 51px;
+  border-radius: 30px;
+  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  padding-top: 13px;
+  padding-bottom: 13px;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
@@ -127,16 +139,19 @@ export const Button = styled.button`
     margin-top: 0;
   }
 
-  &:disabled {
-    background: ${props => props.primary ? "#9B9FAA" : "#FFFFFF"};
-    color: ${props => props.primary ? "#FFFFFF" : "#9B9FAA"};
-    border: 2px solid #9B9FAA;
-  }
+  &:hover,
+  &:focus{
+    background: #FFFFFF;
+    border: 2px solid #FC842D;
+    border-radius: 30px;
+    color: #FC842D;
+    cursor: pointer;
+}
 `;
 
 export const WrapperImage = styled.div`
   position: absolute;
-  top: 20%;
+  top: 5%;
   right: 1%;
 
   @media screen and (min-width: 768px) {

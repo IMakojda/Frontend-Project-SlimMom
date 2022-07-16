@@ -19,6 +19,8 @@ import {
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import calcOperation from '../../../redux/calculatorSlice/calcOperation';
+import { Modal } from '../../Modal';
+import React, { useState } from 'react';
 
 const CalculatorSchema = Yup.object().shape({
   height: Yup.number('number')
@@ -45,7 +47,8 @@ const CalculatorSchema = Yup.object().shape({
 });
 
 const CalculatorСalorieForm = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
   return (
     <StileWrapper>
       <Header>Розрахуйте свою денну норму калорій прямо зараз</Header>
@@ -60,6 +63,7 @@ const CalculatorСalorieForm = () => {
         validationSchema={CalculatorSchema}
         onSubmit={(values, actions) => {
           dispatch(calcOperation.calc(values));
+          setShowModal(true);
           setTimeout(async () => {
             alert(JSON.stringify(values, null, 2));
             actions.setSubmitting(false);
@@ -160,6 +164,7 @@ const CalculatorСalorieForm = () => {
           );
         }}
       </Formik>
+      <Modal showModal={showModal} />
     </StileWrapper>
   );
 };

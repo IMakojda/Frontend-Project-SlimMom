@@ -60,7 +60,7 @@ export default function App() {
           <Route
             path="/login"
             element={
-              <PublicRoute restricted>
+              <PublicRoute redirectTo="/dairy" restricted>
                 <LoginPage />
               </PublicRoute>
             }
@@ -78,9 +78,9 @@ export default function App() {
           <Route
             path="/dairy"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <DiaryPage />
-               </ProtectedRoute>
+              //  </ProtectedRoute>
             }
           />
 

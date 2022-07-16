@@ -1,4 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
+import { PageTransition } from '@steveeeie/react-page-transition';
+
+import { Routes, Route} from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 //import { useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from '../Header/ProtectedRoute';
@@ -27,9 +29,13 @@ export default function App() {
   // }, [dispatch]);
 
   return (
+    
     <>
-    <Suspense fallback="">
-      <Routes>
+      <Suspense fallback="">
+        
+        <PageTransition>
+
+                <Routes>
         <Route
           exact
           path="/"
@@ -87,6 +93,8 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+        </PageTransition>
+
       </Suspense>
     </>
   );

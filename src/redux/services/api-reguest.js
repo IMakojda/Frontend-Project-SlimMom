@@ -2,41 +2,33 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://agile-cove-20040.herokuapp.com/api";
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  // unset(token) {
-  //   axios.defaults.headers.common.Authorization = "";
-  // },
-};
+//для тестирования
+// let tokens="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyY2ZkNDg3ZDczZmZlMzVmYWYxMWMyZiIsImlhdCI6MTY1NzkxNDU3NX0.im28NxFx-vV_0k9Kr29wz02Iviqc5t_68Cnrfs1OZQs"
+// axios.defaults.headers.common.Authorization = `Bearer ${tokens}`;
 
-export const searchProduct = async ( search) => {
-  // token.set(tokenUser); 
+export const searchProduct = async (search) => {
   try {
-    const result = await axios.get(`/products?product=${search}`); // # Authorization: "Bearer {{token}}"
-    return result;
+    const {data} = await axios.get(`/products?product=${search}`); // # Authorization: "Bearer {{token}}"
+    return data;
   } catch (error) {
     throw error;
   }
 }
+
 export const getDairy = async (date) => {
-  // token.set(tokenUser); 
   try {
-    const { result } = await axios.get("/calc/user", date); // # Authorization: "Bearer {{token}}"
-                                                      // RequestBody (example):
-                                                      // { 
-                                                      // "date":"2022.07.13Z"
-                                                      // }
-  return result;
+    const {data}  = await axios.get(`/user/${date}` ); // # Authorization: "Bearer {{token}}"
+                                                      // Request (example):
+                                                      // "/user/2022.07.13Z"
+  return data;
   } catch (error) {
     throw error;
   }
 }
+
 export const addProductForUser = async (newProduct) => {
-  // token.set(tokenUser); 
   try {
-    const { result } = await axios.post("/calc/user", newProduct);  // # Authorization: "Bearer {{token}}"
+    const  result  = await axios.post("/calc/user", newProduct);  // # Authorization: "Bearer {{token}}"
                                                                   // RequestBody (example):
                                                                   // {
                                                                   // "date":"2022.07.13Z",
@@ -51,7 +43,6 @@ export const addProductForUser = async (newProduct) => {
 }
 
 export const deleteProductRequest = async (deleteProduct) => {
-  // token.set(tokenUser);
   try {
     await axios.delete('/calc/user', deleteProduct);  // # Authorization: "Bearer {{token}}"
                                                       // RequestBody (example):
@@ -64,13 +55,3 @@ export const deleteProductRequest = async (deleteProduct) => {
     throw error;
   }
 }
-
-export const getCurrentUser = async (tokenUser) => {
-    token.set(tokenUser);
-    try {
-      const { result } = await axios.get("/users/current"); // # Authorization: "Bearer {{token}}"
-      return result;
-    } catch (error) {
-      throw error;
-    }
-  };

@@ -41,20 +41,20 @@ export default function RegisterForm() {
   });
 
   const dispatch = useDispatch();
-  // const [name, setName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
   const [eyeOutlined, setEyeOutlined] = useState(true);
 
   const handleClick = () => {
     setEyeOutlined(!eyeOutlined);
   };
 
-  const onSubmit = async ({ name, email, password }, { resetForm }) => {
-    dispatch(authOperations.register(name, email, password));
-    console.log(name, email, password);
-    // resetForm();
-  };
+  // const onSubmit = async (values, actions) => {
+  //   dispatch(authOperations.register(values));
+  //   setTimeout(async () => {
+  //     alert(JSON.stringify(values, null, 2));
+  //     actions.setSubmitting(false);
+  //     // actions.resetForm();
+  //   }, 1000);
+  // };
 
   return (
     <Wrapper>
@@ -65,7 +65,14 @@ export default function RegisterForm() {
           password: '',
         }}
         validateOnBlur
-        onSubmit={onSubmit}
+        onSubmit={(values, actions) => {
+          dispatch(authOperations.register(values));
+          setTimeout(async () => {
+            alert(JSON.stringify(values, null, 2));
+            actions.setSubmitting(false);
+            // actions.resetForm();
+          }, 1000);
+        }}
         validationSchema={validationSchema}
       >
         {({
@@ -99,7 +106,7 @@ export default function RegisterForm() {
                 value={values.email}
                 placeholder=" "
               />
-              <Placeholder htmlFor="email">Електронна пошта*</Placeholder>
+              <Placeholder htmlFor="email">Електронна пошта *</Placeholder>
               {touched.email && errors.email && <p>{errors.email}</p>}
             </InputBlock>
             <InputBlock>
@@ -134,7 +141,7 @@ export default function RegisterForm() {
             </InputBlock>
 
             <FormButtons>
-              <Button onClick={handleSubmit} type={'submit'}>
+              <Button onClick={handleSubmit} type="submit">
                 Зареєструватися
               </Button>
 

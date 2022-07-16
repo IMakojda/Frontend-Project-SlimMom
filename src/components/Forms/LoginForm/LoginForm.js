@@ -2,6 +2,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import authOperations from '../../../redux/auth/authOperations';
 import { Wrapper, Title, FormLogin, WrapperInputs, Input, Label,WrapperInputEmail, WrapperInputPassword, WrapperButtons, Button, Error, WrapperImage, Image } from './LoginForm.styled';
 import eye from '../../../images/eye.svg';
 import eyeCrossed from '../../../images/eyeCrossed.svg';
@@ -22,6 +24,7 @@ const SigninSchema = Yup.object().shape({
 });
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
   const [eyeOutlined, setEyeOutlined] = useState(true);
 
   const handleClick = () => {
@@ -36,38 +39,47 @@ return (
         password: '',
         email: '',
       }}
+      validateOnBlur
       validationSchema = { SigninSchema }
       onSubmit={(values, { resetForm, setSubmitting }) => {
+        dispatch(authOperations.logIn(values));
         console.log(values);
         resetForm();
         setSubmitting(false);
       }}
     >
-      {({isValid, dirty, isSubmitting}) => (
+      {({values, errors, touched, handleChange, handleBlur, handleSubmit}) => (
       <FormLogin>
         <WrapperInputs>
           <WrapperInputEmail>
-            <Label htmlFor="email">
-              Електронна пошта *
-            </Label>
             <Input
               id="email"
               name="email"
               placeholder=""
               type="email"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.email}
             />
-            <Error name="email" component="p" />
+            <Label htmlFor="email">
+              Електронна пошта *
+            </Label>
+            {touched.email && errors.email && <Error>{errors.email}</Error>}
           </WrapperInputEmail>
           <WrapperInputPassword>
-            <Label htmlFor="password">
-              Пароль *
-            </Label>
             <Input
               id="password"
               name="password"
               placeholder=""
               type={eyeOutlined ? 'password' : 'text'}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.password}
+              autoComplete="off"
             />
+            <Label htmlFor="password">
+              Пароль *
+            </Label>
             <WrapperImage onClick={handleClick}>
               {eyeOutlined ? (
                 <Image src={eyeCrossed} />
@@ -75,23 +87,21 @@ return (
                 <Image src={eye} />
               )}
             </WrapperImage>
-            <Error name="password" component="p" />
+            {touched.password && errors.password && <Error>{errors.password}</Error>}
           </WrapperInputPassword>
         </WrapperInputs>
         <WrapperButtons>
           <Button
             type="submit"
-            primary
-            disabled={isSubmitting || !isValid || !dirty}
+            onClick={handleSubmit}
             >
-              Вхід
+              Увійти
           </Button>
           <Link to="/signup">
             <Button
             type="submit"
-            disabled={false}
             >
-              Реєстрація
+              Зареєструватися
             </Button>
           </Link>
           </WrapperButtons>

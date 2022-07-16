@@ -60,7 +60,7 @@ export default function App() {
           <Route
             path="/login"
             element={
-              <PublicRoute restricted>
+              <PublicRoute redirectTo="/dairy" restricted>
                 <LoginPage />
               </PublicRoute>
             }

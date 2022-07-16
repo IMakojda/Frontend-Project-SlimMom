@@ -58,6 +58,7 @@ const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
 //
 // })
 
+
 const authOperations = {
   register,
   logIn,

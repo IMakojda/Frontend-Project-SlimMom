@@ -14,7 +14,5 @@ export default function Layout() {
           </Suspense>
         </Container>
   </ImageContainer>
-
-
-  )
+)
 };

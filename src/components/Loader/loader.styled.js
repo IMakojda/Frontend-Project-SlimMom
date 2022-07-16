@@ -45,11 +45,11 @@ export const Img=styled.img`
   src: url(${props => props.img})
 `
 
-export const Overlay=styled.div`
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 100%;
-  width: 100%;
-  background-color:rgba(0,0,0,0.10);
-`
+// export const Overlay=styled.div`
+//   position: absolute;
+//   top: 0px;
+//   left: 0px;
+//   height: 100%;
+//   width: 100%;
+//   background-color:rgba(0,0,0,0.10);
+// `

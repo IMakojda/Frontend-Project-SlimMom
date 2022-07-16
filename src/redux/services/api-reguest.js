@@ -3,8 +3,8 @@ import axios from "axios";
 axios.defaults.baseURL = "https://agile-cove-20040.herokuapp.com/api";
 
 //для тестирования
-// let tokens="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyY2ZkNDg3ZDczZmZlMzVmYWYxMWMyZiIsImlhdCI6MTY1NzkxNDU3NX0.im28NxFx-vV_0k9Kr29wz02Iviqc5t_68Cnrfs1OZQs"
-// axios.defaults.headers.common.Authorization = `Bearer ${tokens}`;
+let tokens="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDEyYTUyZDMzNDQ4Mjg2MTM2NzBmZSIsImlhdCI6MTY1Nzk4NDQ4N30.VwqF1hi5Mv3uM4dfcQmxKUSjybOy4K-3ZHZAFE8RLeg"
+axios.defaults.headers.common.Authorization = `Bearer ${tokens}`;
 
 export const searchProduct = async (search) => {
   try {
@@ -17,7 +17,7 @@ export const searchProduct = async (search) => {
 
 export const getDairy = async (date) => {
   try {
-    const {data}  = await axios.get(`/user/${date}` ); // # Authorization: "Bearer {{token}}"
+    const {data}  = await axios.get(`/calc/user/${date}` ); // # Authorization: "Bearer {{token}}"
                                                       // Request (example):
                                                       // "/user/2022.07.13Z"
   return data;

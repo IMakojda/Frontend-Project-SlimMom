@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-
+// import moment from 'moment';
 import { createGlobalStyle } from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import Button from '../button/Button.styled';
@@ -13,7 +13,6 @@ import { ImPlus } from 'react-icons/im';
 
 import { fetchProducts, addProduct } from '../../redux/dairy/dairyOperations';
 import { getProducts, getDate } from '../../redux/dairy/dairySelector';
-
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -46,40 +45,25 @@ export default function ProductForm(styles) {
 
   const dispatch = useDispatch();
 
+  // const getDairy = (date) => {
+  //   dispatch(fetchDairy(date));
+  // };
+
   const products = useSelector(getProducts); // список найденных продуктов
-  const date = useSelector(getDate);
+  const date = useSelector(getDate);        // форматированная дата на которую добавляем проукт
 
   const findProduct = name => {
     dispatch(fetchProducts(name));
   };
 
-  // formatted array for legend
-
-  let list = products.reduce(function (newArr, item) {
-    const _id = item._id,
-          label = item.title.ua;
-    const newObj = { _id, label };
-    newArr.push(newObj);
-
-    return newArr;
-  }, []);
-
   function onSubmit() {
-    // console.log('date',date.getTime())
-    // console.log('productId',productId)
-    // console.log(' productWeight', productWeight)
 
-    console.log('onSubmit', { date, productId, productWeight });
     dispatch(addProduct({ date, productId, productWeight }));
     setProductId('');
     setWeight('');
+    // getDairy(date)
   };
-// 
-  // // findProduct('плас')
-  // console.log('date',date)
-  // console.log('productId',productId)
-  // console.log(' productWeight', productWeight)
-  
+ 
 
   const FormikWrapperStyles = createGlobalStyle`
   .wrapper{
@@ -159,10 +143,10 @@ export default function ProductForm(styles) {
               autoSelect
               selectOnFocus
               id="product"
-              options={list}
+              options={products}
               noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
               classes={classes}
-              onChange={(_, v) => {setProductId(v._id)}}
+              onChange={(_, v) => {setProductId(v.id)}}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                 minWidth: '240px',

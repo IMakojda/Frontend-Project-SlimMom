@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 //import { useDispatch, useSelector } from 'react-redux';
-import ProtectedRoute from '../Header/ProtectedRoute';
+// import ProtectedRoute from '../Header/ProtectedRoute';
 import PublicRoute from '../Header/PublicRoute';
 //import authSelectors from '../../redux/auth/selectors';
 //import authOperations from '../../redux/auth/authOperations';
@@ -19,8 +19,6 @@ const CalculatorPage = lazy(() =>
 const AvatarUpload =  lazy(() => import('../Header/Avatar'));
 const NotFound = lazy(() => import('../../pages/NotFound/NotFound'));
 
-
-
 export default function App() {
   // const dispatch = useDispatch();
   // const isCurrentUserRefresh = useSelector(authSelectors.getIsRefresh);
@@ -30,73 +28,73 @@ export default function App() {
 
   return (
     <>
-    <Suspense fallback="">
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <PublicRoute restricted>
-              <Layout />
-            </PublicRoute>
-          }
-        >
+      <Suspense fallback="">
+        <Routes>
           <Route
-            index
+            exact
+            path="/"
             element={
-              <PublicRoute restricted>
-                <MainPage />
+              <PublicRoute>
+                <Layout />
               </PublicRoute>
             }
-          />
+          >
+            <Route
+              index
+              element={
+                <PublicRoute>
+                  <MainPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/signup"
-            element={
-              <PublicRoute restricted>
-                <RegistrationPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="/signup"
+              element={
+                <PublicRoute restricted>
+                  <RegistrationPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/login"
-            element={
-              <PublicRoute restricted>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute redirectTo="/dairy" restricted>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/calculator"
-            element={
-              <PublicRoute restricted>
-                <CalculatorPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="/calculator"
+              element={
+                <PublicRoute restricted>
+                  <CalculatorPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/dairy"
-            element={
-              <ProtectedRoute>
-                <DiaryPage />
-              </ProtectedRoute>
-            }
-          />
-<Route
-            path="/avatar"
-            element={
-              <ProtectedRoute restricted>
-                <AvatarUpload />
-              </ProtectedRoute>
-            }
-          />
-
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+            <Route
+              path="/dairy"
+              element={
+                <ProtectedRoute>
+                  <DiaryPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/avatar"
+              element={
+                <ProtectedRoute restricted>
+                  <AvatarUpload />
+                </ProtectedRoute>
+              }
+            />
+            
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
       </Suspense>
     </>
   );

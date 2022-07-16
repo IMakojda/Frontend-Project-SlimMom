@@ -9,7 +9,7 @@ export const ResponsiveContainer = styled.div`
   width: 100%;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    height: 100vh;
+    // height: 100vh;
     padding: 20px 20px;
     // background-image: url(${BgTablet});
 
@@ -19,8 +19,8 @@ export const ResponsiveContainer = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-    height: 100vh;
-    width: 1280px;
+    // height: 100vh;
+    // width: 1280px;
     // background-image: url(${BgDesk});
     background-position: bottom right;
     background-repeat: no-repeat;

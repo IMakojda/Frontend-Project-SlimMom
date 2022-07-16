@@ -16,12 +16,10 @@ import {
     import styled from 'styled-components';
   const ImageContainer = styled.div`
   position: absolute;
-//   top: 0;
-//   z-index: -1;
-  
-  
+
   width: 100%;
-  height: 100%;
+//   height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 //   margin-right: auto;

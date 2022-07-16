@@ -37,12 +37,15 @@ const summaryForDaySlice = createSlice({
   extraReducers: {
     [fetchDairy.fulfilled]: (state, action) => {
       state.products = action.payload.result.products
-      state.date = action.payload.result.date
+      // state.date = action.payload.result.date
     },
     [fetchProducts.fulfilled]: (state, action) => {
       state.productList = action.payload
     },
-    
+    // [addProduct.fulfilled]: (state, action) => {
+    //   state.products = action.payload.result.products
+    //   // state.date = action.payload.result.date
+    // },
     
   }
 });

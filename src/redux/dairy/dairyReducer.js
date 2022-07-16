@@ -12,7 +12,6 @@ fetchDairy,
 const initialState = {
   user: null,
   date: null,
-  test: {},
   products: [],
   summary: {
     dailyRate: null,

@@ -1,5 +1,7 @@
 import { format } from 'date-fns';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getSummary, getDate, getNotRecFood } from 'redux/dairy/dairySelector';
+// import { addDate } from 'redux/dairy/dairyReducer';
 import {
   Wrapper,
   SummaryWrap,
@@ -10,61 +12,44 @@ import {
   Text,
 } from './SummaryForDay.styled';
 
-// import { getDairy } from 'redux/services/api-reguest'
-// import { fetchDairy } from 'redux/dairy/dairyOperations';
-// import { addDate } from 'redux/dairy/dairyReducer';
-
-
 export default function SummaryForDay() {
-  // const dispatch = useDispatch();
+
   const date = new Date();
+  const reduxDate = useSelector(getDate)
 
-  const formatedDate = format(date, 'MM/dd/yyyy');
-  // const testDate = format(date, 'yyyy.MM.dd');
-
-
-  // dispatch(fetchDairy(`${testDate}Z`));
+  const summary = useSelector(getSummary);
+  const notRecFoodArr = useSelector(getNotRecFood);
 
   return (
     <Wrapper>
       <SummaryWrap>
-        <Title>Загалом за {formatedDate}</Title>
+        <Title>Загалом за {reduxDate === '' ? format(date, 'MM/dd/yyyy') : format(reduxDate, 'MM/dd/yyyy')}</Title>
         <List>
         <Item>
-          <Text>Залишилось</Text><Text>000 ккал</Text>
+          <Text>Залишилось</Text><Text>{summary.left ? summary.left : '000'} ккал</Text>
         </Item>
         <Item>
-          <Text>Спожито</Text><Text>000 ккал</Text>
+          <Text>Спожито</Text><Text>{summary.consumed ? summary.consumed : '000'} ккал</Text>
         </Item>
         <Item>
-          <Text>Добова норма</Text><Text>000 ккал</Text>
+          <Text>Добова норма</Text><Text>{summary.dailyRate ? summary.dailyRate : '000'} ккал</Text>
           </Item>
         <Item>
-          <Text>n% від норми</Text><Text>000 %</Text>
+          <Text>n% від норми</Text><Text>{summary.nOfNorm ? summary.nOfNorm : '000'} %</Text>
         </Item>
         </List>
       </SummaryWrap>
 
       <FoodRecWrap>
         <Title>Не рекомендована їжа</Title>
-        <Text>Ваша діета буде відображатись тут</Text>
-      </FoodRecWrap>
+        <Text>{
+          notRecFoodArr.length === 0
+            ? 'Ваша діета буде відображатись тут'
+            : 
+            notRecFoodArr.map(product=>product.title.ua).join(', ').toLowerCase() }</Text>
+      </FoodRecWrap> 
+
     </Wrapper>
   )
 };
-
-// export const getDairy = async (date) => {
-//   token.set('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDAxODZjYmI4MThhZjVlZWFmNzY3NyIsImlhdCI6MTY1Nzk1NjcyM30.WIT_uenA2I13eIeBWXjwPI9IKJwuyZrWh9_K99I9PGM');
-//   try {
-//     const { result } = await axios.get(`calc/user/${date}`); // # Authorization: "Bearer {{token}}"
-//                                                       // RequestBody (example):
-//                                                       // {
-//                                                       // "date":"2022.07.13Z"
-//                                                       // }
-//   return result;
-//   } catch (error) {
-//     throw error;
-//   }
-// }
-
 

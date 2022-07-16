@@ -78,9 +78,9 @@ export default function App() {
           <Route
             path="/dairy"
             element={
-              <ProtectedRoute>
+              // <ProtectedRoute>
                 <DiaryPage />
-               </ProtectedRoute>
+              //  </ProtectedRoute>
             }
           />
 

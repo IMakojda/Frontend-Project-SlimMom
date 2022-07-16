@@ -1,46 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 // import { useSelector } from "react-redux";
-// import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import moment from 'moment';
 
 import Datetime from 'react-datetime';
-import {format} from 'date-fns'
 import Button from '../button/Button.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import 'react-datetime/css/react-datetime.css';
 import styled, { createGlobalStyle } from 'styled-components';
 
 import { RiCalendar2Fill } from 'react-icons/ri';
-// import {fetchDairy} from '../../redux/dairy/dairyOperations'
 
-// import {fetchProducts, fetchDairy} from '../../redux/dairy/dairyOperations'
-// import {getDairy} from '../../redux/dairy/dairySelector'
-import { findDate } from '../../redux/dairy/dairyAction';
+import { fetchDairy} from '../../redux/dairy/dairyOperations'
+import {addDate } from '../../redux/dairy/dairyReducer';
+
 
 export default function DateCalendar() {
-  const [value, setValue] = useState(new Date());
+  const [value, setValue] = useState(moment(new Date()));
   const [openCalendar, setOpenCalendar] = useState(false);
 
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchDairy('тома'));
-  // }, [dispatch]);
+  useEffect(() => {
+    // dispatch(fetchDairy(dateFormat(value)));
+    getDairy(dateFormat(value))
+  }, [dispatch]);
 
-  // const dairy = (date) => {
-  //   dispatch(fetchDairy(date));
-  // };
+  const getDairy = (date) => {
+    dispatch(fetchDairy(date));
+  };
   
   const setDate = (date) => {
-    dispatch(findDate(date));
+    dispatch(addDate(date));
   };
 
   function dateFormat(date) {
-    return `${format(date, 'yyyy.MM.dd')}Z`
+    return `${date.format('YYYY.MM.DD')}Z`
   }
+
   setDate(dateFormat(value))
- 
+  // getDairy(dateFormat(value))
   
 
   const Div = styled.div`
@@ -86,17 +86,14 @@ export default function DateCalendar() {
         onChange={newValue => {
           setValue(newValue);
           setOpenCalendar(false);
-            setDate(dateFormat(newValue))
-          
+          setDate(dateFormat(newValue))
+          getDairy(dateFormat(newValue))
         }}
       />
       <DatePickerWrapperStyles />
       <Button
         onClick={() => {
           setOpenCalendar(true);
-          // console.log(findProduct("риба"))
-          // console.log(dairy({'data': '2022-07-13 00:00:00'}))
-          // console.log(dairy())
         }}
         background={layoutStyles.mainBackground}
         width={'23px'}

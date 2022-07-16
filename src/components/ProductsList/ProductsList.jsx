@@ -1,37 +1,41 @@
+// import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Button from '../button/Button.styled';
 import { FiX } from 'react-icons/fi';
 import {DivStyles} from './Div.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
+import { getEatProducts } from '../../redux/dairy/dairySelector';
 
-const rows = [
-  { name: 'India', weight: 'IN', calorie: 10 },
-  { name: 'China', weight: 'CN', calorie: 10 },
-  { name: 'Italy', weight: 'IT', calorie: 10 },
-  { name: 'United States', weight: 'US', calorie: 10 },
-  { name: 'Canada', weight: 'CA', calorie: 10 },
-  { name: 'Australia', weight: 'AU', calorie: 10 },
-  { name: 'Germany', weight: 'DE', calorie: 10 },
-  { name: 'Ireland', weight: 'IR', calorie: 10 },
-  { name: 'Mexico', weight: 'MX', calorie: 10 },
-  { name: 'Japan', weight: 'JP', calorie: 10 },
-  { name: 'France', weight: 'FR', calorie: 10 },
-  { name: 'United Kingdom', weight: 'GB', calorie: 10 },
-  { name: 'Nigeria', weight: 'NG', calorie: 10 },
-  { name: 'Brazil', weight: 'BR', calorie: 10 },
-];
 
 export default function ProductsList() {
+  // const [value, setValue] = useState(products);
+  // const [openCalendar, setOpenCalendar] = useState(false);
+
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   // dispatch(fetchDairy(dateFormat(value)));
+  //   getDairy(date)
+  // }, [dispatch]);
+
+  // const getDairy = (date) => {
+  //   dispatch(fetchDairy(date));
+  // };
+
+  const products = useSelector(getEatProducts);
+
   return (
     <>
       <div className="control">
         <table className="table">
           <tbody>
-            {rows.map(row => {
+            {products.map(row => {
               return (
                 <tr key={row.name}>
-                  <td className="td-name">{row.name}</td>
+                  <td className="td-name">{row.title.ua}</td>
                   <td className="td-weight">{row.weight}</td>
-                  <td className="td-calories">{row.calorie}</td>
+                  <td className="td-calories">{row.calories}</td>
                   <td>
                     <Button
                       background={layoutStyles.mainBackground}

@@ -1,4 +1,4 @@
-import RegisterForm from 'components/Forms/RegisterForm';
+import RegisterForm from 'components/Forms/RegisterForm/RegisterForm';
 import styled from 'styled-components';
 
 const RegisterWrapper = styled.h1`

@@ -83,7 +83,7 @@ export default function RegisterForm() {
           handleBlur,
           handleSubmit,
         }) => (
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <InputBlock>
               <Input
                 type="text"
@@ -141,9 +141,7 @@ export default function RegisterForm() {
             </InputBlock>
 
             <FormButtons>
-              <Button onClick={handleSubmit} type="submit">
-                Зареєструватися
-              </Button>
+              <Button type="submit">Зареєструватися</Button>
 
               <Link to={{ pathname: '/login' }}>
                 <Button type="button">Увійти</Button>

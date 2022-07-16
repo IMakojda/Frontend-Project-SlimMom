@@ -10,17 +10,17 @@ import {
   Text,
 } from './SummaryForDay.styled';
 
-import { getDairy } from 'redux/services/api-reguest'
-import { fetchDairy } from 'redux/dairy/dairyOperations';
-import { addDate } from 'redux/dairy/dairyReducer';
+// import { getDairy } from 'redux/services/api-reguest'
+// import { fetchDairy } from 'redux/dairy/dairyOperations';
+// import { addDate } from 'redux/dairy/dairyReducer';
 
 
 export default function SummaryForDay() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const date = new Date();
 
   const formatedDate = format(date, 'MM/dd/yyyy');
-  const testDate = format(date, 'yyyy.MM.dd');
+  // const testDate = format(date, 'yyyy.MM.dd');
 
 
   // dispatch(fetchDairy(`${testDate}Z`));
@@ -48,7 +48,7 @@ export default function SummaryForDay() {
       <FoodRecWrap>
         <Title>Не рекомендована їжа</Title>
         <Text>Ваша діета буде відображатись тут</Text>
-      </FoodRecWrap> 
+      </FoodRecWrap>
     </Wrapper>
   )
 };

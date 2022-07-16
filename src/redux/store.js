@@ -24,13 +24,18 @@ const calcPersistConfig={
   key:'calculator',
   storage,
 }
+const dairyPersistConfig={
+  key:'dairy',
+  storage,
+}
 const persistedReducer = persistReducer(authPersistConfig,AuthReducer);
 const calcReduser=persistReducer(calcPersistConfig,CalcReducer);
+const dairyReduser=persistReducer(dairyPersistConfig,daySummaryReducer);
 
 export const store = configureStore({
   reducer: {
   auth: persistedReducer,
-  dairy: daySummaryReducer,
+  dairy: dairyReduser,
   loader:loaderReducer,
   calculator:calcReduser,
   },

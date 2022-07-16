@@ -3,7 +3,7 @@ import axios from "axios";
 axios.defaults.baseURL = "https://agile-cove-20040.herokuapp.com/api";
 
 //для тестирования
-let tokens="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDEyYTUyZDMzNDQ4Mjg2MTM2NzBmZSIsImlhdCI6MTY1Nzk3MzcwOH0.qkMrN0eG1Sx8y8Z20B-vx2jguqilVaYim9eMxKKteP4"
+let tokens="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDEyYTUyZDMzNDQ4Mjg2MTM2NzBmZSIsImlhdCI6MTY1Nzk4NDQ4N30.VwqF1hi5Mv3uM4dfcQmxKUSjybOy4K-3ZHZAFE8RLeg"
 axios.defaults.headers.common.Authorization = `Bearer ${tokens}`;
 
 export const searchProduct = async (search) => {

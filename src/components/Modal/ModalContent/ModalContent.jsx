@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '../../button/Button.styled';
 import DailyCalorieIntake from '../../DailyCalorieIntake/DailyCalorieIntake';
+import Title from '../../DailyCalorieIntake/Title.styled';
 import { Content, CloseModalButton } from '../Modal.styled';
 
 export const ModalContent = ({ setShowModal }) => {
@@ -9,7 +10,9 @@ export const ModalContent = ({ setShowModal }) => {
   return (
     <div>
       <Content>
-        <DailyCalorieIntake />
+        <DailyCalorieIntake>
+          <Title />
+        </DailyCalorieIntake>
         <Button centered={'true'} onClick={() => navigate('/signup')}></Button>
       </Content>
       <CloseModalButton

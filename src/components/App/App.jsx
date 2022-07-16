@@ -15,6 +15,8 @@ const DiaryPage = lazy(() => import('../../pages/DiaryPage/DiaryPage'));
 const CalculatorPage = lazy(() =>
   import('../../pages/CalculatorPage/CalculatorPage')
 );
+
+const AvatarUpload =  lazy(() => import('../Header/Avatar'));
 const NotFound = lazy(() => import('../../pages/NotFound/NotFound'));
 
 
@@ -80,6 +82,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <DiaryPage />
+              </ProtectedRoute>
+            }
+          />
+<Route
+            path="/avatar"
+            element={
+              <ProtectedRoute restricted>
+                <AvatarUpload />
               </ProtectedRoute>
             }
           />

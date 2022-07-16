@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiCornerDownLeft } from 'react-icons/fi';
 import { layoutStyles } from '../../stlyles/layoutStyles';
@@ -7,7 +7,6 @@ import authSelectors from '../../redux/auth/selectors';
 import authOperations from '../../redux/auth/authOperations';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 const Title = styled.h2`
   margin: 0;
   display: inline;
@@ -91,6 +90,7 @@ const WrapperAvatar = styled.div`
   height: 45px;
   overflow: hidden;
 `;
+
 export default function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUserName);
@@ -124,11 +124,12 @@ export default function UserMenu() {
         autoClose: false,
         hideProgressBar: false,
         closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
+        pauseOnHover: false,
+        draggable: false,
         progress: undefined,
       }
     );
+
   return (
     <>
       <List>
@@ -139,16 +140,21 @@ export default function UserMenu() {
         <Arrow color="black" size="20px" />
       </Button>
       <Wrapper>
-        <WrapperAvatar>
-          <ImgAvatar src={avatar} alt="" />
-        </WrapperAvatar>
-
+        <Link to="/avatar">
+          <WrapperAvatar>
+            <ImgAvatar src={avatar} alt="" />
+          </WrapperAvatar>
+        </Link>
         <Title>{name}</Title>
         <Button type="button" onClick={notify}>
           Вихід
         </Button>
       </Wrapper>
-      <ToastContainer toastStyle={{ border: '1px solid #FC842D' }} />
+      <ToastContainer
+        toastStyle={{
+          border: '1px solid #FC842D',
+        }}
+      />
     </>
   );
 }

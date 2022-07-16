@@ -17,8 +17,6 @@ const CalculatorPage = lazy(() =>
 );
 const NotFound = lazy(() => import('../../pages/NotFound/NotFound'));
 
-
-
 export default function App() {
   // const dispatch = useDispatch();
   // const isCurrentUserRefresh = useSelector(authSelectors.getIsRefresh);
@@ -28,65 +26,65 @@ export default function App() {
 
   return (
     <>
-    <Suspense fallback="">
-      <Routes>
-        <Route
-          exact
-          path="/"
-          element={
-            <PublicRoute restricted>
-              <Layout />
-            </PublicRoute>
-          }
-        >
+      <Suspense fallback="">
+        <Routes>
           <Route
-            index
+            exact
+            path="/"
             element={
-              <PublicRoute restricted>
-                <MainPage />
+              <PublicRoute>
+                <Layout />
               </PublicRoute>
             }
-          />
+          >
+            <Route
+              index
+              element={
+                <PublicRoute>
+                  <MainPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/signup"
-            element={
-              <PublicRoute restricted>
-                <RegistrationPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="/signup"
+              element={
+                <PublicRoute restricted>
+                  <RegistrationPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/login"
-            element={
-              <PublicRoute redirectTo="/dairy" restricted>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="/login"
+              element={
+                <PublicRoute redirectTo="/dairy" restricted>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/calculator"
-            element={
-              <PublicRoute restricted>
-                <CalculatorPage />
-              </PublicRoute>
-            }
-          />
+            <Route
+              path="/calculator"
+              element={
+                <PublicRoute restricted>
+                  <CalculatorPage />
+                </PublicRoute>
+              }
+            />
 
-          <Route
-            path="/dairy"
-            element={
-              // <ProtectedRoute>
+            <Route
+              path="/dairy"
+              element={
+                // <ProtectedRoute>
                 <DiaryPage />
-              //  </ProtectedRoute>
-            }
-          />
+                //  </ProtectedRoute>
+              }
+            />
 
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
       </Suspense>
     </>
   );

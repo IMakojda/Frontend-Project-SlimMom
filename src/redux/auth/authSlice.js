@@ -42,7 +42,21 @@ const authSlice = createSlice({
     [authOperations.logIn.pending](state){state.loaderShow=true;},
     [authOperations.logIn.rejected](state){state.loaderShow=false;},
 
-    [authOperations.logOut.fulfilled](state, action) {},
+    [authOperations.logOut.fulfilled](state){
+      state.user={name: '',
+        email: '',
+        avatarURL: '',
+        height: null,
+        age: null,
+        currentWeight: null,
+        desiredWeight: null,
+        bloodType: null,}
+      state.token = null;
+      state.isLoggedIn = false;
+      state.loaderShow=false;
+      state.isCurrentUserRefresh=false;
+    },
+
     [authOperations.logOut.pending](state){state.loaderShow=true;},
     [authOperations.logOut.rejected](state){state.loaderShow=false;},
 
@@ -52,17 +66,22 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
     },
 
-    // [authOperations.refreshUser.pending](state) {
+    [authOperations.refreshUser.pending](state) {
+    state.isCurrentUserRefresh = true;
+    state.loaderShow=true;
+    },
 
-    // },
+    [authOperations.refreshUser.fulfilled](state, action) {
+      state.isCurrentUserRefresh = false;
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.loaderShow=false;
+    },
 
-    // [authOperations.refreshUser.fulfilled](state, action) {
-
-    // },
-
-    // [authOperations.refreshUser.rejected](state, action) {
-
-    // },
+    [authOperations.refreshUser.rejected](state, action) {
+      state.isCurrentUserRefresh = false;
+      state.loaderShow=false;
+      },
   },
 });
 

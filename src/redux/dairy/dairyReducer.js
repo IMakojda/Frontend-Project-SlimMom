@@ -1,18 +1,16 @@
-import {  createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 // import { combineReducers } from "redux";
 // import { findDate } from "./dairyAction";
 
 import {
-fetchProducts,
-fetchDairy,
-//addProduct,
-// removeProduct
-} from "./dairyOperations";
+  fetchProducts,
+  fetchDairy,
+  addProduct,
+  removeProduct,
+} from './dairyOperations';
 
 const initialState = {
-  user: null,
   date: '',
-  test: {},
   products: [],
   summary: {
     dailyRate: null,
@@ -23,7 +21,7 @@ const initialState = {
   notRecFood: [],
   dateFind: '',
   error: null,
-  productList:[],
+  productList: [],
 };
 
 const summaryForDaySlice = createSlice({
@@ -35,23 +33,62 @@ const summaryForDaySlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchDairy.fulfilled]: (state, action) => {
-      state.products = action.payload.result.products
-      state.date = action.payload.result.date
+    [fetchDairy.fulfilled]: (state, { payload }) => {
+      state.products = payload.result.products;
+      state.date = payload.result.date;
+      state.summary.dailyRate = payload.result.summary.dailyRate;
+      state.summary.consumed = payload.result.summary.consumed;
+      state.summary.left = payload.result.summary.left;
+      state.summary.nOfNorm = payload.result.summary.nOfNorm;
     },
-    [fetchProducts.fulfilled]: (state, action) => {
-      state.productList = action.payload
+    [fetchProducts.fulfilled]: (state, { payload }) => {
+      state.productList = payload;
     },
 
-    // [addProduct.fulfilled]: (state, action) => {
-    //   state.products.push(action.payload)
-    // },
+    [addProduct.fulfilled]: (state, { payload }) => {
+      state.products = payload.result.products;
+      state.summary.dailyRate = payload.result.summary.dailyRate;
+      state.summary.consumed = payload.result.summary.consumed;
+      state.summary.left = payload.result.summary.left;
+      state.summary.nOfNorm = payload.result.summary.nOfNorm;
+    },
+    [removeProduct.fulfilled]: (state, { payload }) => {
+      state.products = payload.result.products;
+      state.summary.dailyRate = payload.result.summary.dailyRate;
+      state.summary.consumed = payload.result.summary.consumed;
+      state.summary.left = payload.result.summary.left;
+      state.summary.nOfNorm = payload.result.summary.nOfNorm;
+    },
+    [fetchProducts.rejected]: (state, { payload }) => {
+      state.error = payload;
+    },
 
-  }
+    [fetchProducts.pending]: (state, _) => {
+      state.error = null;
+    },
+    [addProduct.rejected]: (state, { payload }) => {
+      state.error = payload;
+    },
+    [addProduct.pending]: (state, _) => {
+      state.error = null;
+    },
+    [fetchDairy.rejected]: (state, { payload }) => {
+      state.error = payload;
+    },
+    [fetchDairy.pending]: (state, _) => {
+      state.error = null;
+    },
+    [removeProduct.rejected]: (state, { payload }) => {
+      state.error = payload;
+    },
+    [removeProduct.pending]: (state, _) => {
+      state.error = null;
+    },
+  },
 });
 
-export const { addDate } = summaryForDaySlice.actions
-export default summaryForDaySlice.reducer
+export const { addDate } = summaryForDaySlice.actions;
+export default summaryForDaySlice.reducer;
 
 // const getSearchProduct = createReducer([], {
 //   [fetchProducts.fulfilled]: (state, action) => action.payload,
@@ -84,5 +121,3 @@ export default summaryForDaySlice.reducer
 //     dateFind,
 //     error,
 // });
-
-

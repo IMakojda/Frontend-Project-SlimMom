@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-
+import { motion } from 'framer-motion';
 import DateCalendar from '../../components/DateCalendar/DateCalendar';
 import ProductsList from '../../components/ProductsList/ProductsList';
 import ProductForm from '../../components/Forms/ProductForm';
@@ -17,7 +17,7 @@ export default function DiaryPage() {
   });
 
   return (
-    <div className={styles.Wrapper}>
+    <motion.div>
       <div className={styles.WrapperDate}>
         <DateCalendar />
       </div>
@@ -32,6 +32,6 @@ export default function DiaryPage() {
           <ImPlus width="20" height="20" fill={layoutStyles.mainBackground} />
         </Button>
       )}
-    </div>
+    </motion.div>
   );
 }

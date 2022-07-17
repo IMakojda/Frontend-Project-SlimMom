@@ -11,6 +11,10 @@ const token = {
     axios.defaults.headers.common.Authorization = ``;
   },
 };
+
+const headers = {
+  'Content-Type': 'multipart/form-data',
+};
 const register = createAsyncThunk(
   '/auth/register',
   async (credential, thunkAPI) => {
@@ -39,7 +43,7 @@ const logIn = createAsyncThunk('/auth/login', async (credential, thunkAPI) => {
 
 const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
   try {
-    await axios.post('/users/logout');
+    await axios.get('/users/logout');
     token.unset();
   } catch (error) {
     return thunkAPI.rejectWithValue();
@@ -50,34 +54,36 @@ const updateAvatar = createAsyncThunk(
   '/auth/update',
   async (credential, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/users/avatars', credential);
+      const { data } = await axios.patch('/users/avatars', credential, {
+        headers: headers,
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
-// const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
-//   const state = thunkAPI.getState();
-//   const persistToken = state.auth.token;
-//
-//   if (persistToken === null) { return thunkAPI.rejectWithValue() }
-//   token.set(persistToken);
-//   try {
-//     const { data } = await axios.get('users/current');
-//     return data
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error)
-//   }
-//
-// })
+
+const refreshUser = createAsyncThunk('auth/current', async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persistToken = state.auth.token;
+  if (persistToken === null) { return thunkAPI.rejectWithValue() }
+  token.set(persistToken);
+  try {
+    const { data } = await axios.get('/users/current');
+    console.log(data);
+    return data
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error)
+  }
+})
 
 const authOperations = {
   register,
   logIn,
   logOut,
   updateAvatar,
-  // refreshUser,
+  refreshUser,
 };
 
 export default authOperations;

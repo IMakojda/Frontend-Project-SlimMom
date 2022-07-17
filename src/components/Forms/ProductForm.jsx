@@ -5,7 +5,6 @@ import { useMediaQuery } from 'react-responsive';
 
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-// import moment from 'moment';
 import { createGlobalStyle } from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import Button from '../button/Button.styled';
@@ -60,7 +59,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ProductForm(styles) {
-  // const [value, setValue] = useState('');
   const [productId, setProductId] = useState('');
   const [productWeight, setWeight] = useState('');
 
@@ -82,7 +80,6 @@ export default function ProductForm(styles) {
     setProductId('');
     setWeight('');
     getDairy(date);
-    // setValue('')
   }
 
   const FormikWrapperStyles = createGlobalStyle`
@@ -149,7 +146,6 @@ export default function ProductForm(styles) {
         initialValues={{ product: '', weight: '' }}
         onSubmit={(values, actions) => {
           setTimeout(() => {
-            // alert(JSON.stringify(values, null, 2));
             actions.setSubmitting(false);
           }, 1000);
         }}
@@ -177,7 +173,6 @@ export default function ProductForm(styles) {
                 <TextField
                   fullWidth
                   required
-                  // value={value}
                   onChange={e => findProduct(e.currentTarget.value)}
                   {...params}
                   label="Введіть назву продукту"
@@ -192,7 +187,6 @@ export default function ProductForm(styles) {
               id="weight"
               type="number"
               step="1"
-              // inputValue={value}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                 minWidth: '110px',

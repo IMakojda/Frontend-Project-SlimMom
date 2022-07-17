@@ -41,3 +41,4 @@ Modal.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func,
 };
+

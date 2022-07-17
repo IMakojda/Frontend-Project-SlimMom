@@ -10,9 +10,7 @@ import {
 } from './dairyOperations';
 
 const initialState = {
-  // user: null,
   date: '',
-  // test: {},
   products: [],
   summary: {
     dailyRate: null,
@@ -54,24 +52,38 @@ const summaryForDaySlice = createSlice({
       state.summary.left = payload.result.summary.left;
       state.summary.nOfNorm = payload.result.summary.nOfNorm;
     },
-
-    [fetchProducts.rejected]: ({ error }, { payload }) => {
-      error = payload;
+    [removeProduct.fulfilled]: (state, { payload }) => {
+      state.products = payload.result.products;
+      state.summary.dailyRate = payload.result.summary.dailyRate;
+      state.summary.consumed = payload.result.summary.consumed;
+      state.summary.left = payload.result.summary.left;
+      state.summary.nOfNorm = payload.result.summary.nOfNorm;
+    },
+    [fetchProducts.rejected]: (state, { payload }) => {
+      state.error = payload;
     },
 
-    // [fetchProducts.pending]: () => null,
-    [addProduct.rejected]: ({ error }, { payload }) => {
-      error = payload;
+    [fetchProducts.pending]: (state, _) => {
+      state.error = null;
     },
-    // [addProduct.pending]: () => null,
-    [fetchDairy.rejected]: ({ error }, { payload }) => {
-      error = payload;
+    [addProduct.rejected]: (state, { payload }) => {
+      state.error = payload;
     },
-    // [fetchDairy.pending]: () => null,
-    [removeProduct.rejected]: ({ error }, { payload }) => {
-      error = payload;
+    [addProduct.pending]: (state, _) => {
+      state.error = null;
     },
-    // [removeProduct.pending]: () => null,
+    [fetchDairy.rejected]: (state, { payload }) => {
+      state.error = payload;
+    },
+    [fetchDairy.pending]: (state, _) => {
+      state.error = null;
+    },
+    [removeProduct.rejected]: (state, { payload }) => {
+      state.error = payload;
+    },
+    [removeProduct.pending]: (state, _) => {
+      state.error = null;
+    },
   },
 });
 

@@ -48,9 +48,10 @@ const addProduct = createAsyncThunk(
 
 const removeProduct = createAsyncThunk(
   "product/delete",
-  async function (data, id, { rejectWithValue }) {
+  async function ({dataFormat, id}, { rejectWithValue }) {
     try {
-      return await deleteProductRequest(data, id);
+      const result = await deleteProductRequest({dataFormat, id});
+      return result
     } catch (error) {
       console.error(error.message);
       return rejectWithValue(error.message);

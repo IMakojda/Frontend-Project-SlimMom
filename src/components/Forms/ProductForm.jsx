@@ -55,17 +55,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ProductForm(styles) {
-  // const [numder, setNumder] = useState('');
   const [value, setValue] = useState('');
   const [productId, setProductId] = useState('');
   const [productWeight, setWeight] = useState('');
 
   const dispatch = useDispatch();
 
-  //   const products = []
-  // if (value !== '') {
   const products = useSelector(getProducts); // список найденных продуктов
-  // }
 
   const date = useSelector(getDate); // форматированная дата на которую добавляем проукт
 
@@ -87,8 +83,6 @@ export default function ProductForm(styles) {
     position: absolute;
     top: 0;
     ${styles};
-    /* top: -170%; */
-
   }
    .ProductForm {
     padding-top: 80px;
@@ -144,12 +138,11 @@ export default function ProductForm(styles) {
     <div className={'wrapper'}>
       <Formik
         initialValues={{ product: '', weight: '' }}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            actions.setSubmitting(false);
-          }, 1000);
-        }}
-
+        // onSubmit={(values, actions) => {
+        //   setTimeout(() => {
+        //     actions.setSubmitting(false);
+        //   }, 1000);
+        // }}
         // onSubmit={onSubmit}
       >
         <Form className={'ProductForm'}>
@@ -178,7 +171,6 @@ export default function ProductForm(styles) {
                   {...params}
                   fullWidth
                   required
-                  // onChange={e => findProduct(e.currentTarget.value)}
                   onChange={e => {
                     if (e.currentTarget.value !== '')
                       debouncedFindProduct(e.currentTarget.value);
@@ -195,8 +187,6 @@ export default function ProductForm(styles) {
               id="weight"
               type="number"
               step="1"
-              // value={value || ""}
-              // InputProps={{ value: value  }}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                 minWidth: '110px',

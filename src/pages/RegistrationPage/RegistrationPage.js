@@ -1,6 +1,8 @@
 import RegisterForm from 'components/Forms/RegisterForm';
 import styled from 'styled-components';
 
+import {motion} from 'framer-motion';
+
 const RegisterWrapper = styled.h1`
   margin-top: 40px;
   font-family: 'Verdana';
@@ -19,9 +21,13 @@ const RegisterWrapper = styled.h1`
 
 export default function RegistrationPage() {
   return (
-    <div>
+    <motion.div
+    initial={{width: 0}}
+    animate={{width: "100%"}}
+    exit={{x: window.innerWidth,  transition:{duration: 0.1}}}
+    >
       <RegisterWrapper>реєстрація</RegisterWrapper>
       <RegisterForm />
-    </div>
+    </motion.div>
   );
 }

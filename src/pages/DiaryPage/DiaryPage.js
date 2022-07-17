@@ -10,6 +10,8 @@ import { ImPlus } from 'react-icons/im';
 
 import styles from './DiaryPage.module.css';
 
+import {motion} from 'framer-motion';
+
 export default function DiaryPage() {
   const [addProduct, setAddProduct] = useState(false);
   const isMobile = useMediaQuery({
@@ -17,7 +19,11 @@ export default function DiaryPage() {
   });
 
   return (
-    <div className={styles.Wrapper}>
+    <motion.div className={styles.Wrapper}
+    initial={{width: 0}}
+    animate={{width: "100%"}}
+    exit={{x: window.innerWidth,  transition:{duration: 0.1}}}
+    >
       <div className={styles.WrapperDate}>
         <DateCalendar />
       </div>
@@ -32,6 +38,6 @@ export default function DiaryPage() {
           <ImPlus width="20" height="20" fill={layoutStyles.mainBackground} />
         </Button>
       )}
-    </div>
+    </motion.div>
   );
 }

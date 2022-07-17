@@ -18,7 +18,7 @@ export const Modal = ({ setShowModal, showModal, children }) => {
         setShowModal();
       }
     },
-    []
+    [setShowModal]
   );
 
   useEffect(() => {

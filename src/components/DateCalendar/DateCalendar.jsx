@@ -1,6 +1,5 @@
-import { useState } from 'react';
-// import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
 import Datetime from 'react-datetime';
@@ -11,37 +10,29 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 import { RiCalendar2Fill } from 'react-icons/ri';
 
-import { fetchDairy} from '../../redux/dairy/dairyOperations'
-import {addDate } from '../../redux/dairy/dairyReducer';
-
+import { fetchDairy } from '../../redux/dairy/dairyOperations';
+import { addDate } from '../../redux/dairy/dairyReducer';
 
 export default function DateCalendar() {
   const [value, setValue] = useState(moment(new Date()));
   const [openCalendar, setOpenCalendar] = useState(false);
 
-
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   // dispatch(fetchDairy(dateFormat(value)));
-  //   getDairy(dateFormat(value))
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchDairy(dateFormat(value)));
+  }, [value, dispatch]);
 
-  const getDairy = (date) => {
-    dispatch(fetchDairy(date));
-  };
-  
-  const setDate = (date) => {
+  const setDate = date => {
     dispatch(addDate(date));
   };
 
   function dateFormat(date) {
-    return `${date.format('YYYY.MM.DD')}Z`
+    return `${date.format('YYYY.MM.DD')}Z`;
   }
 
-  setDate(dateFormat(value))
-  // getDairy(dateFormat(value))
-  
+  setDate(dateFormat(value));
+  fetchDairy(dateFormat(value));
 
   const Div = styled.div`
     display: flex;
@@ -86,8 +77,8 @@ export default function DateCalendar() {
         onChange={newValue => {
           setValue(newValue);
           setOpenCalendar(false);
-          setDate(dateFormat(newValue))
-          getDairy(dateFormat(newValue))
+          setDate(dateFormat(newValue));
+          // getDairy(dateFormat(newValue))
         }}
       />
       <DatePickerWrapperStyles />
@@ -98,7 +89,7 @@ export default function DateCalendar() {
         background={layoutStyles.mainBackground}
         width={'23px'}
         height={'23px'}
-
+        margin={'0'}
       >
         <RiCalendar2Fill
           width="23"

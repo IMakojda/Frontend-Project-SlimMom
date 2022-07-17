@@ -3,8 +3,8 @@ import axios from "axios";
 axios.defaults.baseURL = "https://agile-cove-20040.herokuapp.com/api";
 
 //для тестирования
-// let tokens="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDEyYTUyZDMzNDQ4Mjg2MTM2NzBmZSIsImlhdCI6MTY1ODAwOTc0OX0.gN8JxOEoTEdRrjHcozgr-jQxjyD6JtPj2vyPhGqkfxA"
-// axios.defaults.headers.common.Authorization = `Bearer ${tokens}`;
+let tokens="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZDEyYTUyZDMzNDQ4Mjg2MTM2NzBmZSIsImlhdCI6MTY1ODA1MDk5MX0.nn0y0UlLN5eWtYVBR7AwCviUB7OBsUgb3HpBPUN1cws"
+axios.defaults.headers.common.Authorization = `Bearer ${tokens}`;
 
 export const searchProduct = async (search) => {
   try {
@@ -28,29 +28,29 @@ export const getDairy = async (date) => {
 
 export const addProductForUser = async (newProduct) => {
   try {
-    const  result  = await axios.post("/calc/user", newProduct);  // # Authorization: "Bearer {{token}}"
+    const  {data}  = await axios.post("/calc/user", newProduct);  // # Authorization: "Bearer {{token}}"
                                                                   // RequestBody (example):
                                                                   // {
                                                                   // "date":"2022.07.13Z",
                                                                   // "productId":"5d51694802b2373622ff555c",
                                                                   // "productWeight":100
                                                                   // }
-  return result;
+  return data;
  
   } catch (error) {
     throw error;
   }
 }
 
-export const deleteProductRequest = async (deleteProduct) => {
+export const deleteProductRequest = async (data, id) => {
   try {
-    await axios.delete('/calc/user', deleteProduct);  // # Authorization: "Bearer {{token}}"
+    await axios.delete(`/calc/user/${data}/${id}`);  // # Authorization: "Bearer {{token}}"
                                                       // RequestBody (example):
                                                       // { 
                                                       // "date":"2022.07.13Z",
                                                       // "productId":"5d51694802b2373622ff555c"
                                                       // }
-    return deleteProduct;       // изменить на сообщение
+    return id;       // изменить на сообщение
   } catch (error) {
     throw error;
   }

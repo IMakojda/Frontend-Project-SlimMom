@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '../button/Button.styled';
 import { FiX } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 import { DivStyles } from './Div.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import { getEatProducts, getDate } from '../../redux/dairy/dairySelector';
@@ -19,6 +20,8 @@ export default function ProductsList() {
   return (
     <>
       <div className="control">
+        {products.length ===0 ?
+        <p className="info">Тут буде список продуктів та напоїв, що з'їли та випили за день. </p> :
         <table className="table">
           <tbody>
             {products.map(row => {
@@ -36,9 +39,8 @@ export default function ProductsList() {
                       height="28px"
                       backgroundHover={layoutStyles.formBorderColor}
                       onClick={() => {
-                        console.log(date);
-                        console.log(row.id);
                         deleteProduct(date, row.id);
+                        toast.success(`Видалено!`) // не обрабатывается ошибка
                       }}
                     >
                       <FiX
@@ -52,7 +54,7 @@ export default function ProductsList() {
               );
             })}
           </tbody>
-        </table>
+        </table>}
       </div>
       <DivStyles />
     </>

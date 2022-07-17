@@ -2,6 +2,9 @@ import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiCornerDownLeft } from 'react-icons/fi';
 import { layoutStyles } from '../../stlyles/layoutStyles';
+import { useMediaQuery } from 'react-responsive';
+import { changeToggle } from '../../redux/dairy/dairyReducer';
+import { getToggle } from '../../redux/dairy/dairySelector';
 import { useSelector, useDispatch } from 'react-redux';
 import authSelectors from '../../redux/auth/selectors';
 import authOperations from '../../redux/auth/authOperations';
@@ -95,6 +98,12 @@ export default function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUserName);
   const avatar = useSelector(authSelectors.getUserAvatar);
+
+  const toggle = useSelector(getToggle);
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${layoutStyles.tablet})`,
+  });
+
   const notify = () =>
     toast(
       <>
@@ -136,7 +145,12 @@ export default function UserMenu() {
         <ListItem to="/diary">Щоденник</ListItem>
         <ListItem to="/calculator">Калькулятор</ListItem>
       </List>
-      <Button type="button">
+      <Button type="button" 
+      onClick={() => {
+        if (isMobile && toggle) {
+          dispatch(changeToggle(false));
+        }
+      }}>
         <Arrow color="black" size="20px" />
       </Button>
       <Wrapper>

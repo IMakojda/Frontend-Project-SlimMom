@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { useMediaQuery } from 'react-responsive';
-
+import debounce from 'lodash.debounce';
+import { toast } from 'react-toastify';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { createGlobalStyle } from 'styled-components';
@@ -10,11 +11,8 @@ import { layoutStyles } from '../../stlyles/layoutStyles';
 import Button from '../button/Button.styled';
 import { ImPlus } from 'react-icons/im';
 
-import {
-  fetchProducts,
-  addProduct,
-  fetchDairy,
-} from '../../redux/dairy/dairyOperations';
+import { changeToggle } from '../../redux/dairy/dairyReducer';
+import { fetchProducts, addProduct } from '../../redux/dairy/dairyOperations';
 import { getProducts, getDate } from '../../redux/dairy/dairySelector';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -25,6 +23,8 @@ const useStyles = makeStyles(theme => ({
       fontFamily: layoutStyles.verdana,
       fontWeight: 700,
       fontSize: '14px',
+      lineHeight: 1.22,
+      letterSpacing: '0.04em',
     },
     '& .MuiOutlinedInput-notchedOutline': {
       border: 'none',
@@ -33,12 +33,16 @@ const useStyles = makeStyles(theme => ({
       fontFamily: layoutStyles.verdana,
       fontWeight: 700,
       fontSize: '13px',
+      lineHeight: 1.22,
+      letterSpacing: '0.04em',
     },
     '& .MuiOutlinedInput-input': {
       textAlign: 'right',
       fontFamily: layoutStyles.verdana,
       fontWeight: 700,
       fontSize: '13px',
+      lineHeight: 1.22,
+      letterSpacing: '0.04em',
       paddingRight: '2px',
       paddingLeft: '2px',
     },
@@ -59,27 +63,35 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ProductForm(styles) {
+  const [value, setValue] = useState('');
   const [productId, setProductId] = useState('');
   const [productWeight, setWeight] = useState('');
 
   const dispatch = useDispatch();
 
-  const getDairy = date => {
-    dispatch(fetchDairy(date));
-  };
-
   const products = useSelector(getProducts); // список найденных продуктов
   const date = useSelector(getDate); // форматированная дата на которую добавляем проукт
 
-  const findProduct = name => {
-    dispatch(fetchProducts(name));
+  const findProduct = value => {
+    dispatch(fetchProducts(value));
   };
 
+  const debouncedFindProduct = debounce(findProduct, 400);
+
   function onSubmit() {
+    if (productId === '') {
+      toast.warning('Вкажіть вагу продукту!');
+    }
+    if (productWeight === '') {
+      toast.warning('Виберіть продукт!');
+    }
     dispatch(addProduct({ date, productId, productWeight }));
+    if (productId !== '' && productWeight !== '') {
+      toast.success(`З'їдено!`);
+    }
     setProductId('');
     setWeight('');
-    getDairy(date);
+    setValue('');
   }
 
   const FormikWrapperStyles = createGlobalStyle`
@@ -87,8 +99,6 @@ export default function ProductForm(styles) {
     position: absolute;
     top: 0;
     ${styles};
-    /* top: -170%; */
-
   }
    .ProductForm {
     padding-top: 80px;
@@ -144,12 +154,11 @@ export default function ProductForm(styles) {
     <div className={'wrapper'}>
       <Formik
         initialValues={{ product: '', weight: '' }}
-        onSubmit={(values, actions) => {
-          setTimeout(() => {
-            actions.setSubmitting(false);
-          }, 1000);
-        }}
-
+        // onSubmit={(values, actions) => {
+        //   setTimeout(() => {
+        //     actions.setSubmitting(false);
+        //   }, 1000);
+        // }}
         // onSubmit={onSubmit}
       >
         <Form className={'ProductForm'}>
@@ -160,10 +169,14 @@ export default function ProductForm(styles) {
               selectOnFocus
               id="product"
               options={products}
+              value={value}
               noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
               classes={classes}
               onChange={(_, v) => {
-                setProductId(v.id);
+                if (v.id) {
+                  setProductId(v.id);
+                  setValue(v);
+                }
               }}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
@@ -171,10 +184,13 @@ export default function ProductForm(styles) {
               }}
               renderInput={params => (
                 <TextField
+                  {...params}
                   fullWidth
                   required
-                  onChange={e => findProduct(e.currentTarget.value)}
-                  {...params}
+                  onChange={e => {
+                    if (e.currentTarget.value !== '')
+                      debouncedFindProduct(e.currentTarget.value);
+                  }}
                   label="Введіть назву продукту"
                 />
               )}
@@ -205,6 +221,9 @@ export default function ProductForm(styles) {
             type="submit"
             onClick={() => {
               onSubmit();
+              if (isMobile) {
+                dispatch(changeToggle(false));
+              }
             }}
           >
             {isMobile ? (

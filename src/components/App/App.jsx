@@ -9,24 +9,27 @@ import authOperations from '../../redux/auth/authOperations';
 const Layout = lazy(() => import('../../pages/Layout/Layout'));
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
-const RegistrationPage = lazy(() =>import('../../pages/RegistrationPage/RegistrationPage'));
+const RegistrationPage = lazy(() =>
+  import('../../pages/RegistrationPage/RegistrationPage')
+);
 const DiaryPage = lazy(() => import('../../pages/DiaryPage/DiaryPage'));
-const CalculatorPage = lazy(() => import('../../pages/CalculatorPage/CalculatorPage'));
-const AvatarUpload =  lazy(() => import('../Header/Avatar'));
+const CalculatorPage = lazy(() =>
+  import('../../pages/CalculatorPage/CalculatorPage')
+);
+const AvatarUpload = lazy(() => import('../Header/Avatar'));
 const NotFound = lazy(() => import('../../pages/NotFound/NotFound'));
 
 export default function App() {
-
-
   const dispatch = useDispatch();
-  const isRefreshUser=useSelector(authSelector.getIsRefresh)
+  const isRefreshUser = useSelector(authSelector.getIsRefresh);
 
   useEffect(() => {
     dispatch(authOperations.refreshUser());
-  }, [dispatch])
+  }, [dispatch]);
 
-  return (!isRefreshUser &&(
-    <>
+  return (
+    !isRefreshUser && (
+      <>
         <Suspense fallback="">
           <Routes>
             <Route
@@ -77,17 +80,17 @@ export default function App() {
               <Route
                 path="/dairy"
                 element={
-                  // <ProtectedRoute>
-                  <DiaryPage />
-                  // </ProtectedRoute>
+                  <ProtectedRoute>
+                    <DiaryPage />
+                  </ProtectedRoute>
                 }
               />
               <Route
                 path="/avatar"
                 element={
-                  // <ProtectedRoute restricted>
-                  <AvatarUpload />
-                  // </ProtectedRoute>
+                  <ProtectedRoute restricted>
+                    <AvatarUpload />
+                  </ProtectedRoute>
                 }
               />
 

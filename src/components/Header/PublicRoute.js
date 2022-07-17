@@ -6,7 +6,7 @@ export default function PublicRoute({ children, restricted = false }) {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const shouldRedirect = isLoggedIn && restricted;
   if (shouldRedirect) {
-    return <Navigate to="/dairy" replace={true} />;
+    return <Navigate to="/diary" replace={true} />;
   }
   return children;
 }

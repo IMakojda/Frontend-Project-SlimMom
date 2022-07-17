@@ -38,6 +38,7 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.loaderShow=false;
     },
     [authOperations.logIn.pending](state){state.loaderShow=true;},
     [authOperations.logIn.rejected](state){state.loaderShow=false;},

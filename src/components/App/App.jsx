@@ -96,9 +96,5 @@ export default function App() {
               </Route>
             </Routes>
           </AnimatePresence>
-
-        </Suspense>
-      </>
-    )
   );
 }

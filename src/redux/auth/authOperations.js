@@ -46,6 +46,17 @@ const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
   }
 });
 
+const updateAvatar = createAsyncThunk(
+  '/auth/update',
+  async (credential, thunkAPI) => {
+    try {
+      const { data } = await axios.patch('/users/avatars', credential);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 // const refreshUser = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
 //   const state = thunkAPI.getState();
 //   const persistToken = state.auth.token;
@@ -65,6 +76,7 @@ const authOperations = {
   register,
   logIn,
   logOut,
+  updateAvatar,
   // refreshUser,
 };
 

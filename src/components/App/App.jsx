@@ -78,17 +78,17 @@ export default function App() {
             <Route
               path="/dairy"
               element={
-                <ProtectedRoute>
+                // <ProtectedRoute>
                   <DiaryPage />
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
             <Route
               path="/avatar"
               element={
-                <ProtectedRoute restricted>
+                // <ProtectedRoute restricted>
                   <AvatarUpload />
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
             

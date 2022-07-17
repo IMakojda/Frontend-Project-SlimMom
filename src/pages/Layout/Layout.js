@@ -6,26 +6,18 @@ import ImageContainer from "./Layout.styled";
 import Loader from '../../components/Loader/loader';
 import {  useSelector } from 'react-redux';
 import authSelector from '../../redux/auth/selectors';
-import { motion } from 'framer-motion';
+
 export default function Layout() {
   const  loaderShow=useSelector(authSelector.loaderShow)
 
-  return (
-    <motion.div
-      initial={{opacity:0}}
-      animate={{opacity:1}}
-      exit={{opacity:0, transition:{duration:0.3}}}
-      >
-      <ImageContainer>
-        <AppBar />
-        {loaderShow ?(<Loader/>):
-          (<Container>
-            <Suspense fallback={null}>
-              <Outlet/>
-            </Suspense>
-          </Container>)}
-      </ImageContainer>
-    </motion.div>
-
+  return (<ImageContainer>
+      <AppBar />
+    {loaderShow ?(<Loader/>):
+        (<Container>
+          <Suspense fallback={null}>
+            <Outlet/>
+          </Suspense>
+        </Container>)}
+  </ImageContainer>
 )
 };

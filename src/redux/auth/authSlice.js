@@ -62,7 +62,7 @@ const authSlice = createSlice({
     [authOperations.logOut.rejected](state){state.loaderShow=false;},
 
     [authOperations.updateAvatar.fulfilled](state, action) {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },

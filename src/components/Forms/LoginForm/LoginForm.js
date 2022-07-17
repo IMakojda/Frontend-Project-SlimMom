@@ -17,9 +17,9 @@ const SigninSchema = Yup.object().shape({
     .max(50, "Максимум 50 символів")
     .required("Обов'язкове поле"),
   password: Yup.string()
-    .min(8, "Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі, цифри та спеціальні символи")
+    .min(8, "Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі та цифри")
     .max(50, "Максимум 50 символів")
-    .matches(passwordRules, { message: "Створіть надійніший пароль" })
+    .matches(passwordRules, { message: "Введіть вірний пароль" })
     .required("Обов'язкове поле"),
 });
 
@@ -49,7 +49,7 @@ return (
       }}
     >
       {({values, errors, touched, handleChange, handleBlur, handleSubmit}) => (
-      <FormLogin>
+      <FormLogin onClick={handleSubmit}>
         <WrapperInputs>
           <WrapperInputEmail>
             <Input
@@ -93,7 +93,6 @@ return (
         <WrapperButtons>
           <Button
             type="submit"
-            onClick={handleSubmit}
             >
               Увійти
           </Button>

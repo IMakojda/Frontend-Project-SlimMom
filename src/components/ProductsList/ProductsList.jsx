@@ -11,7 +11,7 @@ export default function ProductsList() {
   const dispatch = useDispatch();
 
   const deleteProduct = (date, id) => {
-    dispatch(removeProduct( date, id ));
+    dispatch(removeProduct({ dataFormat: date, id: id }));
   };
   const date = useSelector(getDate);
   const products = useSelector(getEatProducts);

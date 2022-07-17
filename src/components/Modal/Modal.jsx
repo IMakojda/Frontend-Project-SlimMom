@@ -18,7 +18,7 @@ export const Modal = ({ setShowModal, showModal, children }) => {
         setShowModal();
       }
     },
-    []
+    [setShowModal]
   );
 
   useEffect(() => {
@@ -29,10 +29,9 @@ export const Modal = ({ setShowModal, showModal, children }) => {
 
   return createPortal(
     <>
-        <Background onClick={closeModal}>
-          <ModalWrapper showModal={showModal}>{children}</ModalWrapper>
-        </Background>
-
+      <Background onClick={closeModal}>
+        <ModalWrapper showModal={showModal}>{children}</ModalWrapper>
+      </Background>
     </>,
     modalRoot
   );

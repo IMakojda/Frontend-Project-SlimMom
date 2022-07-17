@@ -16,11 +16,13 @@ import {
   ErrorWrapper,
   StileButtonWrapper,
 } from './CalculatorСalorieForm.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import calcOperation from '../../../redux/calculatorSlice/calcOperation';
 import { Modal } from '../../Modal';
-import React, { useState } from 'react';
+import { ModalContent } from '../../Modal/ModalContent';
+import React from 'react';
+import calcSelectors from '../../../redux/calculatorSlice/calculatorSelectors';
 
 const CalculatorSchema = Yup.object().shape({
   height: Yup.number('number')
@@ -36,7 +38,9 @@ const CalculatorSchema = Yup.object().shape({
       Yup.ref('desiredWeight'),
       'Поточна вага має бути більшою за бажану'
     )
-    // .min(30, 'Мінімальна вага 30 кг')
+    .test('min-width', 'Мінімальна вага 30 кг', function (value) {
+      return value > 30;
+    })
     .max(120, 'Максимальна вага 120 кг')
     .required('Обов`язково до заповнення'),
   desiredWeight: Yup.number()
@@ -46,9 +50,11 @@ const CalculatorSchema = Yup.object().shape({
   bloodType: Yup.string().required(),
 });
 
-const CalculatorСalorieForm = () => {
+const CalculatorСalorieForm = props => {
+  const { showModal, setShowModal } = props;
+  const userData = useSelector(calcSelectors.getUserData);
   const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(false);
+
   return (
     <StileWrapper>
       <Header>Розрахуйте свою денну норму калорій прямо зараз</Header>
@@ -67,9 +73,8 @@ const CalculatorСalorieForm = () => {
           setTimeout(async () => {
             alert(JSON.stringify(values, null, 2));
             actions.setSubmitting(false);
-            // actions.resetForm();
+            actions.resetForm();
           }, 1000);
-
         }}
       >
         {props => {
@@ -164,7 +169,11 @@ const CalculatorСalorieForm = () => {
           );
         }}
       </Formik>
-      <Modal showModal={showModal} />
+      {showModal && userData && (
+        <Modal setShowModal={setShowModal}>
+          <ModalContent setShowModal={setShowModal}></ModalContent>
+        </Modal>
+      )}
     </StileWrapper>
   );
 };

@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 //import { useDispatch, useSelector } from 'react-redux';
-// import ProtectedRoute from '../Header/ProtectedRoute';
+import ProtectedRoute from '../Header/ProtectedRoute';
 import PublicRoute from '../Header/PublicRoute';
 //import authSelectors from '../../redux/auth/selectors';
 //import authOperations from '../../redux/auth/authOperations';
@@ -16,7 +16,7 @@ const CalculatorPage = lazy(() =>
   import('../../pages/CalculatorPage/CalculatorPage')
 );
 
-const AvatarUpload =  lazy(() => import('../Header/Avatar'));
+const AvatarUpload = lazy(() => import('../Header/Avatar'));
 const NotFound = lazy(() => import('../../pages/NotFound/NotFound'));
 
 export default function App() {
@@ -91,7 +91,7 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-            
+
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

@@ -41,15 +41,14 @@ return (
       }}
       validateOnBlur
       validationSchema = { SigninSchema }
-      onSubmit={(values, { resetForm, setSubmitting }) => {
+      onSubmit={(values, { resetForm }) => {
         dispatch(authOperations.logIn(values));
         console.log(values);
         resetForm();
-        setSubmitting(false);
       }}
     >
       {({values, errors, touched, handleChange, handleBlur, handleSubmit}) => (
-      <FormLogin onClick={handleSubmit}>
+      <FormLogin onSubmit={handleSubmit}>
         <WrapperInputs>
           <WrapperInputEmail>
             <Input

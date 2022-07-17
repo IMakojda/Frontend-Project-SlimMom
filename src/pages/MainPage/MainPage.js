@@ -18,12 +18,13 @@ export default function MainPage() {
   }
 
   return (
-    <Container>
-      <CalculatorFormWrapper openModal={openModal}/>
-      <Modal showModal={showModal} setShowModal={setShowModal}>
-        <ModalContent setShowModal={setShowModal} />
-      </Modal>
-    </Container>
+    <CalculatorFormWrapper />
+    // <Container>
+    //
+    //   {/*<Modal showModal={showModal} setShowModal={setShowModal}>*/}
+    //   {/*  <ModalContent setShowModal={setShowModal} />*/}
+    //   {/*</Modal>*/}
+    // </Container>
   );
 }
 

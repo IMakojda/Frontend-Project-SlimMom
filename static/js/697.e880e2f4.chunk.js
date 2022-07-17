@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkFrontend_Project_SlimMom=self.webpackChunkFrontend_Project_SlimMom||[]).push([[697],{3697:function(n,e,t){t.r(e),t.d(e,{default:function(){return r}});var o=t(184);function r(){return(0,o.jsxs)("h1",{children:["404 Page not found ",(0,o.jsx)("br",{}),":(  Please go to Contact "," "]})}}}]);
-//# sourceMappingURL=697.e880e2f4.chunk.js.map

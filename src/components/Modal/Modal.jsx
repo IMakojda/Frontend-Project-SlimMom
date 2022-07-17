@@ -26,16 +26,16 @@ export const Modal = ({ setShowModal, showModal, children }) => {
 
     return () => window.removeEventListener('keydown', closeOnEscapeKey);
   }, [closeOnEscapeKey]);
-
-  return createPortal(
-    <>
-        <Background onClick={closeModal}>
-          <ModalWrapper showModal={showModal}>{children}</ModalWrapper>
-        </Background>
-
-    </>,
-    modalRoot
-  );
+return null
+  // return createPortal(
+  //   <>
+  //       <Background onClick={closeModal}>
+  //         <ModalWrapper showModal={showModal}>{children}</ModalWrapper>
+  //       </Background>
+  //
+  //   </>,
+  //   modalRoot
+  // );
 };
 
 Modal.propTypes = {

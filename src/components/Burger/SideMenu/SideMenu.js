@@ -43,7 +43,7 @@ export const SideMenu = ({ children }) => {
             <>
                 <NavLink
                     className={styles.linkDiary}
-                    activeClassName={styles.mobileLinkActive}
+                    activeclassname={styles.mobileLinkActive}
                     to="/diary"
                     onClick={clickHandler}
                 >
@@ -51,7 +51,7 @@ export const SideMenu = ({ children }) => {
                 </NavLink>
                 <NavLink
                     className={styles.linkCalc}
-                    activeClassName={styles.mobileLinkActive}
+                    activeclassname={styles.mobileLinkActive}
                     to="/calculator"
                     onClick={clickHandler}
                 >

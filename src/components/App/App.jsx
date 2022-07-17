@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 //import { useDispatch, useSelector } from 'react-redux';
  import ProtectedRoute from '../Header/ProtectedRoute';
+
 import PublicRoute from '../Header/PublicRoute';
 //import authSelectors from '../../redux/auth/selectors';
 //import authOperations from '../../redux/auth/authOperations';
@@ -78,17 +79,17 @@ export default function App() {
             <Route
               path="/dairy"
               element={
-                <ProtectedRoute>
+                // <ProtectedRoute>
                   <DiaryPage />
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
             <Route
               path="/avatar"
               element={
-                <ProtectedRoute restricted>
+                // <ProtectedRoute restricted>
                   <AvatarUpload />
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
             

@@ -10,6 +10,7 @@ export const layoutStyles={
   scrollbarTrack: '#F0F1F3',
   scrollbarTumb: '#264061',
   modalWrapperColor: '#212121',
+  transparentGrey: 'rgba(33, 33, 33, 0.12)',
 
 //  breakpoint
   deskTop:'1280px',

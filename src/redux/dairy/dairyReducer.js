@@ -38,10 +38,10 @@ const summaryForDaySlice = createSlice({
     [fetchDairy.fulfilled]: (state, { payload }) => {
       state.products = payload.result.products;
       state.date = payload.result.date;
-      state.summary.dailyRate = payload.dailyRate;
-      state.summary.consumed = payload.consumed;
-      state.summary.left = payload.left;
-      state.summary.nOfNorm = payload.nOfNorm;
+      state.summary.dailyRate = payload.result.summary.dailyRate;
+      state.summary.consumed = payload.result.summary.consumed;
+      state.summary.left = payload.result.summary.left;
+      state.summary.nOfNorm = payload.result.summary.nOfNorm;
     },
     [fetchProducts.fulfilled]: (state, { payload }) => {
       state.productList = payload;
@@ -49,10 +49,10 @@ const summaryForDaySlice = createSlice({
 
     [addProduct.fulfilled]: (state, { payload }) => {
       state.products = payload.result.products;
-      state.summary.dailyRate = payload.result.dailyRate;
-      state.summary.consumed = payload.result.consumed;
-      state.summary.left = payload.result.left;
-      state.summary.nOfNorm = payload.result.nOfNorm;
+      state.summary.dailyRate = payload.result.summary.dailyRate;
+      state.summary.consumed = payload.result.summary.consumed;
+      state.summary.left = payload.result.summary.left;
+      state.summary.nOfNorm = payload.result.summary.nOfNorm;
     },
 
     [fetchProducts.rejected]: ({ error }, { payload }) => {

@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   display: flex;
   padding: 20px 0px 16px 10px;
 
-  @media only screen and (max-width: ${layoutStyles.tablet}) {
+  @media only screen and (max-width: 400px) {
     display: none;
     padding: 20px 0 16px 20px;
   }

@@ -18,6 +18,7 @@ const initialState = {
   },
   notRecFood: [],
   dateFind: '',
+  toggle: false,
   error: null,
   productList: [],
 };
@@ -28,6 +29,9 @@ const summaryForDaySlice = createSlice({
   reducers: {
     addDate(state, action) {
       state.dateFind = action.payload;
+    },
+    changeToggle(state, action) {
+      state.toggle = action.payload;
     },
   },
   extraReducers: {
@@ -85,6 +89,8 @@ const summaryForDaySlice = createSlice({
   },
 });
 
-export const { addDate } = summaryForDaySlice.actions;
 
+export const { addDate, changeToggle } = summaryForDaySlice.actions;
 export default summaryForDaySlice.reducer;
+
+

@@ -15,7 +15,7 @@ const BoxA = styled.div`
   } ;
 `;
 const ButtonForm = styled.button`
-  font-family: ${layoutStyles.gothamPro}
+  font-family: ${layoutStyles.gothamPro};
   font-size: 14px;
   font-weight: 700;
   line-height: 13px;

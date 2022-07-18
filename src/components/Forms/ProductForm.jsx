@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { useMediaQuery } from 'react-responsive';
 import debounce from 'lodash.debounce';
+import { toast } from 'react-toastify';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { createGlobalStyle } from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import Button from '../button/Button.styled';
 import { ImPlus } from 'react-icons/im';
-
+import { changeToggle } from '../../redux/dairy/dairyReducer';
 import { fetchProducts, addProduct } from '../../redux/dairy/dairyOperations';
 import { getProducts, getDate } from '../../redux/dairy/dairySelector';
 import { makeStyles } from '@material-ui/core/styles';
@@ -21,6 +22,8 @@ const useStyles = makeStyles(theme => ({
       fontFamily: layoutStyles.verdana,
       fontWeight: 700,
       fontSize: '14px',
+      lineHeight: 1.22,
+      letterSpacing: '0.04em',
     },
     '& .MuiOutlinedInput-notchedOutline': {
       border: 'none',
@@ -29,12 +32,16 @@ const useStyles = makeStyles(theme => ({
       fontFamily: layoutStyles.verdana,
       fontWeight: 700,
       fontSize: '13px',
+      lineHeight: 1.22,
+      letterSpacing: '0.04em',
     },
     '& .MuiOutlinedInput-input': {
       textAlign: 'right',
       fontFamily: layoutStyles.verdana,
       fontWeight: 700,
       fontSize: '13px',
+      lineHeight: 1.22,
+      letterSpacing: '0.04em',
       paddingRight: '2px',
       paddingLeft: '2px',
     },
@@ -72,11 +79,21 @@ export default function ProductForm(styles) {
   const debouncedFindProduct = debounce(findProduct, 400);
 
   function onSubmit() {
-    dispatch(addProduct({ date, productId, productWeight }));
-    setProductId('');
-    setWeight('');
-    setValue('');
-  }
+
+    if (productId === '') {
+     return toast.warning('Виберіть продукт!');
+    }
+    if (productWeight <= 0) {
+      return toast.warning('Вкажіть вагу продукту!');
+    }
+  
+    if (productId !== '' && productWeight >= 1 ) {
+      dispatch(addProduct({ date, productId, productWeight }));
+      toast.success(`З'їдено!`);
+      setProductId('');
+      setWeight('');
+      setValue('');
+    }
 
   const FormikWrapperStyles = createGlobalStyle`
   .wrapper{
@@ -98,6 +115,11 @@ export default function ProductForm(styles) {
 }
 .ProductName {
   margin-right: 32px;
+  margin-bottom: 20px;
+}
+.BtnName{
+  width: 176px;
+  color: ${layoutStyles.mainBackground}
 }
   @media screen and (min-width: ${layoutStyles.tablet}) {
     .wrapper{
@@ -116,6 +138,7 @@ export default function ProductForm(styles) {
 }
 .ProductName {
   margin-right: 32px;
+  margin-bottom: 0  ;
 }
   }
 @media screen and (min-width: ${layoutStyles.deskTop}) {
@@ -186,29 +209,36 @@ export default function ProductForm(styles) {
               fullWidth
               id="weight"
               type="number"
-              step="1"
+              // step="1"
+              // min='1'
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                 minWidth: '110px',
                 paddingRight: '50px',
                 margin: '0 32px 60px 0',
-              }}
+                }}
               onChange={e => {
-                setWeight(e.currentTarget.value);
+                if (e.currentTarget.value>1)
+                {setWeight(e.currentTarget.value);}
               }}
               classes={classes}
               label="Вага продукта"
             />
           </div>
+
           <Button
             margin="0 auto 0"
             type="submit"
+            borderRadius={isMobile && '30px'}
             onClick={() => {
               onSubmit();
+              if (isMobile && productId !== '' && productWeight >= 1 ) {
+                dispatch(changeToggle(false));
+              }
             }}
           >
-            {isMobile ? (
-              <p weight="176px">Додати</p>
+            {isMobile ? ( <p className={'BtnName'}
+              >Додати</p>
             ) : (
               <ImPlus
                 width="20"

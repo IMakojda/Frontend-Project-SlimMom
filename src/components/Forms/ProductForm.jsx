@@ -94,6 +94,7 @@ export default function ProductForm(styles) {
       setWeight('');
       setValue('');
     }
+  }
 
   const FormikWrapperStyles = createGlobalStyle`
   .wrapper{
@@ -151,11 +152,11 @@ export default function ProductForm(styles) {
 }
 
 `;
-  // const isMobile = useMediaQuery({
-  //   query: `(max-width: ${layoutStyles.tablet})`,
-  // });
+  const isMobile = useMediaQuery({
+    query: `(max-width: ${layoutStyles.tablet})`,
+  });
 
-  // const classes = useStyles();
+  const classes = useStyles();
 
   return (
     <div className={'wrapper'}>
@@ -178,7 +179,7 @@ export default function ProductForm(styles) {
               options={products}
               value={value}
               noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
-              // classes={classes}
+              classes={classes}
               onChange={(_, v) => {
                 if (v.id) {
                   setProductId(v.id);
@@ -221,7 +222,7 @@ export default function ProductForm(styles) {
                 if (e.currentTarget.value>1)
                 {setWeight(e.currentTarget.value);}
               }}
-              // classes={classes}
+              classes={classes}
               label="Вага продукта"
             />
           </div>
@@ -230,22 +231,22 @@ export default function ProductForm(styles) {
             margin="0 auto 0"
             type="submit"
             borderRadius={
-            // isMobile &&
+            isMobile &&
               '30px'}
             onClick={() => {
               onSubmit();
               if (
-                // isMobile &&
+                isMobile &&
                 productId !== '' && productWeight >= 1 ) {
                 dispatch(changeToggle(false));
               }
             }}
           >
             {
-              // isMobile ?
-            //   ( <p className={'BtnName'}
-            //   >Додати</p>
-            // ) :
+              isMobile ?
+              ( <p className={'BtnName'}
+              >Додати</p>
+            ) :
               (
               <ImPlus
                 width="20"
@@ -261,4 +262,4 @@ export default function ProductForm(styles) {
     </div>
   );
 }
-}
+

@@ -47,11 +47,10 @@ const Arrow = styled(FiCornerDownLeft)`
 `;
 
 const List = styled.div`
-  display: flex;
-  margin-right: 630px;
-
-  @media only screen and (max-width: ${layoutStyles.deskTop}) {
-    display: none;
+  display: none;
+  @media only screen and (min-width: ${layoutStyles.deskTop}) {
+    display: flex;
+    margin-right: 610px;
   }
 `;
 
@@ -145,12 +144,14 @@ export default function UserMenu() {
         <ListItem to="/diary">Щоденник</ListItem>
         <ListItem to="/calculator">Калькулятор</ListItem>
       </List>
-      <Button type="button" 
-      onClick={() => {
-        if (isMobile && toggle) {
-          dispatch(changeToggle(false));
-        }
-      }}>
+      <Button
+        type="button"
+        onClick={() => {
+          if (isMobile && toggle) {
+            dispatch(changeToggle(false));
+          }
+        }}
+      >
         <Arrow color="black" size="20px" />
       </Button>
       <Wrapper>

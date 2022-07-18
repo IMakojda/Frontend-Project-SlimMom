@@ -67,11 +67,13 @@ export default function RegisterForm() {
         validateOnBlur
         onSubmit={(values, actions) => {
           dispatch(authOperations.register(values));
-          setTimeout(async () => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
-            // actions.resetForm();
-          }, 1000);
+          // setTimeout(async () => {
+          //   alert(JSON.stringify(values, null, 2));
+          //   actions.setSubmitting(false);
+          //   // actions.resetForm();
+          // }, 1000);
+          console.log(values);
+          actions.resetForm();
         }}
         validationSchema={validationSchema}
       >

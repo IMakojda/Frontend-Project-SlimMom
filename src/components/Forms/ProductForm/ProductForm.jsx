@@ -11,9 +11,12 @@ import { layoutStyles } from '../../../stlyles/layoutStyles';
 import Button from '../../button/Button.styled';
 import { ImPlus } from 'react-icons/im';
 import { changeToggle } from '../../../redux/dairy/dairyReducer';
-import { fetchProducts, addProduct } from '../../../redux/dairy/dairyOperations';
+import {
+  fetchProducts,
+  addProduct,
+} from '../../../redux/dairy/dairyOperations';
 import { getProducts, getDate } from '../../../redux/dairy/dairySelector';
-import {FormikWrapperStyles, useStyles} from './ProductForm.styled'
+import { FormikWrapperStyles, useStyles } from './ProductForm.styled';
 
 export default function ProductForm(styles) {
   const [value, setValue] = useState('');
@@ -47,7 +50,6 @@ export default function ProductForm(styles) {
       setValue('');
     }
   }
-  
   const isMobile = useMediaQuery({
     query: `(max-width: ${layoutStyles.tablet})`,
   });

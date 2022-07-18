@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-// import { MenuContext } from '../NavState/NavState';
+import { MenuContext } from '../NavState/NavState';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrClose } from 'react-icons/gr';
 
@@ -47,26 +47,19 @@ const MenuButton = styled.button`
 // `;
 
 const BurgerButton = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isMenuOpen,toggleMenuMode } = useContext(MenuContext);
 
-  // const { toggleMenuMode } = useContext(MenuContext);
-
-  // const clickHandler = () => {
-  //     toggleMenuMode();
-  // };
+  const clickHandler = () => {
+      toggleMenuMode();
+  };
 
   return (
     <MenuButton
-      // className={isMenuOpen ? "active" : ""}
-      // aria-label="Открыть главное меню"
-      // onClick={clickHandler}
-
-      onClick={() => setIsMenuOpen(!isMenuOpen)}
+      className={isMenuOpen ? "active" : ""}
+      aria-label="Открыть главное меню"
+      onClick={clickHandler}
     >
       {isMenuOpen ? <GrClose /> : <GiHamburgerMenu />}
-      {/* <Bar />
-            <Bar />
-            <Bar /> */}
     </MenuButton>
   );
 };

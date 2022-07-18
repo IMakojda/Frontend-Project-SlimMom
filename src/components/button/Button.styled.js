@@ -16,7 +16,6 @@ const Btn = styled.button`
   margin: ${props => props.margin || 'auto'};
   padding: 0;
   :hover{
-    border-radius: 50%;
     background-color: ${props => props.backgroundHover || 'none'};
     color: ${props => props.fill || 'none'};
   }

@@ -115,6 +115,11 @@ export default function ProductForm(styles) {
 }
 .ProductName {
   margin-right: 32px;
+  margin-bottom: 20px;
+}
+.BtnName{
+  width: 176px;
+  color: ${layoutStyles.mainBackground}
 }
   @media screen and (min-width: ${layoutStyles.tablet}) {
     .wrapper{
@@ -133,6 +138,7 @@ export default function ProductForm(styles) {
 }
 .ProductName {
   margin-right: 32px;
+  margin-bottom: 0  ;
 }
   }
 @media screen and (min-width: ${layoutStyles.deskTop}) {
@@ -223,6 +229,7 @@ export default function ProductForm(styles) {
           <Button
             margin="0 auto 0"
             type="submit"
+            borderRadius={isMobile && '30px'}
             onClick={() => {
               onSubmit();
               if (isMobile && productId !== '' && productWeight >= 1 ) {
@@ -230,8 +237,8 @@ export default function ProductForm(styles) {
               }
             }}
           >
-            {isMobile ? (
-              <p weight="176px">Додати</p>
+            {isMobile ? ( <p className={'BtnName'}
+              >Додати</p>
             ) : (
               <ImPlus
                 width="20"

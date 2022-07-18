@@ -10,7 +10,6 @@ import { createGlobalStyle } from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import Button from '../button/Button.styled';
 import { ImPlus } from 'react-icons/im';
-
 import { changeToggle } from '../../redux/dairy/dairyReducer';
 import { fetchProducts, addProduct } from '../../redux/dairy/dairyOperations';
 import { getProducts, getDate } from '../../redux/dairy/dairySelector';
@@ -70,6 +69,7 @@ export default function ProductForm(styles) {
   const dispatch = useDispatch();
 
   const products = useSelector(getProducts); // список найденных продуктов
+
   const date = useSelector(getDate); // форматированная дата на которую добавляем проукт
 
   const findProduct = value => {
@@ -79,6 +79,7 @@ export default function ProductForm(styles) {
   const debouncedFindProduct = debounce(findProduct, 400);
 
   function onSubmit() {
+
     if (productId === '') {
      return toast.warning('Виберіть продукт!');
     }
@@ -93,7 +94,6 @@ export default function ProductForm(styles) {
       setWeight('');
       setValue('');
     }
-  }
 
   const FormikWrapperStyles = createGlobalStyle`
   .wrapper{

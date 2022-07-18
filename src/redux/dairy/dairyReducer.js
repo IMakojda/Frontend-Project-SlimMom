@@ -89,5 +89,8 @@ const summaryForDaySlice = createSlice({
   },
 });
 
+
 export const { addDate, changeToggle } = summaryForDaySlice.actions;
 export default summaryForDaySlice.reducer;
+
+

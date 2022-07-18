@@ -25,7 +25,7 @@ export const DivStyles = createGlobalStyle`
   font-size: 14px; 
   padding: 60px;
   line-height: 2em;
-letter-spacing: 0.04em;
+  letter-spacing: 0.04em;
 }
 .table{
   min-width: 230px;
@@ -35,7 +35,7 @@ letter-spacing: 0.04em;
   font-weight: 700;
   font-size: 14px; 
   line-height: 1.22;
-letter-spacing: 0.04em;
+  letter-spacing: 0.04em;
   max-height: 252px;
   display: inline-block;
   overflow-y: scroll;

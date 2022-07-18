@@ -80,18 +80,19 @@ export default function ProductForm(styles) {
 
   function onSubmit() {
     if (productId === '') {
-      toast.warning('Вкажіть вагу продукту!');
+     return toast.warning('Виберіть продукт!');
     }
-    if (productWeight === '') {
-      toast.warning('Виберіть продукт!');
+    if (productWeight <= 0) {
+      return toast.warning('Вкажіть вагу продукту!');
     }
-    dispatch(addProduct({ date, productId, productWeight }));
-    if (productId !== '' && productWeight !== '') {
+  
+    if (productId !== '' && productWeight >= 1 ) {
+      dispatch(addProduct({ date, productId, productWeight }));
       toast.success(`З'їдено!`);
+      setProductId('');
+      setWeight('');
+      setValue('');
     }
-    setProductId('');
-    setWeight('');
-    setValue('');
   }
 
   const FormikWrapperStyles = createGlobalStyle`
@@ -202,26 +203,29 @@ export default function ProductForm(styles) {
               fullWidth
               id="weight"
               type="number"
-              step="1"
+              // step="1"
+              // min='1'
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                 minWidth: '110px',
                 paddingRight: '50px',
                 margin: '0 32px 60px 0',
-              }}
+                }}
               onChange={e => {
-                setWeight(e.currentTarget.value);
+                if (e.currentTarget.value>1)
+                {setWeight(e.currentTarget.value);}
               }}
               classes={classes}
               label="Вага продукта"
             />
           </div>
+
           <Button
             margin="0 auto 0"
             type="submit"
             onClick={() => {
               onSubmit();
-              if (isMobile) {
+              if (isMobile && productId !== '' && productWeight >= 1 ) {
                 dispatch(changeToggle(false));
               }
             }}

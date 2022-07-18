@@ -16,6 +16,8 @@ import { addDate } from '../../redux/dairy/dairyReducer';
 export default function DateCalendar() {
   const [value, setValue] = useState(moment(new Date()));
   const [openCalendar, setOpenCalendar] = useState(false);
+  const maxDate = moment(new Date());
+  const minDate = moment('1922.01.01');
 
   const dispatch = useDispatch();
 
@@ -48,6 +50,12 @@ export default function DateCalendar() {
   font-weight: 700;
   line-height: 1.22;
   padding: 0;
+  font-family: ${layoutStyles.verdana};
+letter-spacing: 0.04em;
+table{
+  font-size: 16px;
+  font-weight: 400;
+}
 }
 .rdtPicker td.rdtActive,
 .rdtPicker td.rdtActive:hover {
@@ -68,25 +76,34 @@ export default function DateCalendar() {
   return (
     <Div>
       <Datetime
-        inputProps={{ className: 'form-control' }}
+        className="form-control"
         dateFormat="DD.MM.yyyy"
         value={value}
         timeFormat={false}
         closeOnSelect
         open={openCalendar}
         onChange={newValue => {
+          if (newValue > maxDate) {
+            newValue = maxDate;
+          }
+          if (newValue < minDate) {
+            newValue = minDate;
+          }
           setValue(newValue);
           setOpenCalendar(false);
           setDate(dateFormat(newValue));
-          // getDairy(dateFormat(newValue))
         }}
       />
       <DatePickerWrapperStyles />
       <Button
         onClick={() => {
+          if (openCalendar) {
+            return setOpenCalendar(false);
+          }
           setOpenCalendar(true);
         }}
         background={layoutStyles.mainBackground}
+        boxShadow={'none'}
         width={'23px'}
         height={'23px'}
         margin={'0'}

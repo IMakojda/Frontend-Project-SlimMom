@@ -8,6 +8,7 @@ const Btn = styled.button`
   justify-content: center;
   border-radius: ${props => props.borderRadius || '50%'};
   border: none;
+  box-shadow:  ${props => props.background || `0px 4px 10px ${layoutStyles.activeButton}`};
   background-color: ${props => props.background || layoutStyles.activeButton};
   min-width: ${props => props.width || '48px'};
   max-height: 48px;

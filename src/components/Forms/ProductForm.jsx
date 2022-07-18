@@ -94,6 +94,7 @@ export default function ProductForm(styles) {
       setValue('');
     }
   }
+
   const FormikWrapperStyles = createGlobalStyle`
   .wrapper{
     ${styles}
@@ -227,18 +228,25 @@ export default function ProductForm(styles) {
           <Button
             margin="0 auto 0"
             type="submit"
-            borderRadius={isMobile && '30px'}
+
+            borderRadius={
+            isMobile &&
+              '30px'}
             onClick={() => {
               onSubmit();
-              // dispatch(changeToggle(false));
-              if (isMobile && productId !== '' && productWeight >= 1) {
+              if (
+                isMobile &&
+                productId !== '' && productWeight >= 1 ) {
                 dispatch(changeToggle(false));
               }
             }}
           >
-            {isMobile ? (
-              <p className={'BtnName'}>Додати</p>
-            ) : (
+            {
+              isMobile ?
+              ( <p className={'BtnName'}
+              >Додати</p>
+            ) :
+              (
               <ImPlus
                 width="20"
                 height="20"
@@ -253,3 +261,4 @@ export default function ProductForm(styles) {
     </div>
   );
 }
+

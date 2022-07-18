@@ -26,13 +26,14 @@ export default function DiaryPage() {
         <div className={styles.WrapperDate}>
           <DateCalendar />
         </div>
-
         {isMobile && toggle ? (
           <ProductForm />
         ) : (
           <ProductForm display={'none'} />
         )}
+
         <ProductsList />
+
         {isMobile && (
           <Button
             onClick={() => {

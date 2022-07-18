@@ -79,15 +79,14 @@ export default function ProductForm(styles) {
   const debouncedFindProduct = debounce(findProduct, 400);
 
   function onSubmit() {
-
     if (productId === '') {
-     return toast.warning('Виберіть продукт!');
+      return toast.warning('Виберіть продукт!');
     }
     if (productWeight <= 0) {
       return toast.warning('Вкажіть вагу продукту!');
     }
 
-    if (productId !== '' && productWeight >= 1 ) {
+    if (productId !== '' && productWeight >= 1) {
       dispatch(addProduct({ date, productId, productWeight }));
       toast.success(`З'їдено!`);
       setProductId('');
@@ -98,25 +97,23 @@ export default function ProductForm(styles) {
 
   const FormikWrapperStyles = createGlobalStyle`
   .wrapper{
+    ${styles}
     position: absolute;
     top: 0;
-    ${styles};
+    padding-top: 80px;
+    background-color: ${layoutStyles.mainBackground};
   }
    .ProductForm {
     padding-top: 80px;
-    background-color: white;
-  display: block;
-  margin: 0px;
-  outline: none;
-  width: 100%;
-  height: 100vh;
-}
-.ProductWeight {
-  margin-right: 87px;
+    background-color: ${layoutStyles.mainBackground};
+    display: block;
+    margin: 0px;
+    outline: none;
+    padding: 0 20px;
+    height: 100vh;
 }
 .ProductName {
-  margin-right: 32px;
-  margin-bottom: 20px;
+  margin:  0 32px 20px 0;
 }
 .BtnName{
   width: 176px;
@@ -126,10 +123,12 @@ export default function ProductForm(styles) {
     .wrapper{
     position: relative;
     display: block;
+    padding: 0;
   }
  .ProductForm {
   display: flex;
-  margin: 0px;
+  margin:  0 0 60px 0;
+  padding: 0;
   outline: none;
   width: 240px;
   height: 100%;
@@ -138,8 +137,7 @@ export default function ProductForm(styles) {
   margin-right: 87px;
 }
 .ProductName {
-  margin-right: 32px;
-  margin-bottom: 0  ;
+  margin: 0 32px 0 0;
 }
   }
 @media screen and (min-width: ${layoutStyles.deskTop}) {
@@ -188,7 +186,7 @@ export default function ProductForm(styles) {
               }}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
-                minWidth: '240px',
+                width: isMobile ? '280px' : '240px',
               }}
               renderInput={params => (
                 <TextField
@@ -211,16 +209,16 @@ export default function ProductForm(styles) {
               id="weight"
               type="number"
               // step="1"
-              // min='1'
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
-                minWidth: '110px',
+                width: isMobile ? '280px' : '150px',
                 paddingRight: '50px',
-                margin: '0 32px 60px 0',
-                }}
+                margin: isMobile && '0 0 60px 0',
+              }}
               onChange={e => {
-                if (e.currentTarget.value>1)
-                {setWeight(e.currentTarget.value);}
+                if (e.currentTarget.value > 1) {
+                  setWeight(e.currentTarget.value);
+                }
               }}
               classes={classes}
               label="Вага продукта"
@@ -230,6 +228,7 @@ export default function ProductForm(styles) {
           <Button
             margin="0 auto 0"
             type="submit"
+
             borderRadius={
             isMobile &&
               '30px'}

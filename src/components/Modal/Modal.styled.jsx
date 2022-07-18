@@ -7,15 +7,15 @@ const { transparentGrey, mainBackground, modalWrapperColor, verdanaBold } =
   layoutStyles;
 
 export const Background = styled.div`
+  top: 0;
+  left:0;
   width: 100vw;
   height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow-y: scroll;
+  position: absolute;
   
   @media screen and (min-width: 768px) {
     background: ${transparentGrey};
+    position: fixed;
   }
 `;
 
@@ -30,9 +30,10 @@ export const ModalWrapper = styled.div`
   background: ${mainBackground};
   color: ${modalWrapperColor};
   @media screen and (max-width: 767px) {
-    top: 502px;
+    top: 485px;
     // left: 50%;
-    width: 100vh;
+    // right: 50%;
+    // width: 100vh;
     border-radius: 0px;
     box-shadow: none;
   }
@@ -70,6 +71,7 @@ export const CloseModalButton = styled(MdClose)`
 
 export const Button = styled.button`
   margin-top: 80px;
+  position: absolute;
   max-width: 767px;
   height:40px;
   font-family: ${layoutStyles.gothamPro};
@@ -80,15 +82,14 @@ export const Button = styled.button`
   color: ${layoutStyles.placeholderColor};
   border: none;
   padding-left: 50px;
-  padding-right: 100%;
+  padding-right: 93%;
   cursor: pointer;
-
   &:hover {
     color: ${layoutStyles.activeButton};
   };
   @media only screen and (min-width: ${layoutStyles.tablet}) {
     display: none;
-    visibility: hidden;
+    visibility: hidden; 
   }
 
 `;

@@ -32,7 +32,8 @@ export const Modal = ({ setShowModal, showModal, children }) => {
   return createPortal(
     <>
       <Background onClick={closeModal}>
-        <ModalWrapper showModal={showModal}>{children}</ModalWrapper>
+        <ModalWrapper showModal={showModal}>
+          {children}</ModalWrapper>
         <Button type="button" onClick={closeModal}>
           <Arrow color="black" size="20px" onClick={closeModal} left="20px"/>
         </Button>

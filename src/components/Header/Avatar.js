@@ -5,6 +5,9 @@ import authOperations from '../../redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
+import { toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const BoxA = styled.div`
   @media only screen and (min-width: ${layoutStyles.tablet}) {
@@ -58,7 +61,6 @@ export default function AvatarUpload() {
 
   var editor = '';
 
-  const [selectedAvatar, setselectedAvatar] = useState(null);
   const [picture, setPicture] = useState({
     cropperOpen: false,
     img: null,
@@ -88,13 +90,13 @@ export default function AvatarUpload() {
   const handleSave = e => {
     if (setEditorRef) {
       const canvasScaled = editor.getImageScaledToCanvas();
-      const croppedImg = canvasScaled.toDataURL();
 
+      picture.img = canvasScaled.toDataURL();
       setPicture({
         ...picture,
-        img: null,
+
         cropperOpen: false,
-        croppedImg: croppedImg,
+        croppedImg: picture.img,
       });
     }
   };
@@ -102,8 +104,6 @@ export default function AvatarUpload() {
   const handleFileChange = e => {
     let url = URL.createObjectURL(e.target.files[0]);
 
-    const avatar = e.target.files[0];
-    setselectedAvatar(avatar);
     setPicture({
       ...picture,
       img: url,
@@ -113,18 +113,13 @@ export default function AvatarUpload() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!selectedAvatar) return;
-    const reader = new FileReader();
-    reader.readAsDataURL(selectedAvatar);
-    reader.onloadend = () => {
-      uploadImage(reader.result);
-    };
-    reader.onerror = () => {};
-  };
-  const uploadImage = async base64EncodedImage => {
+
     dispatch(
-      authOperations.updateAvatar(JSON.stringify({ data: base64EncodedImage }))
+      authOperations.updateAvatar(
+        JSON.stringify({ avatar: picture.croppedImg })
+      )
     );
+    toast.success('Світлину змінено!', { position: 'top-center' });
   };
 
   return (
@@ -150,9 +145,7 @@ export default function AvatarUpload() {
               accept="image/*"
               onChange={handleFileChange}
             />
-            <ButtonForm disabled={!selectedAvatar} type="submit">
-              Змінити
-            </ButtonForm>
+            <ButtonForm type="submit">Змінити</ButtonForm>
           </Form>
         </Box>
 

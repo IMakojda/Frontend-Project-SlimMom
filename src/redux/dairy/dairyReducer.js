@@ -42,6 +42,7 @@ const summaryForDaySlice = createSlice({
       state.summary.consumed = payload.result.summary.consumed;
       state.summary.left = payload.result.summary.left;
       state.summary.nOfNorm = payload.result.summary.nOfNorm;
+      state.notRecFood = payload.notRecFood;
     },
     [fetchProducts.fulfilled]: (state, { payload }) => {
       state.productList = payload;

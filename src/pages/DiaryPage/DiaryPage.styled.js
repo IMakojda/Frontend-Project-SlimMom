@@ -5,6 +5,7 @@ const ContentWrap = styled.div`
 @media screen and (min-width: ${layoutStyles.deskTop}) {
   display: flex;
   justify-content: space-between;
+  align-items:flex-start;
   padding-top: 150px;
   }
 `

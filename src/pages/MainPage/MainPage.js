@@ -1,9 +1,16 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import Container from '../../components/Container';
 import CalculatorFormWrapper from '../../components/Forms/CalculatorFormWrapper';
+import { ContentWrap } from 'pages/DiaryPage/DiaryPage.styled';
+import SummaryForDay from 'components/SummaryForDay';
+import authSelector from 'redux/auth/selectors';
+
 
 export default function MainPage() {
+  const token = useSelector(authSelector.getToken);
+  console.log(token);
+  
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(prev => !prev);
@@ -15,14 +22,16 @@ export default function MainPage() {
   }
 
   return (
-    <Container>
+    <ContentWrap>
       <CalculatorFormWrapper
         openModal={openModal}
         showModal={showModal}
         setShowModal={setShowModal}
         title="Розрахуйте свою денну норму калорій прямо зараз"
       />
-    </Container>
+
+      {token ? <SummaryForDay/> : false}
+    </ContentWrap>
   );
 }
 

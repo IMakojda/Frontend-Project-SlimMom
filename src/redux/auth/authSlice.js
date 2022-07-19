@@ -11,6 +11,7 @@ const initialState = {
     currentWeight: null,
     desiredWeight: null,
     bloodType: null,
+    createdAt: '',
   },
   token: null,
   isLoggedIn: false,

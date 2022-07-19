@@ -1,26 +1,28 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
 import Datetime from 'react-datetime';
 import Button from '../button/Button.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import 'react-datetime/css/react-datetime.css';
-import styled, { createGlobalStyle } from 'styled-components';
-
+import { Div, DatePickerWrapperStyles } from './DateCalendar.styled';
+import { toast } from 'react-toastify';
 import { RiCalendar2Fill } from 'react-icons/ri';
 
 import { fetchDairy } from '../../redux/dairy/dairyOperations';
 import { addDate } from '../../redux/dairy/dairyReducer';
-import { clear } from '@testing-library/user-event/dist/clear';
+import authSelector from '../../redux/auth/selectors';
 
 export default function DateCalendar() {
   const [value, setValue] = useState(moment(new Date()));
   const [openCalendar, setOpenCalendar] = useState(false);
-  const maxDate = moment(new Date());
-  const minDate = moment('1922-01-01');
 
   const dispatch = useDispatch();
+  const date = useSelector(authSelector.getStartDate);
+
+  const maxDate = new Date();
+  const minDate = moment(date);
 
   useEffect(() => {
     dispatch(fetchDairy(dateFormat(value)));
@@ -36,69 +38,37 @@ export default function DateCalendar() {
 
   setDate(dateFormat(value));
   fetchDairy(dateFormat(value));
-
-  const Div = styled.div`
-    display: flex;
-    margin: 0;
-    padding: 0;
-  `;
-
-  const DatePickerWrapperStyles = createGlobalStyle`
-    .form-control {
-  border: none;
-  font-size: 18px;
-  width: 116px;
-  font-weight: 700;
-  line-height: 1.22;
-  padding: 0;
-  font-family: ${layoutStyles.verdana};
-  letter-spacing: 0.04em;
-    table{
-  font-size: 16px;
-  font-weight: 400;
-}
-}
-.rdtPicker td.rdtActive,
-.rdtPicker td.rdtActive:hover {
-  background-color: ${layoutStyles.activeButton} !important;
-}
-.rdtPicker td.rdtToday:before {
-  border-bottom: 7px solid ${layoutStyles.activeButton};
-}
-@media screen and (min-width: ${layoutStyles.tablet}) {
-  .form-control {
-    font-size: 34px;
-    width: 219px;
-  }
-}
-
-`;
-
+  const onChange = newValue => {
+    setOpenCalendar(false);
+    if (!moment(newValue, 'DD.MM.YYYY', true).isValid()) {
+      newValue = maxDate;
+      return;
+    }
+    if (newValue > maxDate) {
+      newValue = maxDate;
+      toast.warning(`Вибрана дата ще не настала!`);
+      return;
+    }
+    if (newValue < minDate) {
+      newValue = minDate;
+      toast.warning(`На вибрану дату у додатку не має історії!`);
+      return;
+    }
+    setValue(newValue);
+    setDate(dateFormat(newValue));
+  };
   return (
     <Div>
       <Datetime
         className="form-control"
-        dateFormat="DD.MM.yyyy"
+        dateFormat="DD.MM.YYYY"
         value={value}
         timeFormat={false}
         closeOnSelect
         open={openCalendar}
-        // input={false}
-        onFocus={()=>clear()}
-        onChange={newValue => {
-          console.log(newValue.data())
-          if (newValue > maxDate ) {
-            newValue = maxDate;
-          }
-          if (newValue < minDate) {
-            newValue = minDate;
-          }
-          setValue(newValue);
-          setOpenCalendar(false);
-          setDate(dateFormat(newValue));
-        }}
+        onChange={onChange}
       />
-      <DatePickerWrapperStyles />
+
       <Button
         onClick={() => {
           if (openCalendar) {
@@ -118,6 +88,7 @@ export default function DateCalendar() {
           fill={layoutStyles.placeholderColor}
         />
       </Button>
+      <DatePickerWrapperStyles />
     </Div>
   );
 }

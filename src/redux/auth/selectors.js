@@ -12,6 +12,8 @@ const loaderShow = state => state.auth.loaderShow;
 
 const getFullUser = state => state.auth.user;
 
+const getStartDate = state => state.auth.user.createdAt;
+
 const authSelector = {
   getIsLoggedIn,
   getUserName,
@@ -20,6 +22,7 @@ const authSelector = {
   getIsRefresh,
   loaderShow,
   getFullUser,
+  getStartDate,
 };
 
 export default authSelector;

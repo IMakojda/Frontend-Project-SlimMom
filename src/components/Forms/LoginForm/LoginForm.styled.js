@@ -79,9 +79,6 @@ export const Label = styled.label`
 export const Input = styled.input`
   width: 280px;
   height: 36px;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
   color: ${layoutStyles.closeButtonColor};
   padding-top: 5px;
   padding-bottom: 5px;

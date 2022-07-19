@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import Container from '../../components/Container';
-import CalculatorFormWrapper from '../../components/Forms/CalculatorFormWrapper';
+//import Container from '../../components/Container';
+//import CalculatorFormWrapper from '../../components/Forms/CalculatorFormWrapper';
 
 export default function DiaryPage() {
   return (

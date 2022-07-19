@@ -7,7 +7,7 @@ const calc = createAsyncThunk('/calc', async (credential, thunkAPI) => {
     const { data } = await axios.post('/calc', credential);
 
     console.log(data);
-    return data;
+    return {usData: data,usInfo:credential };
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
   }

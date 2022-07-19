@@ -1,5 +1,5 @@
 {
-  "name": "Frontend-Project-SlimMom",
+  "name": "frontend-project-slimmom",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://IMakojda.github.io/Frontend-Project-SlimMom/",
@@ -44,9 +44,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:js": "eslint src/**/*.{js,jsx}",
-    "predeploy": "npm run build",
-    "deploy": "netlify deploy -p"
+    "lint:js": "eslint src/**/*.{js,jsx}"
   },
   "eslintConfig": {
     "extends": [

@@ -2,11 +2,12 @@ import { Outlet } from "react-router-dom";
 import { Suspense } from "react";
 import Container from '../../components/Container';
 import AppBar from '../../components/Header/AppBar';
-import ImageContainer from "./Layout.styled";
 import Loader from '../../components/Loader/loader';
 import {  useSelector } from 'react-redux';
 import authSelector from '../../redux/auth/selectors';
 import { motion } from 'framer-motion';
+import ImageContainerWrapper from './imageContainer';
+
 export default function Layout() {
   const  loaderShow=useSelector(authSelector.loaderShow)
 
@@ -16,7 +17,7 @@ export default function Layout() {
       animate={{opacity:1}}
       exit={{opacity:0, transition:{duration:0.3}}}
       >
-      <ImageContainer>
+      <ImageContainerWrapper>
         <AppBar />
         {loaderShow ?(<Loader/>):
           (<Container>
@@ -24,7 +25,7 @@ export default function Layout() {
               <Outlet/>
             </Suspense>
           </Container>)}
-      </ImageContainer>
+      </ImageContainerWrapper>
     </motion.div>
 
 )

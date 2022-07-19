@@ -4,22 +4,24 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from '../../../redux/auth/authOperations';
-import { Wrapper, Title, FormLogin, WrapperInputs, Input, Label,WrapperInputEmail, WrapperInputPassword, WrapperButtons, Button, Error, WrapperImage, Image } from './LoginForm.styled';
+import { Wrapper, Title, FormLogin, WrapperInputs, Input, Label, WrapperInputEmail, WrapperInputPassword, WrapperButtons, Button, Error, WrapperImage, Image } from './LoginForm.styled';
 import eye from '../../../images/eye.svg';
 import eyeCrossed from '../../../images/eyeCrossed.svg';
 
-const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+const passwordRules = /^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-ß])(?=.*\d)[a-zà-ÿA-ZÀ-ß\d]{8,}$/;
+const emailRules = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,6}$/i;
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Недійсна електронна адреса")
-    .min(6, "Мінімум 6 символів у форматі simple@example.com")
-    .max(50, "Максимум 50 символів")
+    .email("Невірна адреса електронної пошти. Приклад myemail.gmail.com")
+    .min(6, "Має бути 6 символів або більше!")
+    .max(50, "Має бути 50 символів або менше!")
+    .matches(emailRules, { message: "Невірна адреса електронної пошти. Приклад myemail.gmail.com" })
     .required("Обов'язкове поле"),
   password: Yup.string()
     .min(8, "Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі та цифри")
     .max(50, "Максимум 50 символів")
-    .matches(passwordRules, { message: "Введіть вірний пароль" })
+    .matches(passwordRules, { message: "Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі та цифри" })
     .required("Обов'язкове поле"),
 });
 
@@ -54,7 +56,7 @@ return (
             <Input
               id="email"
               name="email"
-              placeholder=""
+              placeholder=" "
               type="email"
               onChange={handleChange}
               onBlur={handleBlur}
@@ -69,7 +71,7 @@ return (
             <Input
               id="password"
               name="password"
-              placeholder=""
+              placeholder=" "
               type={eyeOutlined ? 'password' : 'text'}
               onChange={handleChange}
               onBlur={handleBlur}

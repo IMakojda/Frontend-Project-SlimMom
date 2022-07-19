@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { layoutStyles } from '../../../stlyles/layoutStyles';
 import { Form } from "formik";
 
 export const Wrapper = styled.section`
@@ -9,7 +10,7 @@ export const Wrapper = styled.section`
   padding: 20px;
   margin: 0;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${layoutStyles.tablet}) {
     display: block;
     padding: 16px;
     margin: 0;
@@ -17,14 +18,15 @@ export const Wrapper = styled.section`
 `;
 
 export const Title = styled.h1`
+  font-family: ${layoutStyles.gothamPro};
   font-weight: 700;
   font-size: 14px;
   text-align: center;
-  color: #FC842D;
+  color: ${layoutStyles.activeButton};
   margin-top: 40px;
   margin-bottom: 60px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${layoutStyles.tablet}) {
     text-align: left;
     margin-top: 160px;
   }
@@ -36,7 +38,7 @@ export const FormLogin = styled(Form)`
   flex-direction: column;
   align-items: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${layoutStyles.tablet}) {
     display: block;
     width: 400px;
   }
@@ -46,7 +48,7 @@ export const WrapperInputs = styled.div`
   width: 280px;
   margin-bottom: 60px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${layoutStyles.tablet}) {
     display: flex;
     flex-direction: column;
   }
@@ -62,48 +64,52 @@ export const WrapperInputPassword = styled.div`
   position: relative;
 `;
 
+export const Label = styled.label`
+  font-family: ${layoutStyles.verdana};
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: ${layoutStyles.placeholderColor};
+  position: absolute;
+  transition: 0.2s ease all;
+  top: -4px;
+  background-color: transparent;
+`;
+
 export const Input = styled.input`
   width: 100%;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
-  color: #9B9FAA;
+  color: ${layoutStyles.closeButtonColor};
   padding-top: 5px;
   padding-bottom: 5px;
   border: none;
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1px solid ${layoutStyles.formBorderColor};
   background: transparent;
   display: block;
+
   &:focus {
     outline: none;
+    border-bottom: 1px solid ${layoutStyles.activeButton};
   }
 
-  @media screen and (min-width: 768px) {
-    width: 240px;
-  }
-`;
-
-export const Label = styled.label`
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17px;
-  color: #9B9FAA;
-  position: absolute;
-  transition: 0.2s ease all;
-  top: -10px;
-  background-color: transparent;
-
-  ${Input}:focus ~ & {
-    top: -18px;
+  &:focus + ${Label},
+  &:not(:placeholder-shown) + ${Label}{
+    top: -25px;
+    transform: scale(0.9);
     font-size: 12px;
-    color: #9B9FAA;
+    color: ${layoutStyles.activeButton};
+  }
+
+  @media screen and (min-width: ${layoutStyles.tablet}) {
+    width: 240px;
   }
 `;
 
 export const Error = styled.div`
   color: red;
   font-size: 12px;
-  margin-top: 6px;
 `;
 
 export const WrapperButtons = styled.div`
@@ -111,7 +117,7 @@ export const WrapperButtons = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${layoutStyles.tablet}) {
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
@@ -119,13 +125,14 @@ export const WrapperButtons = styled.div`
 `;
 
 export const Button = styled.button`
+  font-family: ${layoutStyles.verdana};
   height: 44px;
   width: 182px;
   font-weight: 700;
   font-size: 14px;
-  background: #FC842D;
-  color: #FFFFFF;
-  border: 2px solid #FC842D;
+  background: ${layoutStyles.activeButton};
+  color: ${layoutStyles.mainBackground};
+  border: 2px solid ${layoutStyles.activeButton};
   border-radius: 30px;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   padding-top: 13px;
@@ -134,28 +141,27 @@ export const Button = styled.button`
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${layoutStyles.tablet}) {
     margin-right: 32px;
     margin-top: 0;
   }
 
   &:hover,
   &:focus{
-    background: #FFFFFF;
-    border: 2px solid #FC842D;
+    background: ${layoutStyles.mainBackground};
+    border: 2px solid ${layoutStyles.activeButton};
     border-radius: 30px;
-    color: #FC842D;
+    color: ${layoutStyles.activeButton};
     cursor: pointer;
 }
 `;
 
 export const WrapperImage = styled.div`
   position: absolute;
-  top: 5%;
+  top: -10%;
   right: 1%;
 
-  @media screen and (min-width: 768px) {
-    top: 9%;
+  @media screen and (min-width: ${layoutStyles.tablet}) {
     right: 15%;
   }
 `;

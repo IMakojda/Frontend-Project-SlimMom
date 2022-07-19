@@ -24,7 +24,8 @@ export const GridDiv = styled.div`
   height: 300px;
   margin-right: auto;
   margin-left: auto;
-  margin-top: ${props => props.marginTop || '100px'};
+  margin-top: ${props => props.marginTop || '200px'};
+  z-index: 50;
 `;
 
 export const DivComponent = styled.div`
@@ -33,16 +34,15 @@ export const DivComponent = styled.div`
   border-radius: 50%;
   background: transparent;
   animation: ${animR} 1.2s linear infinite;
+  z-index: 60;
 `;
 
 export const Img = styled.img`
-  //position: absolute;
-  // top: ${props => props.top};
-  // left: ${props => props.left};
   width: 100px;
   height: 100px;
   animation: ${animationDiv} ${props => props.delay} 1.5s linear infinite;
   src: url(${props => props.img});
+  z-index: 70;
 `;
 
 export const Overlay = styled.div`

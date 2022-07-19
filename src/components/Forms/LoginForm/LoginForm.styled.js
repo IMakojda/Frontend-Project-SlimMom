@@ -77,7 +77,8 @@ export const Label = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 100%;
+  width: 280px;
+  height: 36px;
   font-weight: 700;
   font-size: 14px;
   line-height: 17px;
@@ -158,9 +159,12 @@ export const Button = styled.button`
 
 export const WrapperImage = styled.div`
   position: absolute;
-  top: -10%;
+  top: 9px;
   right: 1%;
-
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
   @media screen and (min-width: ${layoutStyles.tablet}) {
     right: 15%;
   }

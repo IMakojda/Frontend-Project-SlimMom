@@ -145,12 +145,14 @@ export default function UserMenu() {
         <ListItem to="/diary">Щоденник</ListItem>
         <ListItem to="/calculator">Калькулятор</ListItem>
       </List>
-      <Button type="button" 
-      onClick={() => {
-        if (isMobile && toggle) {
-          dispatch(changeToggle(false));
-        }
-      }}>
+      <Button
+        type="button"
+        onClick={() => {
+          if (isMobile && toggle) {
+            dispatch(changeToggle(false));
+          }
+        }}
+      >
         <Arrow color="black" size="20px" />
       </Button>
       <Wrapper>
@@ -166,6 +168,7 @@ export default function UserMenu() {
       </Wrapper>
       <ToastContainer
         toastStyle={{
+          top: '150px',
           border: '1px solid #FC842D',
         }}
       />

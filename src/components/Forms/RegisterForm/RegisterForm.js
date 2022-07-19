@@ -148,7 +148,17 @@ export default function RegisterForm() {
           </Form>
         )}
       </Formik>
-      <ToastContainer style={{ top: '40%', left: '50%' }} />
+      <ToastContainer
+        style={{ top: '35%' }}
+        toastStyle={{
+          border: '1px solid #FC842D',
+          paddingTop: '20px',
+          paddingBottom: '20px',
+          paddingLeft: '10px',
+          paddingRight: '10px',
+          textAlign: 'center',
+        }}
+      />
     </Wrapper>
   );
 }

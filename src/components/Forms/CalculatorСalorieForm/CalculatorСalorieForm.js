@@ -21,8 +21,11 @@ import * as Yup from 'yup';
 import calcOperation from '../../../redux/calculatorSlice/calcOperation';
 import { Modal } from '../../Modal';
 import { ModalContent } from '../../Modal/ModalContent';
-import React from 'react';
+import { React, useEffect } from 'react';
 import calcSelectors from '../../../redux/calculatorSlice/calculatorSelectors';
+import authSelector from '../../../redux/auth/selectors';
+import Loader from '../../Loader/loader';
+import { updateUser } from 'redux/calculatorSlice/calcSlice';
 
 const CalculatorSchema = Yup.object().shape({
   height: Yup.number('number')
@@ -51,34 +54,67 @@ const CalculatorSchema = Yup.object().shape({
 });
 
 const CalculatorСalorieForm = props => {
-  const { showModal, setShowModal } = props;
-  const userData = useSelector(calcSelectors.getUserData);
+  const { showModal, setShowModal, title } = props;
+  const FullCalculator = useSelector(calcSelectors.getFullCalculator);
+  const LoaderStatus = useSelector(calcSelectors.getLoaderStatus);
+  const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
+  const FullUser = useSelector(authSelector.getFullUser);
+  console.log(LoaderStatus);
+
   const dispatch = useDispatch();
+
+  const initFormState = {
+    height: '',
+    age: '',
+    currentWeight: '',
+    desiredWeight: '',
+    bloodType: '1',
+  };
+
+  const LoginFormState = {
+    height: FullCalculator.height,
+    age: FullCalculator.age,
+    currentWeight: FullCalculator.currentWeight,
+    desiredWeight: FullCalculator.desiredWeight,
+    bloodType: String(FullCalculator.bloodType),
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(updateUser(FullUser));
+    }
+  }, [FullUser, dispatch, isLoggedIn]);
+
+  const formState = isLoggedIn ? LoginFormState : initFormState;
 
   return (
     <StileWrapper>
-      <Header>Розрахуйте свою денну норму калорій прямо зараз</Header>
+      <Header>{title}</Header>
       <Formik
-        initialValues={{
-          height: '',
-          age: '',
-          currentWeight: '',
-          desiredWeight: '',
-          bloodType: '1',
-        }}
+        validateOnChange="true"
+        initialValues={formState}
         validationSchema={CalculatorSchema}
         onSubmit={(values, actions) => {
-          dispatch(calcOperation.calc(values));
+          if (isLoggedIn) {
+            dispatch(calcOperation.calcUserUpdate(values));
+            dispatch(updateUser(values));
+          } else {
+            dispatch(calcOperation.calc(values));
+          }
+
           setShowModal(true);
-          setTimeout(async () => {
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
+
+          actions.setSubmitting(false);
+
+          if (!isLoggedIn) {
             actions.resetForm();
-          }, 1000);
+          }
+
+          return;
         }}
       >
         {props => {
-          const { values, handleSubmit, handleChange } = props;
+          const { values, handleSubmit, handleChange, handleBlur } = props;
           const { height, age, currentWeight, desiredWeight } = values;
 
           const settings = [
@@ -114,7 +150,6 @@ const CalculatorСalorieForm = props => {
             { id: 'bloodType3', value: '3' },
             { id: 'bloodType4', value: '4' },
           ];
-
           return (
             <>
               <Form id="calculatorForm" onSubmit={handleSubmit}>
@@ -126,6 +161,7 @@ const CalculatorСalorieForm = props => {
                         name={name}
                         type={type}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         value={value}
                         placeholder=" "
                       />
@@ -139,7 +175,6 @@ const CalculatorСalorieForm = props => {
                     </PlaceholderContainer>
                   );
                 })}
-
                 <BloodTypeTitle>Група крові*</BloodTypeTitle>
                 <BloodTypeRadioContainer>
                   {bloodSettings.map(({ id, value }) => {
@@ -169,7 +204,8 @@ const CalculatorСalorieForm = props => {
           );
         }}
       </Formik>
-      {showModal && userData && (
+      {LoaderStatus && <Loader />}
+      {showModal && !LoaderStatus && (
         <Modal setShowModal={setShowModal}>
           <ModalContent setShowModal={setShowModal}></ModalContent>
         </Modal>

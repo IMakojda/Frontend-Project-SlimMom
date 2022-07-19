@@ -1,22 +1,22 @@
 import styled, { keyframes } from 'styled-components';
 
-const animationDiv=keyframes`
+const animationDiv = keyframes`
      0%, 100% {
        transform: scale(1.0);
      }
      50% {
        transform: scale(0.5);
      }
-`
-const animR=keyframes`
+`;
+const animR = keyframes`
     0%, 100% {
       opacity: 1;
     }
     50% {
       opacity: 0.5;
     }
-`
-export const GridDiv=styled.div`
+`;
+export const GridDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -24,32 +24,32 @@ export const GridDiv=styled.div`
   height: 300px;
   margin-right: auto;
   margin-left: auto;
-  margin-top:100px
-`
+  margin-top: ${props => props.marginTop || '100px'};
+`;
 
- export const DivComponent=styled.div`
-width: 100px;
-height: 100px;
-border-radius: 50%;
-background: transparent;
-animation: ${animR} 1.2s linear infinite;
-`
+export const DivComponent = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: transparent;
+  animation: ${animR} 1.2s linear infinite;
+`;
 
-export const Img=styled.img`
+export const Img = styled.img`
   //position: absolute;
   // top: ${props => props.top};
   // left: ${props => props.left};
   width: 100px;
   height: 100px;
   animation: ${animationDiv} ${props => props.delay} 1.5s linear infinite;
-  src: url(${props => props.img})
-`
+  src: url(${props => props.img});
+`;
 
-export const Overlay=styled.div`
+export const Overlay = styled.div`
   position: absolute;
   top: 0px;
   left: 0px;
   height: 100%;
   width: 100%;
-  background-color:rgba(0,0,0,0.10);
-`
+  background-color: rgba(0, 0, 0, 0.1);
+`;

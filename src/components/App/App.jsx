@@ -10,23 +10,28 @@ import { AnimatePresence } from 'framer-motion';
 const Layout = lazy(() => import('../../pages/Layout/Layout'));
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
-const RegistrationPage = lazy(() =>import('../../pages/RegistrationPage/RegistrationPage'));
+const RegistrationPage = lazy(() =>
+  import('../../pages/RegistrationPage/RegistrationPage')
+);
 const DiaryPage = lazy(() => import('../../pages/DiaryPage/DiaryPage'));
-const CalculatorPage = lazy(() => import('../../pages/CalculatorPage/CalculatorPage'));
-const AvatarUpload =  lazy(() => import('../Header/Avatar'));
+const CalculatorPage = lazy(() =>
+  import('../../pages/CalculatorPage/CalculatorPage')
+);
+const AvatarUpload = lazy(() => import('../Header/Avatar'));
 const NotFound = lazy(() => import('../../pages/NotFound/NotFound'));
 
 export default function App() {
-  const location=useLocation();
+  const location = useLocation();
   const dispatch = useDispatch();
-  const isRefreshUser=useSelector(authSelector.getIsRefresh)
+  const isRefreshUser = useSelector(authSelector.getIsRefresh);
 
   useEffect(() => {
     dispatch(authOperations.refreshUser());
-  }, [dispatch])
+  }, [dispatch]);
 
-  return (!isRefreshUser &&(
-    <>
+  return (
+    !isRefreshUser && (
+      <>
         <Suspense fallback="">
           <AnimatePresence>
             <Routes location={location} key={location.pathname}>
@@ -69,9 +74,9 @@ export default function App() {
                 <Route
                   path="/calculator"
                   element={
-                    <PublicRoute restricted>
-                      <CalculatorPage />
-                    </PublicRoute>
+                    <ProtectedRoute>
+                      <MainPage />
+                    </ProtectedRoute>
                   }
                 />
 
@@ -79,7 +84,7 @@ export default function App() {
                   path="/diary"
                   element={
                     <ProtectedRoute>
-                    <DiaryPage />
+                      <DiaryPage />
                     </ProtectedRoute>
                   }
                 />
@@ -87,7 +92,7 @@ export default function App() {
                   path="/avatar"
                   element={
                     <ProtectedRoute restricted>
-                    <AvatarUpload />
+                      <AvatarUpload />
                     </ProtectedRoute>
                   }
                 />

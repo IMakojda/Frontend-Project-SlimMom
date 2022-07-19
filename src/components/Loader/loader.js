@@ -1,12 +1,10 @@
 import FruitItem from './LoaderDivItem';
 import { Overlay } from './loader.styled';
 
-
-export default function Loader (){
-
+export default function Loader(props) {
   return (
-    <Overlay>
-         <FruitItem/>
+    <Overlay {...props}>
+      <FruitItem />
     </Overlay>
-  )
+  );
 }

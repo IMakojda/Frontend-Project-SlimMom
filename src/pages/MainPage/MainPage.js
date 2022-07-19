@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Container from '../../components/Container';
 import CalculatorFormWrapper from '../../components/Forms/CalculatorFormWrapper';
 
-
 export default function MainPage() {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
@@ -21,6 +20,7 @@ export default function MainPage() {
         openModal={openModal}
         showModal={showModal}
         setShowModal={setShowModal}
+        title="Розрахуйте свою денну норму калорій прямо зараз"
       />
     </Container>
   );

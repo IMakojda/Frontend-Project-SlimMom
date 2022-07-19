@@ -9,7 +9,7 @@ import {
   Item,
   Title,
   Text,
-} from './SummaryForDay.styled';
+} from './SummaryforDay.styled';
 
 export default function SummaryForDay() {
 

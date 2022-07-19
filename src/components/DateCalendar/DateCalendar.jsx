@@ -12,6 +12,7 @@ import { RiCalendar2Fill } from 'react-icons/ri';
 
 import { fetchDairy } from '../../redux/dairy/dairyOperations';
 import { addDate } from '../../redux/dairy/dairyReducer';
+import { clear } from '@testing-library/user-event/dist/clear';
 
 export default function DateCalendar() {
   const [value, setValue] = useState(moment(new Date()));
@@ -51,8 +52,8 @@ export default function DateCalendar() {
   line-height: 1.22;
   padding: 0;
   font-family: ${layoutStyles.verdana};
-letter-spacing: 0.04em;
-table{
+  letter-spacing: 0.04em;
+    table{
   font-size: 16px;
   font-weight: 400;
 }
@@ -82,8 +83,11 @@ table{
         timeFormat={false}
         closeOnSelect
         open={openCalendar}
+        // input={false}
+        onFocus={()=>clear()}
         onChange={newValue => {
-          if (newValue > maxDate) {
+          console.log(newValue.data())
+          if (newValue > maxDate ) {
             newValue = maxDate;
           }
           if (newValue < minDate) {

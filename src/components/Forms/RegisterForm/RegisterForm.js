@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { ToastContainer } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import authOperations from 'redux/auth/authOperations';
+import calcSelectors from '../../../redux/calculatorSlice/calculatorSelectors';
 import eye from '../../../images/eye.svg';
 import eyeCrossed from '../../../images/eyeCrossed.svg';
+
 import {
   Button,
   Cut,
@@ -55,6 +57,8 @@ export default function RegisterForm() {
 
   const dispatch = useDispatch();
   const [eyeOutlined, setEyeOutlined] = useState(true);
+  const authUserParams = useSelector(calcSelectors.getUserInfo);
+  // console.log(authUserParams);
 
   const handleClick = () => {
     setEyeOutlined(!eyeOutlined);
@@ -70,7 +74,12 @@ export default function RegisterForm() {
         }}
         validateOnBlur
         onSubmit={(values, actions) => {
-          dispatch(authOperations.register(values));
+          dispatch(authOperations.register({ ...values, ...authUserParams }));
+          // setTimeout(async () => {
+          //   alert(JSON.stringify(values, null, 2));
+          //   actions.setSubmitting(false);
+          //   // actions.resetForm();
+          // }, 1000);
           console.log(values);
           actions.resetForm();
         }}

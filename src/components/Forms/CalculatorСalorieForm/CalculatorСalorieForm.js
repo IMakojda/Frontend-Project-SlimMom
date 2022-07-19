@@ -42,9 +42,9 @@ const CalculatorSchema = Yup.object().shape({
       'Поточна вага має бути більшою за бажану'
     )
     .test('min-width', 'Мінімальна вага 30 кг', function (value) {
-      return value > 30;
+      return value > 29;
     })
-    .max(120, 'Максимальна вага 120 кг')
+    .max(500, 'Максимальна вага 500 кг')
     .required('Обов`язково до заповнення'),
   desiredWeight: Yup.number()
     .min(20, 'Мінімальна вага 20 кг')
@@ -55,7 +55,8 @@ const CalculatorSchema = Yup.object().shape({
 
 const CalculatorСalorieForm = props => {
   const { showModal, setShowModal, title } = props;
-  const FullCalculator = useSelector(calcSelectors.getFullCalculator);
+  // const FullCalculator = useSelector(calcSelectors.getFullCalculator);
+  const authUserParams = useSelector(calcSelectors.getUserInfo);
   const LoaderStatus = useSelector(calcSelectors.getLoaderStatus);
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
   const FullUser = useSelector(authSelector.getFullUser);
@@ -72,11 +73,11 @@ const CalculatorСalorieForm = props => {
   };
 
   const LoginFormState = {
-    height: FullCalculator.height,
-    age: FullCalculator.age,
-    currentWeight: FullCalculator.currentWeight,
-    desiredWeight: FullCalculator.desiredWeight,
-    bloodType: String(FullCalculator.bloodType),
+    height: authUserParams.height,
+    age: authUserParams.age,
+    currentWeight: authUserParams.currentWeight,
+    desiredWeight: authUserParams.desiredWeight,
+    bloodType: String(authUserParams.bloodType),
   };
 
   useEffect(() => {

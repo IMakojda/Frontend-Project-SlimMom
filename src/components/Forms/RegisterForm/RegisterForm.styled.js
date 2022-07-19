@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { layoutStyles } from 'stlyles/layoutStyles';
 
 const Wrapper = styled.div`
   margin-top: 60px;
@@ -20,14 +21,16 @@ const InputBlock = styled.div`
   margin-bottom: 40px;
   margin-left: auto;
   margin-right: auto;
-  & p {
-    text-align: start;
-    font-size: 10px;
-    color: red;
-  }
   @media screen and (min-device-width: 768px) {
     margin-left: 0;
   }
+`;
+
+const Error = styled.div`
+  width: 240px;
+  text-align: start;
+  font-size: 12px;
+  color: red;
 `;
 
 const Cut = styled.div`
@@ -46,6 +49,7 @@ const Placeholder = styled.label`
   color: #9b9faa;
   left: 3px;
   line-height: 17px;
+  font-family: ${layoutStyles.verdana};
   font-weight: 700;
   font-size: 14px;
   pointer-events: none;
@@ -79,6 +83,10 @@ const Input = styled.input`
   &:focus ~ ${Placeholder} {
     color: #fc842d;
   }
+
+  @media screen and (min-device-width: 768px) {
+    width: 240px;
+  }
 `;
 
 const FormButtons = styled.div`
@@ -104,12 +112,13 @@ const Button = styled.button`
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
   border: none;
   border-radius: 30px;
+  font-family: ${layoutStyles.verdana};
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.04em;
   color: #ffffff;
-  .&:hover,
-  .&:focus {
+  &:hover,
+  &:focus {
     background: #ffffff;
     border: 2px solid #fc842d;
     border-radius: 30px;
@@ -137,6 +146,7 @@ export {
   Form,
   Input,
   InputBlock,
+  Error,
   Cut,
   FormButtons,
   Button,

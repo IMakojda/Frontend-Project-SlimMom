@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import DateCalendar from '../../components/DateCalendar/DateCalendar';
 import ProductsList from '../../components/ProductsList/ProductsList';
-import ProductForm from '../../components/Forms/ProductForm';
+import ProductForm from '../../components/Forms/ProductForm/ProductForm';
 import Button from '../../components/button/Button.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import { ImPlus } from 'react-icons/im';

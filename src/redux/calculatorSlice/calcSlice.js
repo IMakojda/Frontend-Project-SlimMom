@@ -5,6 +5,11 @@ const calcSlice = createSlice({
   name: 'calculator',
   initialState: {
     userData: null,
+    userInfo: { height: null,
+      age: null,
+      currentWeight: null,
+      desiredWeight: null,
+      bloodType: '1', },
     loaderShow: false,
     height: '',
     age: '',
@@ -14,8 +19,10 @@ const calcSlice = createSlice({
   },
   extraReducers: {
     [calcOperation.calc.fulfilled](state, action) {
-      state.userData = action.payload;
+      state.userData = action.payload.usData;
+      state.userInfo = action.payload.usInfo;
       state.loaderShow = false;
+
     },
     [calcOperation.calc.pending](state) {
       state.loaderShow = true;

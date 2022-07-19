@@ -67,16 +67,18 @@ const updateAvatar = createAsyncThunk(
 const refreshUser = createAsyncThunk('auth/current', async (_, thunkAPI) => {
   const state = thunkAPI.getState();
   const persistToken = state.auth.token;
-  if (persistToken === null) { return thunkAPI.rejectWithValue() }
+  if (persistToken === null) {
+    return thunkAPI.rejectWithValue();
+  }
   token.set(persistToken);
   try {
     const { data } = await axios.get('/users/current');
-    console.log(data);
-    return data
+    // console.log(data);
+    return data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error)
+    return thunkAPI.rejectWithValue(error);
   }
-})
+});
 
 const authOperations = {
   register,

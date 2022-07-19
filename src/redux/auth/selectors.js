@@ -8,7 +8,9 @@ const getToken = state => state.auth.token;
 
 const getIsRefresh = state => state.auth.isCurrentUserRefresh;
 
-const loaderShow=state=>state.auth.loaderShow;
+const loaderShow = state => state.auth.loaderShow;
+
+const getFullUser = state => state.auth.user;
 
 const authSelector = {
   getIsLoggedIn,
@@ -16,7 +18,8 @@ const authSelector = {
   getUserAvatar,
   getToken,
   getIsRefresh,
-  loaderShow
+  loaderShow,
+  getFullUser,
 };
 
 export default authSelector;

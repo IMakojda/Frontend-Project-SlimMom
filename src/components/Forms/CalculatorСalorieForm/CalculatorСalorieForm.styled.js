@@ -197,25 +197,33 @@ const ErrorWrapper = styled.div`
 `;
 
 const Btn = styled.button`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 44px;
+  width: 182px;
+  font-weight: 700;
+  font-size: 14px;
+  background: #fc842d;
+  color: #ffffff;
+  border: 2px solid #fc842d;
   border-radius: 30px;
-  border: none;
-  background-color: ${activeButton};
-  width: 210px;
-  min-height: 43px;
-  margin: auto;
-  padding: 0;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  color: #fff;
+  padding-top: 13px;
+  padding-bottom: 13px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
 
-  @media screen and (min-device-width: 768px) {
-    margin: 0;
+  @media screen and (min-width: 768px) {
+    margin-right: 32px;
+    margin-top: 0;
   }
-  @media screen and (min-device-width: 1280px) {
-    margin-right: 0;
+
+  &:hover,
+  &:focus {
+    background: #ffffff;
+    border: 2px solid #fc842d;
+    border-radius: 30px;
+    color: #fc842d;
+    cursor: pointer;
   }
 `;
 

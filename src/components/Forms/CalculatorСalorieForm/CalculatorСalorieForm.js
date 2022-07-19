@@ -163,7 +163,7 @@ const CalculatorСalorieForm = props => {
                         type={type}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        value={value}
+                        value={value || ''}
                         placeholder=" "
                       />
 

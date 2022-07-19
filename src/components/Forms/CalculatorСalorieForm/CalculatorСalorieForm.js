@@ -60,7 +60,7 @@ const CalculatorСalorieForm = props => {
   const LoaderStatus = useSelector(calcSelectors.getLoaderStatus);
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
   const FullUser = useSelector(authSelector.getFullUser);
-  console.log(LoaderStatus);
+  // console.log(LoaderStatus);
 
   const dispatch = useDispatch();
 

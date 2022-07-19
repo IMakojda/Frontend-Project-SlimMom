@@ -168,6 +168,7 @@ export default function UserMenu() {
       <ToastContainer
         toastStyle={{
           border: '1px solid #FC842D',
+          marginTop: '150px',
         }}
       />
     </>

@@ -14,9 +14,9 @@ const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage')
 );
 const DiaryPage = lazy(() => import('../../pages/DiaryPage/DiaryPage'));
-const CalculatorPage = lazy(() =>
-  import('../../pages/CalculatorPage/CalculatorPage')
-);
+//const CalculatorPage = lazy(() =>
+//  import('../../pages/CalculatorPage/CalculatorPage')
+//);
 const AvatarUpload = lazy(() => import('../Header/Avatar'));
 const NotFound = lazy(() => import('../../pages/NotFound/NotFound'));
 

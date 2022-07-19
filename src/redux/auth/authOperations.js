@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = `https://agile-cove-20040.herokuapp.com/api`;
 
@@ -16,13 +17,17 @@ const register = createAsyncThunk(
   '/auth/register',
   async (credential, thunkAPI) => {
     try {
-      // console.log(credential);
       const { data } = await axios.post('/users/signup', credential);
-      // console.log(data);
+      toast.success('Реєстрація пройшла успішно!', {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
       token.set(data.token);
       return data;
     } catch (error) {
-      // console.log(error);
+      toast.error('Ми не можемо успішно завершити вашу реєстрацію!', {
+        position: toast.POSITION.TOP_CENTER,
+      });
       return thunkAPI.rejectWithValue(error);
     }
   }

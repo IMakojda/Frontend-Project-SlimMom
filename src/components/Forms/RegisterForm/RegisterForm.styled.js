@@ -111,7 +111,7 @@ const Button = styled.button`
   width: 180px;
   background: #fc842d;
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
-  border: none;
+  border: 2px solid #fc842d;
   border-radius: 30px;
   font-family: ${layoutStyles.verdana};
   font-weight: 700;
@@ -121,8 +121,6 @@ const Button = styled.button`
   &:hover,
   &:focus {
     background: #ffffff;
-    border: 1px solid #fc842d;
-    border-radius: 30px;
     color: #fc842d;
     cursor: pointer;
   }
@@ -133,7 +131,7 @@ const Button = styled.button`
 
 const PasswordEye = styled.div`
   position: absolute;
-  top: 15%;
+  top: 9px;
   right: 1%;
 
   &:hover,

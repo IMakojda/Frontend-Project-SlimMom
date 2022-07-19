@@ -12,9 +12,6 @@ const token = {
   },
 };
 
-const headers = {
-  'Content-Type': 'multipart/form-data',
-};
 const register = createAsyncThunk(
   '/auth/register',
   async (credential, thunkAPI) => {
@@ -54,9 +51,7 @@ const updateAvatar = createAsyncThunk(
   '/auth/update',
   async (credential, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/users/avatars', credential, {
-        headers: headers,
-      });
+      const { data } = await axios.patch('/users/avatars', credential);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -73,7 +68,7 @@ const refreshUser = createAsyncThunk('auth/current', async (_, thunkAPI) => {
   token.set(persistToken);
   try {
     const { data } = await axios.get('/users/current');
-    // console.log(data);
+    console.log(data);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);

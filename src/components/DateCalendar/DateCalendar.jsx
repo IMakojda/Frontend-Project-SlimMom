@@ -17,7 +17,7 @@ export default function DateCalendar() {
   const [value, setValue] = useState(moment(new Date()));
   const [openCalendar, setOpenCalendar] = useState(false);
   const maxDate = moment(new Date());
-  const minDate = moment('1922.01.01');
+  const minDate = moment('1922-01-01');
 
   const dispatch = useDispatch();
 

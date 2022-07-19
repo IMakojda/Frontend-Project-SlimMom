@@ -6,60 +6,17 @@ import debounce from 'lodash.debounce';
 import { toast } from 'react-toastify';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { createGlobalStyle } from 'styled-components';
-import { layoutStyles } from '../../stlyles/layoutStyles';
-import Button from '../button/Button.styled';
-import { ImPlus } from 'react-icons/im';
-import { changeToggle } from '../../redux/dairy/dairyReducer';
-import { fetchProducts, addProduct } from '../../redux/dairy/dairyOperations';
-import { getProducts, getDate } from '../../redux/dairy/dairySelector';
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    '& .MuiInputLabel-root': {
-      color: layoutStyles.placeholderColor,
-      fontFamily: layoutStyles.verdana,
-      fontWeight: 700,
-      fontSize: '14px',
-      lineHeight: 1.22,
-      letterSpacing: '0.04em',
-    },
-    '& .MuiOutlinedInput-notchedOutline': {
-      border: 'none',
-      textAlign: 'end',
-      padding: 0,
-      fontFamily: layoutStyles.verdana,
-      fontWeight: 700,
-      fontSize: '13px',
-      lineHeight: 1.22,
-      letterSpacing: '0.04em',
-    },
-    '& .MuiOutlinedInput-input': {
-      textAlign: 'right',
-      fontFamily: layoutStyles.verdana,
-      fontWeight: 700,
-      fontSize: '13px',
-      lineHeight: 1.22,
-      letterSpacing: '0.04em',
-      paddingRight: '2px',
-      paddingLeft: '2px',
-    },
-  },
-  inputRoot: {
-    '& .MuiAutocomplete-input': {
-      fontFamily: layoutStyles.verdana,
-      fontWeight: 700,
-      fontSize: '14px',
-    },
-    '& .MuiAutocomplete-endAdornment': {
-      display: 'none',
-    },
-    '@media screen and (max-width: 768px': {
-      minWidth: '280px',
-    },
-  },
-}));
+import { layoutStyles } from '../../../stlyles/layoutStyles';
+import Button from '../../button/Button.styled';
+import { ImPlus } from 'react-icons/im';
+import { changeToggle } from '../../../redux/dairy/dairyReducer';
+import {
+  fetchProducts,
+  addProduct,
+} from '../../../redux/dairy/dairyOperations';
+import { getProducts, getDate } from '../../../redux/dairy/dairySelector';
+import { FormikWrapperStyles, useStyles } from './ProductForm.styled';
 
 export default function ProductForm(styles) {
   const [value, setValue] = useState('');
@@ -69,7 +26,6 @@ export default function ProductForm(styles) {
   const dispatch = useDispatch();
 
   const products = useSelector(getProducts); // список найденных продуктов
-
   const date = useSelector(getDate); // форматированная дата на которую добавляем проукт
 
   const findProduct = value => {
@@ -79,15 +35,14 @@ export default function ProductForm(styles) {
   const debouncedFindProduct = debounce(findProduct, 400);
 
   function onSubmit() {
-
     if (productId === '') {
-     return toast.warning('Виберіть продукт!');
+      return toast.warning('Виберіть продукт!');
     }
     if (productWeight <= 0) {
       return toast.warning('Вкажіть вагу продукту!');
     }
 
-    if (productId !== '' && productWeight >= 1 ) {
+    if (productId !== '' && productWeight >= 1) {
       dispatch(addProduct({ date, productId, productWeight }));
       toast.success(`З'їдено!`);
       setProductId('');
@@ -95,63 +50,6 @@ export default function ProductForm(styles) {
       setValue('');
     }
   }
-
-  const FormikWrapperStyles = createGlobalStyle`
-  .wrapper{
-    position: absolute;
-    top: 0;
-    ${styles};
-  }
-   .ProductForm {
-    padding-top: 80px;
-    background-color: white;
-  display: block;
-  margin: 0px;
-  outline: none;
-  width: 100%;
-  height: 100vh;
-}
-.ProductWeight {
-  margin-right: 87px;
-}
-.ProductName {
-  margin-right: 32px;
-  margin-bottom: 20px;
-}
-.BtnName{
-  width: 176px;
-  color: ${layoutStyles.mainBackground}
-}
-  @media screen and (min-width: ${layoutStyles.tablet}) {
-    .wrapper{
-    position: relative;
-    display: block;
-  }
- .ProductForm {
-  display: flex;
-  margin: 0px;
-  outline: none;
-  width: 240px;
-  height: 100%;
-}
-.ProductWeight {
-  margin-right: 87px;
-}
-.ProductName {
-  margin-right: 32px;
-  margin-bottom: 0  ;
-}
-  }
-@media screen and (min-width: ${layoutStyles.deskTop}) {
-  .ProductName {
-    margin-right: 48px;
-  }
-  .ProductWeight {
-    margin-right: 60px;
-  }
-}
-
-`;
   const isMobile = useMediaQuery({
     query: `(max-width: ${layoutStyles.tablet})`,
   });
@@ -175,7 +73,7 @@ export default function ProductForm(styles) {
               disablePortal
               autoSelect
               selectOnFocus
-              id="product"
+              id="custom-autocomplete"
               options={products}
               value={value}
               noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
@@ -188,7 +86,7 @@ export default function ProductForm(styles) {
               }}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
-                minWidth: '240px',
+                width: isMobile ? '280px' : '240px',
               }}
               renderInput={params => (
                 <TextField
@@ -210,17 +108,21 @@ export default function ProductForm(styles) {
               fullWidth
               id="weight"
               type="number"
-              // step="1"
-              // min='1'
+              onInput={e => {
+                e.target.value = Math.max(0, parseInt(e.target.value))
+                  .toString()
+                  .slice(0, 4);
+              }}
               sx={{
                 borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
-                minWidth: '110px',
+                width: isMobile ? '280px' : '150px',
                 paddingRight: '50px',
-                margin: '0 32px 60px 0',
-                }}
+                margin: isMobile && '0 0 60px 0',
+              }}
               onChange={e => {
-                if (e.currentTarget.value>1)
-                {setWeight(e.currentTarget.value);}
+                if (e.currentTarget.value > 1) {
+                  setWeight(e.currentTarget.value);
+                }
               }}
               classes={classes}
               label="Вага продукта"
@@ -230,24 +132,17 @@ export default function ProductForm(styles) {
           <Button
             margin="0 auto 0"
             type="submit"
-            borderRadius={
-            isMobile &&
-              '30px'}
+            borderRadius={isMobile && '30px'}
             onClick={() => {
               onSubmit();
-              if (
-                isMobile &&
-                productId !== '' && productWeight >= 1 ) {
+              if (isMobile && productId !== '' && productWeight >= 1) {
                 dispatch(changeToggle(false));
               }
             }}
           >
-            {
-              isMobile ?
-              ( <p className={'BtnName'}
-              >Додати</p>
-            ) :
-              (
+            {isMobile ? (
+              <p className={'BtnName'}>Додати</p>
+            ) : (
               <ImPlus
                 width="20"
                 height="20"
@@ -258,8 +153,7 @@ export default function ProductForm(styles) {
         </Form>
       </Formik>
 
-      <FormikWrapperStyles />
+      <FormikWrapperStyles styles />
     </div>
   );
 }
-

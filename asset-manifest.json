@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/Frontend-Project-SlimMom/static/css/main.8a71a1ac.css",
-    "main.js": "/Frontend-Project-SlimMom/static/js/main.69a2ba62.js",
+    "main.js": "/Frontend-Project-SlimMom/static/js/main.f327211d.js",
     "static/css/654.e254d962.chunk.css": "/Frontend-Project-SlimMom/static/css/654.e254d962.chunk.css",
     "static/js/654.0d69efc3.chunk.js": "/Frontend-Project-SlimMom/static/js/654.0d69efc3.chunk.js",
-    "static/js/682.df1af87a.chunk.js": "/Frontend-Project-SlimMom/static/js/682.df1af87a.chunk.js",
+    "static/js/682.c0b42605.chunk.js": "/Frontend-Project-SlimMom/static/js/682.c0b42605.chunk.js",
     "static/js/237.488a602e.chunk.js": "/Frontend-Project-SlimMom/static/js/237.488a602e.chunk.js",
     "static/js/910.756ea94e.chunk.js": "/Frontend-Project-SlimMom/static/js/910.756ea94e.chunk.js",
     "static/css/176.72b58257.chunk.css": "/Frontend-Project-SlimMom/static/css/176.72b58257.chunk.css",
@@ -54,10 +54,10 @@
     "static/media/eyeCrossed.svg": "/Frontend-Project-SlimMom/static/media/eyeCrossed.5f3482ac926fe986cddfbfb4f1e542f6.svg",
     "static/media/eye.svg": "/Frontend-Project-SlimMom/static/media/eye.e7ca97cccc164b37850d15794041baee.svg",
     "main.8a71a1ac.css.map": "/Frontend-Project-SlimMom/static/css/main.8a71a1ac.css.map",
-    "main.69a2ba62.js.map": "/Frontend-Project-SlimMom/static/js/main.69a2ba62.js.map",
+    "main.f327211d.js.map": "/Frontend-Project-SlimMom/static/js/main.f327211d.js.map",
     "654.e254d962.chunk.css.map": "/Frontend-Project-SlimMom/static/css/654.e254d962.chunk.css.map",
     "654.0d69efc3.chunk.js.map": "/Frontend-Project-SlimMom/static/js/654.0d69efc3.chunk.js.map",
-    "682.df1af87a.chunk.js.map": "/Frontend-Project-SlimMom/static/js/682.df1af87a.chunk.js.map",
+    "682.c0b42605.chunk.js.map": "/Frontend-Project-SlimMom/static/js/682.c0b42605.chunk.js.map",
     "237.488a602e.chunk.js.map": "/Frontend-Project-SlimMom/static/js/237.488a602e.chunk.js.map",
     "910.756ea94e.chunk.js.map": "/Frontend-Project-SlimMom/static/js/910.756ea94e.chunk.js.map",
     "176.72b58257.chunk.css.map": "/Frontend-Project-SlimMom/static/css/176.72b58257.chunk.css.map",
@@ -77,6 +77,6 @@
   },
   "entrypoints": [
     "static/css/main.8a71a1ac.css",
-    "static/js/main.69a2ba62.js"
+    "static/js/main.f327211d.js"
   ]
 }

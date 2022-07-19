@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import { getSummary, getDate, getNotRecFood } from 'redux/dairy/dairySelector';
+import { getDaily } from 'redux/dairy/dairySelector';
 import {
   Wrapper,
   SummaryWrap,
@@ -14,7 +15,10 @@ import {
 export default function SummaryForDay() {
 
   const date = new Date();
-  const reduxDate = useSelector(getDate)
+  const reduxDate = useSelector(getDate);
+
+  const dailyRate = useSelector(getDaily);
+  console.log(dailyRate);
 
   const summary = useSelector(getSummary);
   const notRecFoodArr = useSelector(getNotRecFood);
@@ -31,7 +35,7 @@ export default function SummaryForDay() {
           <Text>Спожито</Text><Text>{summary.consumed ? summary.consumed : '000'} ккал</Text>
         </Item>
         <Item>
-          <Text>Добова норма</Text><Text>{summary.dailyRate ? summary.dailyRate : '000'} ккал</Text>
+          <Text>Добова норма</Text><Text>{dailyRate ? dailyRate : '000'} ккал</Text>
           </Item>
         <Item>
           <Text>n% від норми</Text><Text>{summary.nOfNorm ? summary.nOfNorm : '000'} %</Text>

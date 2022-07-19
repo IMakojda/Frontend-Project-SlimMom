@@ -12,7 +12,9 @@ const token = {
     axios.defaults.headers.common.Authorization = ``;
   },
 };
-
+const headers = {
+  'Content-type': 'application/json',
+};
 const register = createAsyncThunk(
   '/auth/register',
   async (credential, thunkAPI) => {
@@ -56,7 +58,9 @@ const updateAvatar = createAsyncThunk(
   '/auth/update',
   async (credential, thunkAPI) => {
     try {
-      const { data } = await axios.patch('/users/avatars', credential);
+      const { data } = await axios.patch('/users/avatars', credential, {
+        headers: headers,
+      });
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

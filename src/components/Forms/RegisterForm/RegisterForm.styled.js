@@ -60,6 +60,7 @@ const Placeholder = styled.label`
 `;
 
 const Input = styled.input`
+  position: relative;
   width: 280px;
   height: 36px;
   border: none;
@@ -120,7 +121,7 @@ const Button = styled.button`
   &:hover,
   &:focus {
     background: #ffffff;
-    border: 2px solid #fc842d;
+    border: 1px solid #fc842d;
     border-radius: 30px;
     color: #fc842d;
     cursor: pointer;

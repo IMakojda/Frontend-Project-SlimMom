@@ -5,24 +5,25 @@ const calcSlice = createSlice({
   name: 'calculator',
   initialState: {
     userData: null,
-    userInfo: { height: null,
+    userInfo: {
+      height: null,
       age: null,
       currentWeight: null,
       desiredWeight: null,
-      bloodType: '1', },
+      bloodType: '1',
+    },
     loaderShow: false,
-    height: '',
-    age: '',
-    currentWeight: '',
-    desiredWeight: '',
-    bloodType: '1',
+    // height: '',
+    // age: '',
+    // currentWeight: '',
+    // desiredWeight: '',
+    // bloodType: '1',
   },
   extraReducers: {
     [calcOperation.calc.fulfilled](state, action) {
       state.userData = action.payload.usData;
       state.userInfo = action.payload.usInfo;
       state.loaderShow = false;
-
     },
     [calcOperation.calc.pending](state) {
       state.loaderShow = true;
@@ -45,11 +46,11 @@ const calcSlice = createSlice({
 
   reducers: {
     updateUser: (state, action) => {
-      state.height = action.payload.height;
-      state.age = action.payload.age;
-      state.desiredWeight = action.payload.desiredWeight;
-      state.bloodType = action.payload.bloodType;
-      state.currentWeight = action.payload.currentWeight;
+      state.userInfo.height = action.payload.height;
+      state.userInfo.age = action.payload.age;
+      state.userInfo.desiredWeight = action.payload.desiredWeight;
+      state.userInfo.bloodType = action.payload.bloodType;
+      state.userInfo.currentWeight = action.payload.currentWeight;
     },
   },
 });

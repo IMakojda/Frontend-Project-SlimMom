@@ -1,7 +1,6 @@
 import { format } from 'date-fns';
 import { useSelector } from 'react-redux';
 import { getSummary, getDate, getNotRecFood } from 'redux/dairy/dairySelector';
-// import { addDate } from 'redux/dairy/dairyReducer';
 import {
   Wrapper,
   SummaryWrap,
@@ -23,7 +22,7 @@ export default function SummaryForDay() {
   return (
     <Wrapper>
       <SummaryWrap>
-        <Title>Загалом за {reduxDate === '' ? format(date, 'MM/dd/yyyy') : format(reduxDate, 'MM/dd/yyyy')}</Title>
+        <Title>Загалом за {reduxDate === '' ? format(date, 'dd/MM/yyyy') : format(new Date(reduxDate), 'dd/MM/yyyy')}</Title>
         <List>
         <Item>
           <Text>Залишилось</Text><Text>{summary.left ? summary.left : '000'} ккал</Text>

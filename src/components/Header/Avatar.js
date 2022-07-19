@@ -5,8 +5,7 @@ import authOperations from '../../redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 const BoxA = styled.div`
   @media only screen and (min-width: ${layoutStyles.tablet}) {
     display: flex;
@@ -59,7 +58,7 @@ export default function AvatarUpload() {
 
   var editor = '';
 
-  const [avatar, setAvatar] = useState(null);
+  const [selectedAvatar, setselectedAvatar] = useState(null);
   const [picture, setPicture] = useState({
     cropperOpen: false,
     img: null,
@@ -102,8 +101,9 @@ export default function AvatarUpload() {
 
   const handleFileChange = e => {
     let url = URL.createObjectURL(e.target.files[0]);
-    setAvatar(e.target.files[0]);
 
+    const avatar = e.target.files[0];
+    setselectedAvatar(avatar);
     setPicture({
       ...picture,
       img: url,
@@ -113,11 +113,18 @@ export default function AvatarUpload() {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    const data = new FormData();
-    data.append('avatar', avatar);
-    dispatch(authOperations.updateAvatar(data));
-    toast.success('Змінено успішно!');
+    if (!selectedAvatar) return;
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedAvatar);
+    reader.onloadend = () => {
+      uploadImage(reader.result);
+    };
+    reader.onerror = () => {};
+  };
+  const uploadImage = async base64EncodedImage => {
+    dispatch(
+      authOperations.updateAvatar(JSON.stringify({ data: base64EncodedImage }))
+    );
   };
 
   return (
@@ -135,7 +142,7 @@ export default function AvatarUpload() {
             />
           </Box>
 
-          <Form id="form" encType="multipart/form-data">
+          <Form id="form" onSubmit={handleSubmit}>
             <Input
               type="file"
               name="avatar"
@@ -143,7 +150,7 @@ export default function AvatarUpload() {
               accept="image/*"
               onChange={handleFileChange}
             />
-            <ButtonForm disabled={!avatar} type="submit" onClick={handleSubmit}>
+            <ButtonForm disabled={!selectedAvatar} type="submit">
               Змінити
             </ButtonForm>
           </Form>

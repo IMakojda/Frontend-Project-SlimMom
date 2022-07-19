@@ -2,16 +2,19 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { ToastContainer } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import authOperations from 'redux/auth/authOperations';
-import visibility from './visibility.svg';
-import visibility_off from './visibility_off.svg';
 import calcSelectors from '../../../redux/calculatorSlice/calculatorSelectors';
+import eye from '../../../images/eye.svg';
+import eyeCrossed from '../../../images/eyeCrossed.svg';
+
 import {
   Button,
   Cut,
   Form,
   FormButtons,
+  Error,
   Input,
   InputBlock,
   PasswordEye,
@@ -20,6 +23,10 @@ import {
 } from './RegisterForm.styled';
 
 export default function RegisterForm() {
+  const passwordRules =
+    /^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-ß])(?=.*\d)[a-zà-ÿA-ZÀ-ß\d]{8,}$/;
+  const emailRules = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,6}$/i;
+
   const validationSchema = yup.object().shape({
     name: yup
       .string()
@@ -28,16 +35,23 @@ export default function RegisterForm() {
       .required("Обов'язкове поле"),
     email: yup
       .string()
-      .email('Невірна адреса електронної пошти')
+      .matches(
+        emailRules,
+        'Невірна адреса електронної пошти. Приклад: myemail@gmail.com'
+      )
       .min(6, 'Має бути 6 символа або більше!')
       .max(50, 'Має бути 50 символів або менше!')
       .required("Обов'язкове поле"),
     password: yup
       .string()
-      .min(8, 'Введіть не менше, ніж 8 символів')
-      .matches(RegExp('(.*[a-z].*)'), 'Введіть принаймні одну малу літеру')
-      .matches(RegExp('(.*[A-Z].*)'), 'Введіть принаймні одну велику літеру')
-      .matches(RegExp('(.*\\d.*)'), 'Введіть принаймні одну цифру')
+      .min(
+        8,
+        'Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі та цифри'
+      )
+      .matches(
+        passwordRules,
+        'Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі та цифри'
+      )
       .required("Обов'язкове поле"),
   });
 
@@ -49,15 +63,6 @@ export default function RegisterForm() {
   const handleClick = () => {
     setEyeOutlined(!eyeOutlined);
   };
-
-  // const onSubmit = async (values, actions) => {
-  //   dispatch(authOperations.register(values));
-  //   setTimeout(async () => {
-  //     alert(JSON.stringify(values, null, 2));
-  //     actions.setSubmitting(false);
-  //     // actions.resetForm();
-  //   }, 1000);
-  // };
 
   return (
     <Wrapper>
@@ -100,7 +105,7 @@ export default function RegisterForm() {
               />
               <Cut></Cut>
               <Placeholder htmlFor="name">Ім'я *</Placeholder>
-              {touched.name && errors.name && <p>{errors.name}</p>}
+              {touched.name && errors.name && <Error>{errors.name}</Error>}
             </InputBlock>
             <InputBlock>
               <Input
@@ -112,7 +117,7 @@ export default function RegisterForm() {
                 placeholder=" "
               />
               <Placeholder htmlFor="email">Електронна пошта *</Placeholder>
-              {touched.email && errors.email && <p>{errors.email}</p>}
+              {touched.email && errors.email && <Error>{errors.email}</Error>}
             </InputBlock>
             <InputBlock>
               <Input
@@ -127,22 +132,19 @@ export default function RegisterForm() {
               <PasswordEye onClick={handleClick}>
                 {eyeOutlined ? (
                   <img
-                    src={visibility_off}
-                    width="24px"
-                    height="24px"
+                    src={eyeCrossed}
+                    width="20px"
+                    height="20px"
                     alt="visibility_off"
                   />
                 ) : (
-                  <img
-                    src={visibility}
-                    width="24px"
-                    height="24px"
-                    alt="visibility"
-                  />
+                  <img src={eye} width="20px" height="20px" alt="visibility" />
                 )}
               </PasswordEye>
               <Placeholder htmlFor="password">Пароль *</Placeholder>
-              {touched.password && errors.password && <p>{errors.password}</p>}
+              {touched.password && errors.password && (
+                <Error>{errors.password}</Error>
+              )}
             </InputBlock>
 
             <FormButtons>
@@ -155,6 +157,17 @@ export default function RegisterForm() {
           </Form>
         )}
       </Formik>
+      <ToastContainer
+        style={{ top: '35%' }}
+        toastStyle={{
+          border: '1px solid #FC842D',
+          paddingTop: '20px',
+          paddingBottom: '20px',
+          paddingLeft: '10px',
+          paddingRight: '10px',
+          textAlign: 'center',
+        }}
+      />
     </Wrapper>
   );
 }

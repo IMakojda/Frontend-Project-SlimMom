@@ -1,5 +1,5 @@
 import { useMediaQuery } from 'react-responsive';
-import { useSelector, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import DateCalendar from '../../components/DateCalendar/DateCalendar';
 import ProductsList from '../../components/ProductsList/ProductsList';
@@ -8,13 +8,11 @@ import Button from '../../components/button/Button.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import { ImPlus } from 'react-icons/im';
 import { changeToggle } from '../../redux/dairy/dairyReducer';
-import { getToggle } from '../../redux/dairy/dairySelector';
 
-import styles from './DiaryPage.module.css';
+import { DivDate, DivWrapper } from './DiaryPage.styled';
 
 export default function DiaryPage() {
   const dispatch = useDispatch();
-  const toggle = useSelector(getToggle);
 
   const isMobile = useMediaQuery({
     query: `(max-width: ${layoutStyles.tablet})`,
@@ -22,16 +20,11 @@ export default function DiaryPage() {
 
   return (
     <motion.div>
-      <div className={styles.Wrapper}>
-        <div className={styles.WrapperDate}>
+      <DivWrapper>
+        <DivDate>
           <DateCalendar />
-        </div>
-        {isMobile && toggle ? (
-          <ProductForm />
-        ) : (
-          <ProductForm display={'none'} />
-        )}
-
+        </DivDate>
+        <ProductForm />
         <ProductsList />
 
         {isMobile && (
@@ -44,7 +37,7 @@ export default function DiaryPage() {
             <ImPlus width="20" height="20" fill={layoutStyles.mainBackground} />
           </Button>
         )}
-      </div>
+      </DivWrapper>
     </motion.div>
   );
 }

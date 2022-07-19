@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Container from '../../components/Container';
 import CalculatorFormWrapper from '../../components/Forms/CalculatorFormWrapper';
+import { ContentWrap } from 'pages/DiaryPage/DiaryPage.styled';
+import SummaryForDay from 'components/SummaryForDay';
 
 export default function MainPage() {
   const [showModal, setShowModal] = useState(false);
@@ -15,14 +16,15 @@ export default function MainPage() {
   }
 
   return (
-    <Container>
+    <ContentWrap>
       <CalculatorFormWrapper
         openModal={openModal}
         showModal={showModal}
         setShowModal={setShowModal}
         title="Розрахуйте свою денну норму калорій прямо зараз"
       />
-    </Container>
+      <SummaryForDay/>
+    </ContentWrap>
   );
 }
 

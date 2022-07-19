@@ -20,9 +20,9 @@ export const CalculatorWrapperStyle = styled.div`{
   }
 
    @media screen and (min-device-width: 1280px) {
-     padding-top: 140px;
      max-width:510px;
-     margin-left: 0px;
+     margin: 0;
+     padding: 0;
 
   }
 `;

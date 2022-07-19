@@ -9,7 +9,8 @@ import { layoutStyles } from '../../stlyles/layoutStyles';
 import { ImPlus } from 'react-icons/im';
 import { changeToggle } from '../../redux/dairy/dairyReducer';
 
-import { DivDate, DivWrapper } from './DiaryPage.styled';
+import { DivDate, DivWrapper, ContentWrap } from './DiaryPage.styled';
+import SummaryForDay from 'components/SummaryForDay';
 
 export default function DiaryPage() {
   const dispatch = useDispatch();
@@ -20,7 +21,8 @@ export default function DiaryPage() {
 
   return (
     <motion.div>
-      <DivWrapper>
+      <ContentWrap>
+         <DivWrapper>
         <DivDate>
           <DateCalendar />
         </DivDate>
@@ -38,6 +40,8 @@ export default function DiaryPage() {
           </Button>
         )}
       </DivWrapper>
+      <SummaryForDay/>
+     </ContentWrap>
     </motion.div>
   );
 }

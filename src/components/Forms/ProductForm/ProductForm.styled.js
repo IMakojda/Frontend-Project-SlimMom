@@ -1,5 +1,5 @@
 import { layoutStyles } from '../../../stlyles/layoutStyles';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -51,14 +51,21 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const FormikWrapperStyles = createGlobalStyle`
-  .wrapper{
-    ${props => console.log(props)}
-    position: absolute;
-    top: 0;
-    padding-top: 80px;
-    background-color: ${layoutStyles.mainBackground};
+const DivWrapper = styled.div`
+  display: ${props => props.display};
+  position: absolute;
+  top: 0;
+  padding-top: 80px;
+  background-color: ${layoutStyles.mainBackground};
+
+  @media screen and (min-width: ${layoutStyles.tablet}) {
+    position: relative;
+    display: block;
+    padding: 0;
   }
+`;
+
+const FormikWrapperStyles = createGlobalStyle`
    .ProductForm {
     padding-top: 80px;
     background-color: ${layoutStyles.mainBackground};
@@ -76,11 +83,6 @@ const FormikWrapperStyles = createGlobalStyle`
   color: ${layoutStyles.mainBackground}
 }
   @media screen and (min-width: ${layoutStyles.tablet}) {
-    .wrapper{
-    position: relative;
-    display: block;
-    padding: 0;
-  }
  .ProductForm {
   display: flex;
   margin:  0 0 60px 0;
@@ -107,4 +109,4 @@ const FormikWrapperStyles = createGlobalStyle`
 
 `;
 
-export {FormikWrapperStyles, useStyles}
+export { FormikWrapperStyles, useStyles, DivWrapper };

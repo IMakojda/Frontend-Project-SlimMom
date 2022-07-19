@@ -6,19 +6,18 @@ import debounce from 'lodash.debounce';
 import { toast } from 'react-toastify';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-
-import { layoutStyles } from '../../../stlyles/layoutStyles';
-import Button from '../../button/Button.styled';
 import { ImPlus } from 'react-icons/im';
 import { changeToggle } from '../../../redux/dairy/dairyReducer';
 import {
   fetchProducts,
   addProduct,
 } from '../../../redux/dairy/dairyOperations';
-import { getProducts, getDate } from '../../../redux/dairy/dairySelector';
-import { FormikWrapperStyles, useStyles } from './ProductForm.styled';
+import { layoutStyles } from '../../../stlyles/layoutStyles';
+import Button from '../../button/Button.styled';
+import { getProducts, getDate, getToggle } from '../../../redux/dairy/dairySelector';
+import { FormikWrapperStyles, useStyles, DivWrapper } from './ProductForm.styled';
 
-export default function ProductForm(styles) {
+export default function ProductForm() {
   const [value, setValue] = useState('');
   const [productId, setProductId] = useState('');
   const [productWeight, setWeight] = useState('');
@@ -27,6 +26,7 @@ export default function ProductForm(styles) {
 
   const products = useSelector(getProducts); // список найденных продуктов
   const date = useSelector(getDate); // форматированная дата на которую добавляем проукт
+  const toggle = useSelector(getToggle);
 
   const findProduct = value => {
     dispatch(fetchProducts(value));
@@ -57,15 +57,9 @@ export default function ProductForm(styles) {
   const classes = useStyles();
 
   return (
-    <div className={'wrapper'}>
+    <DivWrapper display={isMobile && toggle ? 'block' : 'none' }>
       <Formik
         initialValues={{ product: '', weight: '' }}
-        // onSubmit={(values, actions) => {
-        //   setTimeout(() => {
-        //     actions.setSubmitting(false);
-        //   }, 1000);
-        // }}
-        // onSubmit={onSubmit}
       >
         <Form className={'ProductForm'}>
           <div className={'ProductName'}>
@@ -153,7 +147,7 @@ export default function ProductForm(styles) {
         </Form>
       </Formik>
 
-      <FormikWrapperStyles styles />
-    </div>
+      <FormikWrapperStyles />
+    </DivWrapper>
   );
 }

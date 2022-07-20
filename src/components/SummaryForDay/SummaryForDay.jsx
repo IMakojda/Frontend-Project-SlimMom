@@ -25,16 +25,16 @@ export default function SummaryForDay() {
         <Title>Загалом за {reduxDate === '' ? format(date, 'dd/MM/yyyy') : format(new Date(reduxDate), 'dd/MM/yyyy')}</Title>
         <List>
         <Item>
-          <Text>Залишилось</Text><Text>{summary.left ? summary.left : '000'} ккал</Text>
+          <Text>Залишилось</Text><Text>{summary.left ? Math.round(summary.left) : '000'} ккал</Text>
         </Item>
         <Item>
-          <Text>Спожито</Text><Text>{summary.consumed ? summary.consumed : '000'} ккал</Text>
+          <Text>Спожито</Text><Text>{summary.consumed ? Math.round(summary.consumed) : '000'} ккал</Text>
         </Item>
         <Item>
-          <Text>Добова норма</Text><Text>{dailyRate ? dailyRate : '000'} ккал</Text>
+          <Text>Добова норма</Text><Text>{dailyRate ? Math.round(dailyRate) : '000'} ккал</Text>
           </Item>
         <Item>
-          <Text>n% від норми</Text><Text>{summary.nOfNorm ? summary.nOfNorm : '000'} %</Text>
+          <Text>n% від норми</Text><Text>{summary.nOfNorm ? Math.round(summary.nOfNorm) : '000'} %</Text>
         </Item>
         </List>
       </SummaryWrap>

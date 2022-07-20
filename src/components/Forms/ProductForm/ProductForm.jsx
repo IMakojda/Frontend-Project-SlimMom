@@ -20,6 +20,7 @@ import {
   getProducts,
   getDate,
   getToggle,
+  getError,
 } from '../../../redux/dairy/dairySelector';
 import {
   FormikWrapperStyles,
@@ -34,9 +35,10 @@ export default function ProductForm() {
 
   const dispatch = useDispatch();
 
-  const products = useSelector(getProducts); // список найденных продуктов
-  const date = useSelector(getDate); // форматированная дата на которую добавляем проукт
+  const products = useSelector(getProducts); 
+  const date = useSelector(getDate); 
   const toggle = useSelector(getToggle);
+  let error = useSelector(getError);
 
   const findProduct = value => {
     dispatch(fetchProducts(value));
@@ -44,7 +46,7 @@ export default function ProductForm() {
 
   const debouncedFindProduct = debounce(findProduct, 400);
 
-  function onSubmit(e) {
+  function onSubmit() {
     if (productId === '') {
       return toast.warning('Виберіть продукт!', toastStyles);
     }
@@ -54,7 +56,9 @@ export default function ProductForm() {
 
     if (productId !== '' && productWeight >= 1) {
       dispatch(addProduct({ date, productId, productWeight }));
-      toast.success(`З'їдено!`, toastStyles);
+      error
+        ? toast.error(`Виникла помилка! ${error.message}`, toastStyles)
+        : toast.success(`З'їдено!`, toastStyles);
       setProductId('');
       setWeight('');
       setValue('');

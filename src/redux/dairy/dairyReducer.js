@@ -43,9 +43,11 @@ const summaryForDaySlice = createSlice({
       state.summary.left = payload.result.summary.left;
       state.summary.nOfNorm = payload.result.summary.nOfNorm;
       state.notRecFood = payload.notRecFood;
+      state.error = null
     },
     [fetchProducts.fulfilled]: (state, { payload }) => {
       state.productList = payload;
+      state.error = null
     },
 
     [addProduct.fulfilled]: (state, { payload }) => {
@@ -54,6 +56,7 @@ const summaryForDaySlice = createSlice({
       state.summary.consumed = payload.result.summary.consumed;
       state.summary.left = payload.result.summary.left;
       state.summary.nOfNorm = payload.result.summary.nOfNorm;
+      state.error = null
     },
     [removeProduct.fulfilled]: (state, { payload }) => {
       state.products = payload.result.products;
@@ -61,6 +64,7 @@ const summaryForDaySlice = createSlice({
       state.summary.consumed = payload.result.summary.consumed;
       state.summary.left = payload.result.summary.left;
       state.summary.nOfNorm = payload.result.summary.nOfNorm;
+      state.error = null
     },
     [fetchProducts.rejected]: (state, { payload }) => {
       state.error = payload;

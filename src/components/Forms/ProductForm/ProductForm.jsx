@@ -29,7 +29,7 @@ import {
 
 
 export default function ProductForm() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(null);
   const [productId, setProductId] = useState('');
   const [productWeight, setWeight] = useState('');
 
@@ -98,6 +98,9 @@ export default function ProductForm() {
                 noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
                 classes={classes}
                 onChange={(e, v) => {
+                  if (v === null) {
+                    setValue(v);
+                  }
                   if (v && v.id) {
                     setProductId(v.id);
                     setValue(v);

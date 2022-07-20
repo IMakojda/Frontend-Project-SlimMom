@@ -36,8 +36,7 @@ const GlobalStyle = createGlobalStyle`
 
      html {
        scroll-behavior: smooth;
-       overflow-x: hidden;
-       overflow-y: hidden;
+       overflow:auto;
        width: 100%;
        height: 100%;
      }

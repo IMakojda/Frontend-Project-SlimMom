@@ -29,7 +29,7 @@ import {
 
 
 export default function ProductForm() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState(null);
   const [productId, setProductId] = useState('');
   const [productWeight, setWeight] = useState('');
   const dispatch = useDispatch();
@@ -66,39 +66,42 @@ export default function ProductForm() {
 
   return (
     <DivWrapper display={isMobile && toggle ? 'block' : 'none'}>
-        <Formik
-          initialValues={{ product: '', weight: '' }}
-          onSubmit={(values, { resetForm, setSubmitting }) => {
-            onSubmit();
-            if (isMobile && productId !== '' && productWeight >= 1) {
-              dispatch(changeToggle(false));
-            }
-            setSubmitting(false);
-            resetForm();
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form className={'ProductForm'}>
-              <div className={'ProductName'}>
-                <Autocomplete
-                  // forcePopupIcon={true}
-                  isOptionEqualToValue={(option, value) =>
-                    option.iso === value.iso
+      <Formik
+        initialValues={{ product: '', weight: '' }}
+        onSubmit={(values, { resetForm, setSubmitting }) => {
+          onSubmit();
+          if (isMobile && productId !== '' && productWeight >= 1) {
+            dispatch(changeToggle(false));
+          }
+          setSubmitting(false);
+          resetForm();
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form className={'ProductForm'}>
+            <div className={'ProductName'}>
+              <Autocomplete
+                // forcePopupIcon={true}
+                isOptionEqualToValue={(option, value) =>
+                  option.iso === value.iso
+                }
+                autoSelect
+                selectOnFocus
+                id="product"
+                name="product"
+                options={products}
+                value={value}
+                noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
+                classes={classes}
+                onChange={(e, v) => {
+                  if (v === null) {
+                    setValue(v);
                   }
-                  autoSelect
-                  selectOnFocus
-                  id="product"
-                  name="product"
-                  options={products}
-                  value={value}
-                  noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
-                  classes={classes}
-                  onChange={(e, v) => {
-                    if (v && v.id) {
-                      setProductId(v.id);
-                      setValue(v);
-                    }
-                  }}
+                  if (v && v.id) {
+                    setProductId(v.id);
+                    setValue(v);
+                  }
+                 }}
                   sx={{
                     borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                     width: isMobile ? '280px' : '240px',

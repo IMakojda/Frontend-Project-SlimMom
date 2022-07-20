@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
-
+import 'moment/locale/uk';
 import Datetime from 'react-datetime';
 import Button from '../button/Button.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
@@ -14,6 +14,7 @@ import { RiCalendar2Fill } from 'react-icons/ri';
 import { fetchDairy } from '../../redux/dairy/dairyOperations';
 import { addDate } from '../../redux/dairy/dairyReducer';
 import authSelector from '../../redux/auth/selectors';
+moment.locale('uk')
 
 export default function DateCalendar() {
   const [value, setValue] = useState(moment(new Date()));
@@ -59,6 +60,7 @@ export default function DateCalendar() {
   return (
     <Div>
       <Datetime
+      locale="uk" 
         className="form-control"
         dateFormat="DD.MM.YYYY"
         value={value}

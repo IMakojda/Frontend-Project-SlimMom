@@ -27,6 +27,7 @@ export const Button = styled.button`
   background-color: transparent;
   padding: 4px 10px 0 15px;
   cursor: pointer;
+  z-index: 30;
   &:hover {
     color: ${layoutStyles.activeButton};
   }

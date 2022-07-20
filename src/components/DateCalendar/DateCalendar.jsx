@@ -77,7 +77,7 @@ export default function DateCalendar() {
           }
           setOpenCalendar(true);
         }}
-        background={layoutStyles.mainBackground}
+        background={'transparent'}
         boxShadow={'none'}
         width={'23px'}
         height={'23px'}

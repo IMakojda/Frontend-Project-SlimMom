@@ -18,8 +18,6 @@ const calcUserUpdate = createAsyncThunk(
   async (credential, thunkAPI) => {
     try {
       const { data } = await axios.put('/calc/user', credential);
-
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

@@ -5,8 +5,6 @@ axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}`;
 const calc = createAsyncThunk('/calc', async (credential, thunkAPI) => {
   try {
     const { data } = await axios.post('/calc', credential);
-
-    console.log(data);
     return {usData: data,usInfo:credential };
   } catch (error) {
     return thunkAPI.rejectWithValue(error);

@@ -40,29 +40,24 @@ return ( <ImageContainer ref={ref}>
       src={vector}
       alt='vector'
       showImg={!isLogin}
-      desktop={desktop}
-
     />
 
   <StrawberryImg
     src={strawberry}
     alt='strawberry'
     showImg={!isLogin}
-    desktop={desktop}
-  />
+    />
 
     <LeavesImg
       src={leafs}
       alt='leafs'
       showImg={!isLogin}
-      desktop={desktop}
     />
 
     <BananaImg
       src={banana}
       alt='banana'
       showImg={!isLogin}
-      desktop={desktop}
     />
 
     <LeafSide
@@ -78,6 +73,7 @@ return ( <ImageContainer ref={ref}>
     />
 
     {children}
+
   </ImageContainer>
 )
 }

@@ -24,7 +24,7 @@ import {
 
 export default function RegisterForm() {
   const passwordRules =
-    /^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-ß])(?=.*\d)[a-zà-ÿA-ZÀ-ß\d]{8,}$/;
+    /^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-ß])(?=.*\d)[a-zà-ÿA-ZÀ-ß\d]{8,50}$/;
   const emailRules = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{1,6}$/i;
 
   const validationSchema = yup.object().shape({
@@ -48,6 +48,7 @@ export default function RegisterForm() {
         8,
         'Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі та цифри'
       )
+      .max(50, 'Має бути 50 символів або менше!')
       .matches(
         passwordRules,
         'Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі та цифри'

@@ -24,8 +24,8 @@ import {
 
 export default function RegisterForm() {
   const passwordRules =
-    /^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-ß])(?=.*\d)[a-zà-ÿA-ZÀ-ß\d]{8,}$/;
-  const emailRules = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,6}$/i;
+    /^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-ß])(?=.*\d)[a-zà-ÿA-ZÀ-ß\d]{8,50}$/;
+  const emailRules = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{1,6}$/i;
 
   const validationSchema = yup.object().shape({
     name: yup
@@ -39,8 +39,8 @@ export default function RegisterForm() {
         emailRules,
         'Невірна адреса електронної пошти. Приклад: myemail@gmail.com'
       )
-      .min(6, 'Має бути 6 символа або більше!')
-      .max(50, 'Має бути 50 символів або менше!')
+      .min(3, 'Має бути 3 символа або більше!')
+      .max(254, 'Має бути 254 символів або менше!')
       .required("Обов'язкове поле"),
     password: yup
       .string()
@@ -48,6 +48,7 @@ export default function RegisterForm() {
         8,
         'Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі та цифри'
       )
+      .max(50, 'Має бути 50 символів або менше!')
       .matches(
         passwordRules,
         'Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі та цифри'

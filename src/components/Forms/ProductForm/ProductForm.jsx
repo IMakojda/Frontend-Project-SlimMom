@@ -27,7 +27,6 @@ import {
   DivWrapper,
 } from './ProductForm.styled';
 
-
 export default function ProductForm() {
   const [value, setValue] = useState(null);
   const [productId, setProductId] = useState('');
@@ -61,6 +60,26 @@ export default function ProductForm() {
       setValue('');
     }
   }
+  const onChangeProduct = e => {
+    if (e.currentTarget.value !== '')
+      debouncedFindProduct(e.currentTarget.value);
+  };
+
+  const onChangeWeight = e => {
+    const { value } = e.currentTarget;
+    if (value > 0) {
+      return setWeight(value);
+    }
+    if (value === '') {
+      setWeight('');
+    }
+  };
+
+  const validationWeight = e => {
+    e.target.value = Math.max(0, parseInt(e.target.value))
+      .toString()
+      .slice(0, 4);
+  };
 
   const isMobile = useMediaQuery({
     query: `(max-width: ${layoutStyles.tablet})`,
@@ -85,7 +104,6 @@ export default function ProductForm() {
           <Form className={'ProductForm'}>
             <div className={'ProductName'}>
               <Autocomplete
-                // forcePopupIcon={true}
                 isOptionEqualToValue={(option, value) =>
                   option.iso === value.iso
                 }
@@ -114,11 +132,7 @@ export default function ProductForm() {
                   <TextField
                     {...params}
                     fullWidth
-                    // required
-                    onChange={e => {
-                      if (e.currentTarget.value !== '')
-                        debouncedFindProduct(e.currentTarget.value);
-                    }}
+                    onChange={onChangeProduct}
                     label="Введіть назву продукту"
                   />
                 )}
@@ -126,28 +140,19 @@ export default function ProductForm() {
             </div>
             <div className={'ProductWeight'}>
               <TextField
-                // required
                 fullWidth
                 id="weight"
                 name="weight"
                 type="number"
                 value={productWeight}
-                onInput={e => {
-                  e.target.value = Math.max(0, parseInt(e.target.value))
-                    .toString()
-                    .slice(0, 4);
-                }}
+                onInput={validationWeight}
                 sx={{
                   borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
                   width: isMobile ? '280px' : '150px',
                   paddingRight: '50px',
                   margin: isMobile && '0 0 60px 0',
                 }}
-                onChange={e => {
-                  if (e.currentTarget.value > 0) {
-                    setWeight(e.currentTarget.value);
-                  }
-                }}
+                onChange={onChangeWeight}
                 classes={classes}
                 label="Вага продукта"
               />

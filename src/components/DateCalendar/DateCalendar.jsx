@@ -7,6 +7,7 @@ import Button from '../button/Button.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import 'react-datetime/css/react-datetime.css';
 import { Div, DatePickerWrapperStyles } from './DateCalendar.styled';
+import { toastStyles } from '../../stlyles/toastStyled';
 import { toast } from 'react-toastify';
 import { RiCalendar2Fill } from 'react-icons/ri';
 
@@ -19,12 +20,17 @@ export default function DateCalendar() {
   const [openCalendar, setOpenCalendar] = useState(false);
 
   const dispatch = useDispatch();
-  const date = useSelector(authSelector.getStartDate);
 
-  const maxDate = new Date();
-  const minDate = moment(date);
+  const dateConnect = new Date(useSelector(authSelector.getStartDate));
 
+  const maxDate = moment(new Date());
+  const minDate = moment(dateConnect);
+
+  function dateFormat(date) {
+    return `${date.format('YYYY.MM.DD')}Z`;
+  }
   useEffect(() => {
+    dispatch(addDate(dateFormat(value)));
     dispatch(fetchDairy(dateFormat(value)));
   }, [value, dispatch]);
 
@@ -32,12 +38,8 @@ export default function DateCalendar() {
     dispatch(addDate(date));
   };
 
-  function dateFormat(date) {
-    return `${date.format('YYYY.MM.DD')}Z`;
-  }
-
-  setDate(dateFormat(value));
   fetchDairy(dateFormat(value));
+
   const onChange = newValue => {
     setOpenCalendar(false);
     if (!moment(newValue, 'DD.MM.YYYY', true).isValid()) {
@@ -46,12 +48,12 @@ export default function DateCalendar() {
     }
     if (newValue > maxDate) {
       newValue = maxDate;
-      toast.warning(`Вибрана дата ще не настала!`);
+      toast.warning(`Вибрана дата ще не настала!`, toastStyles);
       return;
     }
     if (newValue < minDate) {
       newValue = minDate;
-      toast.warning(`На вибрану дату у додатку не має історії!`);
+      toast.warning(`На вибрану дату у додатку не має історії!`, toastStyles);
       return;
     }
     setValue(newValue);

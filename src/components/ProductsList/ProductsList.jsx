@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { DivStyles } from './Div.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import { getEatProducts, getDate } from '../../redux/dairy/dairySelector';
-
+import { toastStyles } from '../../stlyles/toastStyled';
 import { removeProduct } from '../../redux/dairy/dairyOperations';
 
 export default function ProductsList() {
@@ -20,41 +20,45 @@ export default function ProductsList() {
   return (
     <>
       <div className="control">
-        {products.length ===0 ?
-        <p className="info">Тут буде список продуктів та напоїв, що з'їли та випили за день. </p> :
-        <table className="table">
-          <tbody>
-            {products.map(row => {
-              return (
-                <tr key={row.id}>
-                  <td className="td-name">{row.title.ua}</td>
-                  <td className="td-weight">{row.weight} гр</td>
-                  <td className="td-calories">
-                    {Math.round(row.calories)} ккал
-                  </td>
-                  <td>
-                    <Button
-                      background={layoutStyles.mainBackground}
-                      width="28px"
-                      height="28px"
-                      backgroundHover={layoutStyles.formBorderColor}
-                      onClick={() => {
-                        deleteProduct(date, row.id);
-                        toast.success(`Видалено!`) // не обрабатывается ошибка
-                      }}
-                    >
-                      <FiX
-                        width="14"
-                        height="14"
-                        color={layoutStyles.placeholderColor}
-                      />
-                    </Button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>}
+        {products.length === 0 ? (
+          <p className="info">
+            Тут буде список продуктів та напоїв, що з'їли та випили за день.{' '}
+          </p>
+        ) : (
+          <table className="table">
+            <tbody>
+              {products.map(row => {
+                return (
+                  <tr key={row.id}>
+                    <td className="td-name">{row.title.ua}</td>
+                    <td className="td-weight">{row.weight} гр</td>
+                    <td className="td-calories">
+                      {Math.round(row.calories)} ккал
+                    </td>
+                    <td>
+                      <Button
+                        background={layoutStyles.mainBackground}
+                        width="28px"
+                        height="28px"
+                        backgroundHover={layoutStyles.formBorderColor}
+                        onClick={() => {
+                          deleteProduct(date, row.id);
+                          toast.success(`Видалено!`, toastStyles); // не обрабатывается ошибка
+                        }}
+                      >
+                        <FiX
+                          width="14"
+                          height="14"
+                          color={layoutStyles.placeholderColor}
+                        />
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
       <DivStyles />
     </>

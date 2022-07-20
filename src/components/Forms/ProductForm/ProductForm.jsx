@@ -27,6 +27,7 @@ import {
   DivWrapper,
 } from './ProductForm.styled';
 
+
 export default function ProductForm() {
   const [value, setValue] = useState('');
   const [productId, setProductId] = useState('');
@@ -60,6 +61,7 @@ export default function ProductForm() {
       setValue('');
     }
   }
+
   const isMobile = useMediaQuery({
     query: `(max-width: ${layoutStyles.tablet})`,
   });
@@ -83,7 +85,7 @@ export default function ProductForm() {
           <Form className={'ProductForm'}>
             <div className={'ProductName'}>
               <Autocomplete
-                forcePopupIcon={true}
+                // forcePopupIcon={true}
                 isOptionEqualToValue={(option, value) =>
                   option.iso === value.iso
                 }
@@ -95,8 +97,8 @@ export default function ProductForm() {
                 value={value}
                 noOptionsText={'Такий продукт не знайдено'} // якщо продукту не має в списку можливих значень
                 classes={classes}
-                onChange={(_, v) => {
-                  if (v.id) {
+                onChange={(e, v) => {
+                  if (v && v.id) {
                     setProductId(v.id);
                     setValue(v);
                   }

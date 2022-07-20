@@ -20,12 +20,17 @@ export default function DateCalendar() {
   const [openCalendar, setOpenCalendar] = useState(false);
 
   const dispatch = useDispatch();
-  const date = new Date(useSelector(authSelector.getStartDate));
 
-  const maxDate = new Date();
-  const minDate = moment(date.toISOString());
+  const dateConnect = new Date(useSelector(authSelector.getStartDate));
 
+  const maxDate = moment(new Date());
+  const minDate = moment(dateConnect);
+
+  function dateFormat(date) {
+    return `${date.format('YYYY.MM.DD')}Z`;
+  }
   useEffect(() => {
+    dispatch(addDate(dateFormat(value)));
     dispatch(fetchDairy(dateFormat(value)));
   }, [value, dispatch]);
 
@@ -33,11 +38,6 @@ export default function DateCalendar() {
     dispatch(addDate(date));
   };
 
-  function dateFormat(date) {
-    return `${date.format('YYYY.MM.DD')}Z`;
-  }
-
-  setDate(dateFormat(value));
   fetchDairy(dateFormat(value));
 
   const onChange = newValue => {
@@ -53,10 +53,7 @@ export default function DateCalendar() {
     }
     if (newValue < minDate) {
       newValue = minDate;
-      toast.warning(
-        `На вибрану дату у додатку не має історії!`,
-        toastStyles
-      );
+      toast.warning(`На вибрану дату у додатку не має історії!`, toastStyles);
       return;
     }
     setValue(newValue);

@@ -5,7 +5,6 @@ import AppBar from '../../components/Header/AppBar';
 import Loader from '../../components/Loader/loader';
 import {  useSelector } from 'react-redux';
 import authSelector from '../../redux/auth/selectors';
-import { motion } from 'framer-motion';
 import ImageContainerWrapper from './imageContainer';
 
 export default function Layout() {

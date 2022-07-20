@@ -166,6 +166,7 @@ export default function UserMenu() {
         </Button>
       </Wrapper>
       <ToastContainer
+        autoClose={2500}
         toastStyle={{
           top: '150px',
           border: '1px solid #FC842D',

@@ -87,6 +87,7 @@ const Input = styled.input`
     left: -10px;
     font-size: 11px;
     background:transparent;
+    color:${activeButton};
     padding:  10px;}
 
 `;

@@ -18,6 +18,7 @@ import {
 } from './CalculatorСalorieForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
+
 import calcOperation from '../../../redux/calculatorSlice/calcOperation';
 import { Modal } from '../../Modal';
 import { ModalContent } from '../../Modal/ModalContent';
@@ -28,15 +29,18 @@ import Loader from '../../Loader/loader';
 import { updateUser } from 'redux/calculatorSlice/calcSlice';
 
 const CalculatorSchema = Yup.object().shape({
-  height: Yup.number('number')
+  height: Yup.number()
+    .typeError('Обов`язково до заповнення')
     .min(100, 'Мінімальний зріст 100 см')
     .max(250, 'Максимальний зріст 250 см')
     .required('Обов`язково до заповнення'),
   age: Yup.number()
+    .typeError('Обов`язково до заповнення')
     .min(18, 'Мінімальний вік 18 років')
     .max(100, 'Максимальний вік 100 років ')
     .required('Обов`язково до заповнення'),
   currentWeight: Yup.number()
+    .typeError('Обов`язково до заповнення')
     .moreThan(
       Yup.ref('desiredWeight'),
       'Поточна вага має бути більшою за бажану'
@@ -47,6 +51,7 @@ const CalculatorSchema = Yup.object().shape({
     .max(500, 'Максимальна вага 500 кг')
     .required('Обов`язково до заповнення'),
   desiredWeight: Yup.number()
+    .typeError('Обов`язково до заповнення')
     .min(20, 'Мінімальна вага 20 кг')
     .max(500, 'Максимальна вага 500 кг')
     .required('Обов`язково до заповнення'),

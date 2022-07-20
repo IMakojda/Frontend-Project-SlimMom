@@ -47,9 +47,18 @@ const calcSlice = createSlice({
       state.userInfo.bloodType = action.payload.bloodType;
       state.userInfo.currentWeight = action.payload.currentWeight;
     },
+    wipeUser: (state, _) => {
+      state.userInfo.height = null;
+      state.userInfo.age = null;
+      state.userInfo.desiredWeight = null;
+      state.userInfo.bloodType = '1';
+      state.userInfo.currentWeight = null;
+      state.userData.dailyRate = '000';
+      state.userData.notRecFood = [];
+    },
   },
 });
 
 export default calcSlice.reducer;
 
-export const { updateUser } = calcSlice.actions;
+export const { updateUser, wipeUser } = calcSlice.actions;

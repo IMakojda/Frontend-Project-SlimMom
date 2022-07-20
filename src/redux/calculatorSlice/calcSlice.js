@@ -4,7 +4,7 @@ import calcOperation from './calcOperation';
 const calcSlice = createSlice({
   name: 'calculator',
   initialState: {
-    userData: null,
+    userData: { dailyRate: '000', notRecFood: [] },
     userInfo: {
       height: null,
       age: null,

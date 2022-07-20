@@ -19,11 +19,8 @@ moment.locale('uk')
 export default function DateCalendar() {
   const [value, setValue] = useState(moment(new Date()));
   const [openCalendar, setOpenCalendar] = useState(false);
-
   const dispatch = useDispatch();
-
   const dateConnect = new Date(useSelector(authSelector.getStartDate));
-
   const maxDate = moment(new Date());
   const minDate = moment(dateConnect);
 

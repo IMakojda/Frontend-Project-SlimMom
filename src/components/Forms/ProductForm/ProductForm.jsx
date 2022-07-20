@@ -32,9 +32,7 @@ export default function ProductForm() {
   const [value, setValue] = useState(null);
   const [productId, setProductId] = useState('');
   const [productWeight, setWeight] = useState('');
-
   const dispatch = useDispatch();
-
   const products = useSelector(getProducts); // список найденных продуктов
   const date = useSelector(getDate); // форматированная дата на которую добавляем проукт
   const toggle = useSelector(getToggle);
@@ -42,7 +40,6 @@ export default function ProductForm() {
   const findProduct = value => {
     dispatch(fetchProducts(value));
   };
-
   const debouncedFindProduct = debounce(findProduct, 400);
 
   function onSubmit(e) {
@@ -65,7 +62,6 @@ export default function ProductForm() {
   const isMobile = useMediaQuery({
     query: `(max-width: ${layoutStyles.tablet})`,
   });
-
   const classes = useStyles();
 
   return (
@@ -105,74 +101,73 @@ export default function ProductForm() {
                     setProductId(v.id);
                     setValue(v);
                   }
-                }}
-                sx={{
-                  borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
-                  width: isMobile ? '280px' : '240px',
-                }}
-                renderInput={params => (
-                  <TextField
-                    {...params}
-                    fullWidth
-                    // required
-                    onChange={e => {
-                      if (e.currentTarget.value !== '')
-                        debouncedFindProduct(e.currentTarget.value);
-                    }}
-                    label="Введіть назву продукту"
+                 }}
+                  sx={{
+                    borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
+                    width: isMobile ? '280px' : '240px',
+                  }}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      fullWidth
+                      // required
+                      onChange={e => {
+                        if (e.currentTarget.value !== '')
+                          debouncedFindProduct(e.currentTarget.value);
+                      }}
+                      label="Введіть назву продукту"
+                    />
+                  )}
+                />
+              </div>
+              <div className={'ProductWeight'}>
+                <TextField
+                  // required
+                  fullWidth
+                  id="weight"
+                  name="weight"
+                  type="number"
+                  value={productWeight}
+                  onInput={e => {
+                    e.target.value = Math.max(0, parseInt(e.target.value))
+                      .toString()
+                      .slice(0, 4);
+                  }}
+                  sx={{
+                    borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
+                    width: isMobile ? '280px' : '150px',
+                    paddingRight: '50px',
+                    margin: isMobile && '0 0 60px 0',
+                  }}
+                  onChange={e => {
+                    if (e.currentTarget.value > 0) {
+                      setWeight(e.currentTarget.value);
+                    }
+                  }}
+                  classes={classes}
+                  label="Вага продукта"
+                />
+              </div>
+              {isSubmitting && <LinearProgress />}
+              <Button
+                margin="0 auto 0"
+                type="submit"
+                borderRadius={isMobile && '30px'}
+                disabled={isSubmitting}
+              >
+                {isMobile ? (
+                  <p className={'BtnName'}>Додати</p>
+                ) : (
+                  <ImPlus
+                    width="20"
+                    height="20"
+                    fill={layoutStyles.mainBackground}
                   />
                 )}
-              />
-            </div>
-            <div className={'ProductWeight'}>
-              <TextField
-                // required
-                fullWidth
-                id="weight"
-                name="weight"
-                type="number"
-                value={productWeight}
-                onInput={e => {
-                  e.target.value = Math.max(0, parseInt(e.target.value))
-                    .toString()
-                    .slice(0, 4);
-                }}
-                sx={{
-                  borderBottom: `1px solid ${layoutStyles.formBorderColor}`,
-                  width: isMobile ? '280px' : '150px',
-                  paddingRight: '50px',
-                  margin: isMobile && '0 0 60px 0',
-                }}
-                onChange={e => {
-                  if (e.currentTarget.value > 0) {
-                    setWeight(e.currentTarget.value);
-                  }
-                }}
-                classes={classes}
-                label="Вага продукта"
-              />
-            </div>
-            {isSubmitting && <LinearProgress />}
-            <Button
-              margin="0 auto 0"
-              type="submit"
-              borderRadius={isMobile && '30px'}
-              disabled={isSubmitting}
-            >
-              {isMobile ? (
-                <p className={'BtnName'}>Додати</p>
-              ) : (
-                <ImPlus
-                  width="20"
-                  height="20"
-                  fill={layoutStyles.mainBackground}
-                />
-              )}
-            </Button>
-          </Form>
-        )}
-      </Formik>
-
+              </Button>
+            </Form>
+          )}
+        </Formik>
       <FormikWrapperStyles />
     </DivWrapper>
   );

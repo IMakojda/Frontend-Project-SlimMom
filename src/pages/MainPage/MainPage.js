@@ -5,12 +5,11 @@ import CalculatorFormWrapper from '../../components/Forms/CalculatorFormWrapper'
 import { ContentWrap } from 'pages/DiaryPage/DiaryPage.styled';
 import SummaryForDay from 'components/SummaryForDay';
 import authSelector from 'redux/auth/selectors';
-
+import { motion } from 'framer-motion';
 
 export default function MainPage() {
   const token = useSelector(authSelector.getToken);
-  console.log(token);
-  
+
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(prev => !prev);
@@ -22,16 +21,22 @@ export default function MainPage() {
   }
 
   return (
-    <ContentWrap>
-      <CalculatorFormWrapper
-        openModal={openModal}
-        showModal={showModal}
-        setShowModal={setShowModal}
-        title="Розрахуйте свою денну норму калорій прямо зараз"
-      />
+    <motion.div
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      exit={{opacity:0, transition:{duration:0.3}}}
+    >
+      <ContentWrap>
+        <CalculatorFormWrapper
+          openModal={openModal}
+          showModal={showModal}
+          setShowModal={setShowModal}
+          title="Розрахуйте свою денну норму калорій прямо зараз"
+        />
 
-      {token ? <SummaryForDay/> : false}
-    </ContentWrap>
+        {token ? <SummaryForDay/> : false}
+      </ContentWrap>
+    </motion.div>
   );
 }
 

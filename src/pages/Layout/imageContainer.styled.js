@@ -18,7 +18,7 @@ export const StrawberryImg=styled.img`
 `
 
 export const BananaImg=styled.img`
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 767px){
     display: none;
   }
   position: absolute;
@@ -29,7 +29,7 @@ export const BananaImg=styled.img`
 `
 
 export const LeavesImg=styled.img`
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 767px){
     display: none;
   }
   position: absolute;
@@ -40,7 +40,7 @@ export const LeavesImg=styled.img`
 `
 
 export const VectorImg=styled.img`
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 767px){
     display: none;
   }
   position: absolute;
@@ -61,7 +61,6 @@ export const LeafSide=styled.img`
   z-index: -1;
 `
 export const LeafFooter=styled.img`
-
   @media screen and (min-width: 1280px){
     display: none;
   }

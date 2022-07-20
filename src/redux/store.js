@@ -2,13 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
-  // FLUSH,
-  // REHYDRATE,
-  // PAUSE,
-  // PERSIST,
-  // PURGE,
-  // REGISTER,
-} from 'redux-persist';
+ } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import AuthReducer from './auth/authSlice';
 import daySummaryReducer from './dairy/dairyReducer';
@@ -25,14 +19,9 @@ const calcPersistConfig = {
   storage,
 };
 
-// const dairyPersistConfig={
-//   key:'dairy',
-//   storage,
-// }
-
 const persistedReducer = persistReducer(authPersistConfig, AuthReducer);
 const calcReduser = persistReducer(calcPersistConfig, CalcReducer);
-// const dairyReduser=persistReducer(dairyPersistConfig,daySummaryReducer);
+
 
 export const store = configureStore({
   reducer: {

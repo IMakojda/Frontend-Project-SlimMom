@@ -82,7 +82,8 @@ const FormikWrapperStyles = createGlobalStyle`
   width: 176px;
   color: ${layoutStyles.mainBackground}
 }
-  @media screen and (min-width: ${layoutStyles.tablet}) {
+
+@media screen and (min-width: ${layoutStyles.tablet}) {
  .ProductForm {
   display: flex;
   margin:  0 0 60px 0;
@@ -106,7 +107,6 @@ const FormikWrapperStyles = createGlobalStyle`
     margin-right: 60px;
   }
 }
-
 `;
 
 export { FormikWrapperStyles, useStyles, DivWrapper };

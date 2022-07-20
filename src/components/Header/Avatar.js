@@ -3,58 +3,13 @@ import { useState } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import authOperations from '../../redux/auth/authOperations';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
-import { layoutStyles } from '../../stlyles/layoutStyles';
 import { toast } from 'react-toastify';
-
 import 'react-toastify/dist/ReactToastify.css';
-
-const BoxA = styled.div`
-  @media only screen and (min-width: ${layoutStyles.tablet}) {
-    display: flex;
-    justify-content: space-around;
-    align-items: stretch;
-  } ;
-`;
-const ButtonForm = styled.button`
-  font-family: ${layoutStyles.gothamPro};
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-  color: ${layoutStyles.placeholderColor};
-  border: 1px solid ${layoutStyles.activeButton};
-  background-color: transparent;
-  padding: 7px;
-  border-radius: 5px;
-  width: 100px;
-  cursor: pointer;
-  &:hover {
-    color: ${layoutStyles.activeButton};
-  }
-`;
-
-const Input = styled.input`
-  font-family: ${layoutStyles.gothamPro};
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 13px;
-  letter-spacing: 0.04em;
-  color: ${layoutStyles.placeholderColor};
-  border: 1px solid ${layoutStyles.activeButton};
-  background-color: transparent;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  &:hover {
-    color: ${layoutStyles.activeButton};
-  }
-`;
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
+import {
+  BoxA,
+  ButtonForm,
+  Input,
+  Form } from './Avatar.styled';
 
 export default function AvatarUpload() {
   const dispatch = useDispatch();

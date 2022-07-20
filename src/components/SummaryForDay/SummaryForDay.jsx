@@ -13,13 +13,9 @@ import {
 } from './SummaryforDay.styled';
 
 export default function SummaryForDay() {
-
   const date = new Date();
   const reduxDate = useSelector(getDate);
-
   const dailyRate = useSelector(getDaily);
-  console.log(dailyRate);
-
   const summary = useSelector(getSummary);
   const notRecFoodArr = useSelector(getNotRecFood);
 

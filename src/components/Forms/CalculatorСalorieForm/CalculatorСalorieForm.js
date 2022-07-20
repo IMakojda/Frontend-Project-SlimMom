@@ -55,13 +55,10 @@ const CalculatorSchema = Yup.object().shape({
 
 const CalculatorСalorieForm = props => {
   const { showModal, setShowModal, title } = props;
-  // const FullCalculator = useSelector(calcSelectors.getFullCalculator);
   const authUserParams = useSelector(calcSelectors.getUserInfo);
   const LoaderStatus = useSelector(calcSelectors.getLoaderStatus);
   const isLoggedIn = useSelector(authSelector.getIsLoggedIn);
   const FullUser = useSelector(authSelector.getFullUser);
-  // console.log(LoaderStatus);
-
   const dispatch = useDispatch();
 
   const initFormState = {

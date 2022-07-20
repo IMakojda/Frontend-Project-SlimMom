@@ -1,4 +1,4 @@
-import { createGlobalStyle }  from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import Verdana from '../fonts/Verdana/Verdana.ttf';
 import VerdanaBold from '../fonts/Verdana/Verdana-Bold.ttf';
 import GothamPro from '../fonts/Gotham/gothampro.ttf';
@@ -73,6 +73,11 @@ const GlobalStyle = createGlobalStyle`
       margin: 0;
       list-style: none;
     }
+
+    
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;
+    margin:0;}
 
     h1,
     h2,

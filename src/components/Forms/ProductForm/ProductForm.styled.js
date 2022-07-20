@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
       letterSpacing: '0.04em',
     },
     '& .MuiOutlinedInput-input': {
-      textAlign: 'right',
+      textAlign: 'left',
       fontFamily: layoutStyles.verdana,
       fontWeight: 700,
       fontSize: '13px',
@@ -31,6 +31,9 @@ const useStyles = makeStyles(theme => ({
       letterSpacing: '0.04em',
       paddingRight: '2px',
       paddingLeft: '2px',
+    },
+    '& .MuiOutlinedInput-input[type=number]': {
+      textAlign: 'right',
     },
     '& .MuiFormLabel-colorPrimary.Mui-focused ': {
       color: layoutStyles.activeButton,

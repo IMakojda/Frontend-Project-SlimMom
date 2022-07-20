@@ -6,18 +6,20 @@ import { getToggle } from '../../redux/dairy/dairySelector';
 import { useSelector, useDispatch } from 'react-redux';
 import authSelectors from '../../redux/auth/selectors';
 import authOperations from '../../redux/auth/authOperations';
+import { wipeUser } from 'redux/calculatorSlice/calcSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
-Button,
-ToastTitle,
-Title,
-ListItem,
-List,
-Arrow,
-WrapperAvatar,
-Wrapper,
-ImgAvatar} from './UserMenu.styled';
+  Button,
+  ToastTitle,
+  Title,
+  ListItem,
+  List,
+  Arrow,
+  WrapperAvatar,
+  Wrapper,
+  ImgAvatar,
+} from './UserMenu.styled';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
@@ -38,6 +40,7 @@ export default function UserMenu() {
           onClick={() => {
             toast.dismiss();
             dispatch(authOperations.logOut());
+            dispatch(wipeUser());
           }}
         >
           Так

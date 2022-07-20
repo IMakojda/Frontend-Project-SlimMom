@@ -79,7 +79,7 @@ const Input = styled.input`
     transform: translateY(-25px) translateX(2px) scale(0.75);
   }
   &:not(:placeholder-shown) ~ ${Placeholder} {
-    color: #808097;
+    color: #fc842d;
   }
   &:focus ~ ${Placeholder} {
     color: #fc842d;

@@ -2,7 +2,8 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = `https://agile-cove-20040.herokuapp.com/api`;
+
+axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}`;
 
 const token = {
   set(token) {
@@ -77,7 +78,6 @@ const refreshUser = createAsyncThunk('auth/current', async (_, thunkAPI) => {
   token.set(persistToken);
   try {
     const { data } = await axios.get('/users/current');
-    console.log(data);
     return data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error);

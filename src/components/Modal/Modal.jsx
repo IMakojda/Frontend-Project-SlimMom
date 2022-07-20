@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Background, ModalWrapper } from './Modal.styled';
 import { Button, Arrow } from './Modal.styled';
 
-
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ setShowModal, showModal, children }) => {

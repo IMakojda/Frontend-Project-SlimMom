@@ -58,8 +58,6 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   const [eyeOutlined, setEyeOutlined] = useState(true);
   const authUserParams = useSelector(calcSelectors.getUserInfo);
-  console.log('authUserParams', authUserParams);
-
   const handleClick = () => {
     setEyeOutlined(!eyeOutlined);
   };
@@ -79,12 +77,6 @@ export default function RegisterForm() {
             : dispatch(
                 authOperations.register({ ...values, ...authUserParams })
               );
-          // setTimeout(async () => {
-          //   alert(JSON.stringify(values, null, 2));
-          //   actions.setSubmitting(false);
-          //   // actions.resetForm();
-          // }, 1000);
-          console.log(values);
           actions.resetForm();
         }}
         validationSchema={validationSchema}

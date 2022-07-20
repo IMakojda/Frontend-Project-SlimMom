@@ -12,7 +12,7 @@ export const Background = styled.div`
   width: 100vw;
   height: 100vh;
   position: absolute;
-  
+
   @media screen and (min-width: 768px) {
     background: ${transparentGrey};
     position: fixed;
@@ -31,9 +31,6 @@ export const ModalWrapper = styled.div`
   color: ${modalWrapperColor};
   @media screen and (max-width: 767px) {
     top: 485px;
-    // left: 50%;
-    // right: 50%;
-    // width: 100vh;
     border-radius: 0px;
     box-shadow: none;
   }
@@ -89,7 +86,7 @@ export const Button = styled.button`
   };
   @media only screen and (min-width: ${layoutStyles.tablet}) {
     display: none;
-    visibility: hidden; 
+    visibility: hidden;
   }
 
 `;

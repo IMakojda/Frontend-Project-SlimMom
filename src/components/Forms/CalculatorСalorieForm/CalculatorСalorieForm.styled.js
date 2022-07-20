@@ -60,25 +60,25 @@ const Input = styled.input`
   font-size: 14px;
   line-height: 17px;
   letter-spacing: 0.04em;
-   color: ${placeholderColor};
+  color: ${placeholderColor};
   padding-bottom:8px;
   width:240px;
   background:transparent;
   }
-  
-    &:hover,&:focus  {  
+
+&:hover,&:focus  {
     color:  ${activeButton};
     border-bottom: 1px solid ${activeButton};
   }
-  
- 
+
+
 
 &::-webkit-outer-spin-button,
 &::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
- 
+
 [type=number] {
   -moz-appearance:textfield;
 }
@@ -110,8 +110,8 @@ const BloodTypeTitle = styled.div`
   letter-spacing: 0.04em;
   color: ${placeholderColor};
   padding-bottom: 10px;
-
   max-width: 240px;
+
   @media screen and (min-device-width: 768px) {
     border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
@@ -180,13 +180,11 @@ const BloodTypeRadioBtn = styled.input`
     border-color: transparent;
     width: 10px;
     height: 10px;
-    background: ${activeButton};}
-
-    
+    background: ${activeButton};
+ }
 `;
 
 const StileWrapper = styled.div``;
-
 const StileButtonWrapper = styled.div``;
 
 const ErrorWrapper = styled.div`

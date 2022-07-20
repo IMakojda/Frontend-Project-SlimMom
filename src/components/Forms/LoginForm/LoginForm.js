@@ -45,7 +45,6 @@ return (
       validationSchema = { SigninSchema }
       onSubmit={(values, { resetForm }) => {
         dispatch(authOperations.logIn(values));
-        console.log(values);
         resetForm();
       }}
     >

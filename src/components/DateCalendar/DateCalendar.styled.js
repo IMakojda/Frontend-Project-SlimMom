@@ -1,7 +1,6 @@
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import styled, { createGlobalStyle } from 'styled-components';
 
-
  const Div = styled.div`
  display: flex;
  margin: 0;
@@ -9,7 +8,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 `;
 
 const DatePickerWrapperStyles = createGlobalStyle`
-    .form-control {
+  .form-control {
   border: none;
   font-size: 18px;
   width: 116px;
@@ -36,7 +35,6 @@ const DatePickerWrapperStyles = createGlobalStyle`
     width: 219px;
   }
 }
-
 `;
 
 export {Div, DatePickerWrapperStyles}

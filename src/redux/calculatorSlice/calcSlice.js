@@ -13,11 +13,6 @@ const calcSlice = createSlice({
       bloodType: '1',
     },
     loaderShow: false,
-    // height: '',
-    // age: '',
-    // currentWeight: '',
-    // desiredWeight: '',
-    // bloodType: '1',
   },
   extraReducers: {
     [calcOperation.calc.fulfilled](state, action) {

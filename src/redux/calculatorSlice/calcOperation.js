@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-axios.defaults.baseURL = `https://agile-cove-20040.herokuapp.com/api`;
+axios.defaults.baseURL = `${process.env.REACT_APP_BASE_URL}`;
 
 const calc = createAsyncThunk('/calc', async (credential, thunkAPI) => {
   try {

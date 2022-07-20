@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 const Span = styled.p`
-
-
 font-family: 'Verdana';
 font-style: normal;
 font-weight: 400;

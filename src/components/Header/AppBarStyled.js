@@ -1,10 +1,19 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import { NavLink } from 'react-router-dom';
 import logo from '../../images/Logo/logo.png';
 import logoBig from '../../images/Logo/logo@2x.png';
 import slim from '../../images/Logo/slim.png';
 import mom from '../../images/Logo/mom.png';
+
+const heartBeat = keyframes`
+  0% { transform: scale( .75 ); }
+  20% { transform: scale( 1.1 ); }
+  40% { transform: scale( .75 ); }
+  60% { transform: scale( 1.1 ); }
+  80% { transform: scale( .75 ); }
+  100% { transform: scale( .75 ); }
+`;
 
 export const Header = styled.header`
   display: flex;
@@ -106,7 +115,12 @@ export const Logo = styled.div`
     min-height: 66px;
     min-width: 70px;
     background-image: url(${logoBig});
-  } ;
+    animation: ${heartBeat} 4s;
+    transition: all 0.2s ease-in-out;
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const LogoSlim = styled.span`
@@ -115,6 +129,11 @@ export const LogoSlim = styled.span`
   margin-right: 6px;
   background-image: url(${slim});
   background-size: cover;
+  transition: all 0.2s ease-in-out;
+}
+&:hover {
+  transform: scale(1.1);
+}
 `;
 
 export const LogoMom = styled.span`
@@ -122,4 +141,9 @@ export const LogoMom = styled.span`
   height: 17.27px;
   background-image: url(${mom});
   background-size: cover;
+  transition: all 0.2s ease-in-out;
+}
+&:hover {
+  transform: scale(1.1);
+}
 `;

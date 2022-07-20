@@ -41,7 +41,7 @@ export default function ProductsList() {
                     </td>
                     <td>
                       <Button
-                        background={layoutStyles.mainBackground}
+                        background={'transparent'}
                         width="28px"
                         height="28px"
                         backgroundHover={layoutStyles.formBorderColor}

@@ -17,6 +17,7 @@ const DatePickerWrapperStyles = createGlobalStyle`
   padding: 0;
   font-family: ${layoutStyles.verdana};
   letter-spacing: 0.04em;
+  background: transparent;
     table{
   font-size: 16px;
   font-weight: 400;

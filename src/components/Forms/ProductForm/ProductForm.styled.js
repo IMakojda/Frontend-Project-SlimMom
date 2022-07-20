@@ -41,6 +41,7 @@ const useStyles = makeStyles(theme => ({
       fontFamily: layoutStyles.verdana,
       fontWeight: 700,
       fontSize: '14px',
+      background:' transparent',
     },
     '& .MuiAutocomplete-endAdornment': {
       display: 'none',
@@ -62,6 +63,7 @@ const DivWrapper = styled.div`
     position: relative;
     display: block;
     padding: 0;
+    background: transparent;
   }
 `;
 
@@ -91,6 +93,7 @@ const FormikWrapperStyles = createGlobalStyle`
   outline: none;
   width: 240px;
   height: 100%;
+  background: transparent;
 }
 .ProductWeight {
   margin-right: 87px;

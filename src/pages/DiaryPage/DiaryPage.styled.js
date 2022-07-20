@@ -16,11 +16,13 @@ const DivWrapper = styled.div`
   padding-top: 40px;
   margin: 0 auto 0;
   max-width: 320px;
+  z-index: 10;
 
   @media screen and (min-width: ${layoutStyles.tablet}) {
     max-width: 748px;
     margin: 0;
     padding-top: 100px;
+    background: transparent;
   }
   @media screen and (min-width: ${layoutStyles.deskTop}) {
     max-width: 748px;
@@ -31,7 +33,6 @@ const DivWrapper = styled.div`
 
 const DivDate = styled.div`
   margin-bottom: 32px;
-
   @media screen and (min-width: ${layoutStyles.tablet}) {
     margin-bottom: 60px;
   }

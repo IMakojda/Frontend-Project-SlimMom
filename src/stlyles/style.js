@@ -36,7 +36,7 @@ const GlobalStyle = createGlobalStyle`
 
      html {
        scroll-behavior: smooth;
-       overflow:auto;
+       overflow-x: hidden;
        width: 100%;
        height: 100%;
      }
@@ -74,7 +74,7 @@ const GlobalStyle = createGlobalStyle`
       list-style: none;
     }
 
-    
+
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {-webkit-appearance: none;
     margin:0;}

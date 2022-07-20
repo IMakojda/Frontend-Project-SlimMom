@@ -5,4 +5,4 @@ export const getSummary = (state) => state.dairy.summary;
 export const getNotRecFood = (state) => state.calculator.userData.notRecFood;
 export const getDaily = (state) => state.calculator.userData.dailyRate;
 export const getEatProducts = (state) => state.dairy.products; 
-
+export const getError = (state) => state.dairy.error

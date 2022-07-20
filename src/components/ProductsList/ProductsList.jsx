@@ -4,7 +4,11 @@ import { FiX } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import { DivStyles } from './Div.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
-import { getEatProducts, getDate } from '../../redux/dairy/dairySelector';
+import {
+  getEatProducts,
+  getDate,
+  getError,
+} from '../../redux/dairy/dairySelector';
 import { toastStyles } from '../../stlyles/toastStyled';
 import { removeProduct } from '../../redux/dairy/dairyOperations';
 
@@ -16,7 +20,7 @@ export default function ProductsList() {
   };
   const date = useSelector(getDate);
   const products = useSelector(getEatProducts);
-
+  const error = useSelector(getError);
   return (
     <>
       <div className="control">
@@ -43,7 +47,12 @@ export default function ProductsList() {
                         backgroundHover={layoutStyles.formBorderColor}
                         onClick={() => {
                           deleteProduct(date, row.id);
-                          toast.success(`Видалено!`, toastStyles); // не обрабатывается ошибка
+                          error
+                            ? toast.error(
+                                `Виникла помилка! ${error.message}`,
+                                toastStyles
+                              )
+                            : toast.success(`Видалено!`, toastStyles);
                         }}
                       >
                         <FiX

@@ -1,4 +1,13 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const heartBeat = keyframes`
+  0% { transform: scale( .75 ); }
+  20% { transform: scale( 1.1 ); }
+  40% { transform: scale( .75 ); }
+  60% { transform: scale( 1.1 ); }
+  80% { transform: scale( .75 ); }
+  100% { transform: scale( .75 ); }
+`;
 
 export const ImageContainer = styled.div`
   position: relative;
@@ -23,6 +32,7 @@ export const StrawberryImg=styled.img`
     right:0px;
   }
   z-index: -1;
+  animation: ${heartBeat} 4s;
 `
 
 export const BananaImg=styled.img`
@@ -51,6 +61,7 @@ export const LeavesImg=styled.img`
   top: ${props=>(props.desktop ? '0px' : '50%')};
   left:${props=>(props.desktop ? '200px' : '20px')};
   z-index: -1;
+  animation: ${heartBeat} 4s;
 `
 
 export const VectorImg=styled.img`

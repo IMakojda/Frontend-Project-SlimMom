@@ -3,8 +3,17 @@ import styled from 'styled-components';
 export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  box-sizing: border-box;
+  @media screen and (max-width: 1279px){
+    background:${props => (props.show ? `linear-gradient(to top, #F0F1F3, #fff)` : 'transparent')};
+  }
+  @media screen and (min-width: 1280px){
+    background:${props => (props.show ? `linear-gradient(to left, #F0F1F3 , #fff)` : 'transparent')};
+  }
 `
+// #E5E5E5
+// #F0F1F3
 
 export const StrawberryImg=styled.img`
   @media screen and (max-width: 767px){
@@ -48,8 +57,14 @@ export const LeavesImg=styled.img`
   }
   position: absolute;
   display: ${props=>(props.showImg ? 'flex' : 'none')};
-  top: ${props=>(props.desktop ? '0px' : '50%')};
-  left:${props=>(props.desktop ? '200px' : '20px')};
+  @media screen and (max-width: 1279px){
+    bottom:0px ;
+    left:0px;
+  }
+  @media screen and (min-width: 1280px){
+    top:0px;
+    right: 220px;
+  }
   z-index: -1;
 `
 
@@ -59,8 +74,8 @@ export const VectorImg=styled.img`
   }
   position: absolute;
   display: ${props=>(props.showImg ? 'flex' : 'none')};
-  bottom: ${props=>(props.desktop ? '0px' : '0px')};
-  right:${props=>(props.desktop ? '0px' : '0px')};
+  bottom:0px ;
+  right:0px;
   z-index: -1;
 `
 
@@ -72,17 +87,17 @@ export const LeafSide=styled.img`
   display: ${props=>(props.showImg ? 'flex' : 'none')};
   bottom: 0px;
   right:0px;
-  z-index: -1;
+  z-index: 1;
 `
 export const LeafFooter=styled.img`
-  @media screen and (min-width: 1280px){
+  @media screen and (min-width: 1279px){
     display: none;
   }
   position: absolute;
   display: ${props=>(props.showImg ? 'flex' : 'none')};
   bottom: 0px;
   right:0px;
-  z-index: -1;
+  z-index: 1;
 `
 
 

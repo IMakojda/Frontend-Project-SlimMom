@@ -10,7 +10,6 @@ const heartBeat = keyframes`
 `;
 
 export const ImageContainer = styled.div`
-  position: relative;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -88,14 +87,15 @@ export const VectorImg = styled.img`
 `;
 
 export const LeafSide = styled.img`
+  pointer-events: none;
   @media screen and (max-width: 1279px) {
     display: none;
   }
   position: absolute;
   display: ${props => (props.showImg ? 'flex' : 'none')};
-  bottom: 0px;
+  top: 0px;
   right: 0px;
-  z-index: -1;
+  z-index: 0;
 `;
 export const LeafFooter = styled.img`
   @media screen and (min-width: 1279px) {

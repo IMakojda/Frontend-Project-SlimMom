@@ -13,10 +13,6 @@ export const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  @media screen and (min-width: 1280px) {
-    background: ${props =>
-      props.show ? `linear-gradient(to left, #F0F1F3 , #fff)` : 'transparent'};
-  }
 `;
 
 export const StrawberryImg = styled.img`

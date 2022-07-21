@@ -186,7 +186,11 @@ const BloodTypeRadioBtn = styled.input`
 `;
 
 const StileWrapper = styled.div``;
-const StileButtonWrapper = styled.div``;
+const StileButtonWrapper = styled.div`
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
+`;
 
 const ErrorWrapper = styled.div`
   position: absolute;

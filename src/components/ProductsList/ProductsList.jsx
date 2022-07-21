@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
-import Button from '../button/Button.styled';
+import Btn from '../button/Button.styled';
 import { FiX } from 'react-icons/fi';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import { DivStyles } from './Div.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
 import {
@@ -9,7 +9,8 @@ import {
   getDate,
   getError,
 } from '../../redux/dairy/dairySelector';
-import { toastStyles } from '../../stlyles/toastStyled';
+import { toastStyles, toastModal,toastModalPosition } from '../../stlyles/toastStyled';
+import { Button, ToastTitle } from '../Header/UserMenu.styled';
 import { removeProduct } from '../../redux/dairy/dairyOperations';
 
 export default function ProductsList() {
@@ -21,6 +22,36 @@ export default function ProductsList() {
   const date = useSelector(getDate);
   const products = useSelector(getEatProducts);
   const error = useSelector(getError);
+
+  const notify = id =>
+    toast(
+      <>
+        <ToastTitle>Ви впевнені,що хочете видалити?</ToastTitle>
+        <Button
+          type="button"
+          onClick={() => {
+            toast.dismiss();
+            deleteProduct(date, id);
+            error
+              ? toast.error(`Виникла помилка! ${error.message}`, toastStyles)
+              : toast.success(`Видалено!`, toastStyles);
+          }}
+        >
+          Так
+        </Button>
+
+        <Button
+          type="button"
+          onClick={() => {
+            toast.dismiss();
+          }}
+        >
+          Ні
+        </Button>
+      </>,
+toastModalPosition
+    );
+
   return (
     <>
       <div className="control">
@@ -40,19 +71,13 @@ export default function ProductsList() {
                       {Math.round(row.calories)} ккал
                     </td>
                     <td>
-                      <Button
+                      <Btn
                         background={'transparent'}
                         width="28px"
                         height="28px"
                         backgroundHover={layoutStyles.formBorderColor}
                         onClick={() => {
-                          deleteProduct(date, row.id);
-                          error
-                            ? toast.error(
-                                `Виникла помилка! ${error.message}`,
-                                toastStyles
-                              )
-                            : toast.success(`Видалено!`, toastStyles);
+                          notify(row.id);
                         }}
                       >
                         <FiX
@@ -60,7 +85,7 @@ export default function ProductsList() {
                           height="14"
                           color={layoutStyles.placeholderColor}
                         />
-                      </Button>
+                      </Btn>
                     </td>
                   </tr>
                 );
@@ -70,6 +95,7 @@ export default function ProductsList() {
         )}
       </div>
       <DivStyles />
+      <ToastContainer toastStyle={toastModal} />
     </>
   );
 }

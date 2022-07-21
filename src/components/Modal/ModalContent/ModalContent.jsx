@@ -1,9 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { Content, CloseModalButton } from '../Modal.styled';
-import {
-  Btn,
-  StileButtonWrapper,
-} from '../../Forms/CalculatorСalorieForm/CalculatorСalorieForm.styled';
+import { Content, CloseModalButton, Btn, StileButtonWrapper, } from '../Modal.styled';
 import CalculatorСalorieFormModalContent from '../../Forms/CalculatorСalorieForm/CalculatorСalorieFormModalContent';
 
 

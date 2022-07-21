@@ -8,6 +8,7 @@ import authSelectors from '../../redux/auth/selectors';
 import authOperations from '../../redux/auth/authOperations';
 import { wipeUser } from 'redux/calculatorSlice/calcSlice';
 import { ToastContainer, toast } from 'react-toastify';
+import { toastModalPosition, toastModal } from '../../stlyles/toastStyled';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   Button,
@@ -55,16 +56,7 @@ export default function UserMenu() {
           Ні
         </Button>
       </>,
-      {
-        position: 'top-center',
-        theme: 'light',
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-      }
+      toastModalPosition
     );
 
   return (
@@ -94,14 +86,7 @@ export default function UserMenu() {
           Вихід
         </Button>
       </Wrapper>
-      <ToastContainer
-        autoClose={2500}
-        toastStyle={{
-          top: '150px',
-          border: '1px solid #FC842D',
-          marginTop: '150px',
-        }}
-      />
+      <ToastContainer autoClose={2500} toastStyle={toastModal} />
     </>
   );
 }

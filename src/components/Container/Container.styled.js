@@ -5,7 +5,7 @@ export const ResponsiveContainer = styled.div`
   margin-right: auto;
   padding: 20px 20px;
   width: 100%;
-  height: 1000px;
+  height: 100%;
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     padding: 20px 20px;

@@ -35,8 +35,8 @@ export default function ProductForm() {
 
   const dispatch = useDispatch();
 
-  const products = useSelector(getProducts); 
-  const date = useSelector(getDate); 
+  const products = useSelector(getProducts);
+  const date = useSelector(getDate);
   const toggle = useSelector(getToggle);
   let error = useSelector(getError);
 
@@ -103,6 +103,7 @@ export default function ProductForm() {
           setSubmitting(false);
           resetForm();
         }}
+        onChange={e => console.log(e)}
       >
         {({ isSubmitting }) => (
           <Form className={'ProductForm'}>
@@ -122,6 +123,7 @@ export default function ProductForm() {
                 onChange={(e, v) => {
                   if (v === null) {
                     setValue(v);
+                    setProductId('');
                   }
                   if (v && v.id) {
                     setProductId(v.id);

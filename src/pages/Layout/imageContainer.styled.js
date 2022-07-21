@@ -14,97 +14,96 @@ export const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  @media screen and (min-width: 1280px){
-    background:${props => (props.show ? `linear-gradient(to left, #F0F1F3 , #fff)` : 'transparent')};
+  z-index: -1;
+  @media screen and (min-width: 1280px) {
+    background: ${props =>
+      props.show ? `linear-gradient(to left, #F0F1F3 , #fff)` : 'transparent'};
   }
-`
+`;
 
-export const StrawberryImg=styled.img`
-  @media screen and (max-width: 767px){
+export const StrawberryImg = styled.img`
+  @media screen and (max-width: 767px) {
     display: none;
   }
   position: absolute;
   display: ${props => (props.showImg ? 'flex' : 'none')};
 
-  @media screen and (max-width: 1279px){
-    bottom:140px ;
-    right:10px;
+  @media screen and (max-width: 1279px) {
+    bottom: 140px;
+    right: 10px;
   }
 
-  @media screen and (min-width: 1280px){
-    bottom:0px ;
-    right:0px;
-  }
-  z-index: -1;
-  animation: ${heartBeat} 4s;
-`
-
-export const BananaImg=styled.img`
-  @media screen and (max-width: 767px){
-    display: none;
-  }
-  position: absolute;
-  display: ${props=>(props.showImg ? 'flex' : 'none')};
-  @media screen and (max-width: 1279px){
-    bottom:0px ;
-    right:0px;
-  }
-  @media screen and (min-width: 1280px){
-    top:0px;
+  @media screen and (min-width: 1280px) {
+    bottom: 0px;
     right: 0px;
   }
   z-index: -1;
-`
+  animation: ${heartBeat} 4s;
+`;
 
-export const LeavesImg=styled.img`
-  @media screen and (max-width: 767px){
+export const BananaImg = styled.img`
+  @media screen and (max-width: 767px) {
     display: none;
   }
   position: absolute;
-  display: ${props=>(props.showImg ? 'flex' : 'none')};
-  @media screen and (max-width: 1279px){
-    bottom:0px ;
-    left:0px;
+  display: ${props => (props.showImg ? 'flex' : 'none')};
+  @media screen and (max-width: 1279px) {
+    bottom: 0px;
+    right: 0px;
   }
-  @media screen and (min-width: 1280px){
-    top:0px;
+  @media screen and (min-width: 1280px) {
+    top: 0px;
+    right: 0px;
+  }
+  z-index: -1;
+`;
+
+export const LeavesImg = styled.img`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+  position: absolute;
+  display: ${props => (props.showImg ? 'flex' : 'none')};
+  @media screen and (max-width: 1279px) {
+    bottom: 0px;
+    left: 0px;
+  }
+  @media screen and (min-width: 1280px) {
+    top: 0px;
     right: 220px;
   }
   z-index: -1;
   animation: ${heartBeat} 4s;
-`
+`;
 
-export const VectorImg=styled.img`
-  @media screen and (max-width: 767px){
+export const VectorImg = styled.img`
+  @media screen and (max-width: 767px) {
     display: none;
   }
   position: absolute;
-  display: ${props=>(props.showImg ? 'flex' : 'none')};
-  bottom:0px ;
-  right:0px;
+  display: ${props => (props.showImg ? 'flex' : 'none')};
+  bottom: 0px;
+  right: 0px;
   z-index: -1;
-`
+`;
 
-export const LeafSide=styled.img`
-  @media screen and (max-width: 1279px){
+export const LeafSide = styled.img`
+  @media screen and (max-width: 1279px) {
     display: none;
   }
   position: absolute;
-  display: ${props=>(props.showImg ? 'flex' : 'none')};
+  display: ${props => (props.showImg ? 'flex' : 'none')};
   bottom: 0px;
-  right:0px;
+  right: 0px;
   z-index: 1;
-`
-export const LeafFooter=styled.img`
-  @media screen and (min-width: 1279px){
+`;
+export const LeafFooter = styled.img`
+  @media screen and (min-width: 1279px) {
     display: none;
   }
   position: absolute;
-  display: ${props=>(props.showImg ? 'flex' : 'none')};
+  display: ${props => (props.showImg ? 'flex' : 'none')};
   bottom: 0px;
-  right:0px;
+  right: 0px;
   z-index: 1;
-`
-
-
-
+`;

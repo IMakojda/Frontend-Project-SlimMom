@@ -8,15 +8,15 @@ import { Wrapper, Title, FormLogin, WrapperInputs, Input, Label, WrapperInputEma
 import eye from '../../../images/eye.svg';
 import eyeCrossed from '../../../images/eyeCrossed.svg';
 
-const passwordRules = /^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-ß])(?=.*\d)[a-zà-ÿA-ZÀ-ß\d]{8,}$/;
-const emailRules = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,6}$/i;
+const passwordRules = /^(?=.*[a-zà-ÿ])(?=.*[A-ZÀ-ß])(?=.*\d)[a-zà-ÿA-ZÀ-ß\d]{8,50}$/;
+const emailRules = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{1,6}$/i;
 
 const SigninSchema = Yup.object().shape({
   email: Yup.string()
-    .email("Невірна адреса електронної пошти. Приклад myemail.gmail.com")
-    .min(6, "Має бути 6 символів або більше!")
-    .max(50, "Має бути 50 символів або менше!")
-    .matches(emailRules, { message: "Невірна адреса електронної пошти. Приклад myemail.gmail.com" })
+    .email("Невірна адреса електронної пошти. Приклад myemail@gmail.com")
+    .min(3, "Має бути 3 символи або більше!")
+    .max(254, "Має бути 254 символів або менше!")
+    .matches(emailRules, { message: "Невірна адреса електронної пошти. Приклад myemail@gmail.com" })
     .required("Обов'язкове поле"),
   password: Yup.string()
     .min(8, "Мінімум 8 символів: латинські літери в нижньому/верхньому регістрі та цифри")

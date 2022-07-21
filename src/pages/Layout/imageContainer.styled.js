@@ -14,7 +14,6 @@ export const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  z-index: -1;
   @media screen and (min-width: 1280px) {
     background: ${props =>
       props.show ? `linear-gradient(to left, #F0F1F3 , #fff)` : 'transparent'};
@@ -95,7 +94,7 @@ export const LeafSide = styled.img`
   display: ${props => (props.showImg ? 'flex' : 'none')};
   bottom: 0px;
   right: 0px;
-  z-index: 1;
+  z-index: -1;
 `;
 export const LeafFooter = styled.img`
   @media screen and (min-width: 1279px) {
@@ -105,5 +104,5 @@ export const LeafFooter = styled.img`
   display: ${props => (props.showImg ? 'flex' : 'none')};
   bottom: 0px;
   right: 0px;
-  z-index: 1;
+  z-index: -1;
 `;

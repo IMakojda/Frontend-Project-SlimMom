@@ -18,6 +18,7 @@ export const ImageContainer = styled.div`
     background: ${props =>
       props.show ? `linear-gradient(to left, #F0F1F3 , #fff)` : 'transparent'};
   }
+  z-index: 1;
 `;
 
 export const StrawberryImg = styled.img`

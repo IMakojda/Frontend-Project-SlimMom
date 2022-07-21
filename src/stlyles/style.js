@@ -98,11 +98,6 @@ const GlobalStyle = createGlobalStyle`
       cursor: pointer;
     }
 
-    html,
-body,
-#root {
-  height: 100%;
-}
 `;
 
 export default GlobalStyle;

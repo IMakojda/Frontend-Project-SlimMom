@@ -26,7 +26,7 @@ export const Header = styled.header`
   }
   @media only screen and (min-width: ${layoutStyles.deskTop}) {
     border-bottom: none;
-    justify-content: start;
+    justify-content: space-around;
     align-items: baseline;
     padding: 80px 0 0 16px;
   }

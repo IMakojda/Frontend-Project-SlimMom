@@ -44,7 +44,7 @@ export const List = styled.div`
   display: none;
   @media only screen and (min-width: ${layoutStyles.deskTop}) {
     display: flex;
-    margin-right: 610px;
+    margin-right: 550px;
   }
 `;
 

@@ -33,6 +33,7 @@ export default function ProductForm() {
   const [productId, setProductId] = useState('');
   const [productWeight, setWeight] = useState('');
 
+  const weight = Math.floor(productWeight)
   const dispatch = useDispatch();
 
   const products = useSelector(getProducts);
@@ -55,7 +56,7 @@ export default function ProductForm() {
     }
 
     if (productId !== '' && productWeight >= 1) {
-      dispatch(addProduct({ date, productId, productWeight }));
+      dispatch(addProduct({ date, productId, productWeight: weight }));
       error
         ? toast.error(`Виникла помилка! ${error.message}`, toastStyles)
         : toast.success(`З'їдено!`, toastStyles);

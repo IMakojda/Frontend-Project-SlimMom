@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { useMediaQuery } from 'react-responsive';
 import debounce from 'lodash.debounce';
-import { toast } from 'react-toastify';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -14,6 +13,7 @@ import {
   addProduct,
 } from '../../../redux/dairy/dairyOperations';
 import { layoutStyles } from '../../../stlyles/layoutStyles';
+import { toast } from 'react-toastify';
 import { toastStyles } from '../../../stlyles/toastStyled';
 import Button from '../../button/Button.styled';
 import {
@@ -57,9 +57,8 @@ export default function ProductForm() {
 
     if (productId !== '' && productWeight >= 1) {
       dispatch(addProduct({ date, productId, productWeight: weight }));
-      error
-        ? toast.error(`Виникла помилка! ${error.message}`, toastStyles)
-        : toast.success(`З'їдено!`, toastStyles);
+      if (error) { return }  
+
       setProductId('');
       setWeight('');
       setValue('');

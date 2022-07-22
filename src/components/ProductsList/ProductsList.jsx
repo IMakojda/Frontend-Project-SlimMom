@@ -4,12 +4,8 @@ import { FiX } from 'react-icons/fi';
 import { ToastContainer, toast } from 'react-toastify';
 import { DivStyles } from './Div.styled';
 import { layoutStyles } from '../../stlyles/layoutStyles';
-import {
-  getEatProducts,
-  getDate,
-  getError,
-} from '../../redux/dairy/dairySelector';
-import { toastStyles, toastModal,toastModalPosition } from '../../stlyles/toastStyled';
+import { getEatProducts, getDate } from '../../redux/dairy/dairySelector';
+import { toastModal, toastModalPosition } from '../../stlyles/toastStyled';
 import { Button, ToastTitle } from '../Header/UserMenu.styled';
 import { removeProduct } from '../../redux/dairy/dairyOperations';
 
@@ -21,7 +17,6 @@ export default function ProductsList() {
   };
   const date = useSelector(getDate);
   const products = useSelector(getEatProducts);
-  const error = useSelector(getError);
 
   const notify = id =>
     toast(
@@ -32,9 +27,6 @@ export default function ProductsList() {
           onClick={() => {
             toast.dismiss();
             deleteProduct(date, id);
-            error
-              ? toast.error(`Виникла помилка! ${error.message}`, toastStyles)
-              : toast.success(`Видалено!`, toastStyles);
           }}
         >
           Так
@@ -49,7 +41,7 @@ export default function ProductsList() {
           Ні
         </Button>
       </>,
-toastModalPosition
+      toastModalPosition
     );
 
   return (

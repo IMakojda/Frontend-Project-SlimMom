@@ -13,7 +13,7 @@ export const ResponsiveContainer = styled.div`
   }
 
   @media screen and (min-width: 1280px) {
-     /* height: 850px; */
+     height: 100vh;
      width: 1280px;
   }
 `;

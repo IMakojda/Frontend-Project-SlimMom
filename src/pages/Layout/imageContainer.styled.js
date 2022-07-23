@@ -10,10 +10,14 @@ const heartBeat = keyframes`
 `;
 
 export const ImageContainer = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   @media screen and (min-width: 1280px) {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
     background: ${props =>
       props.show ? `linear-gradient(to left, #F0F1F3 , #fff)` : 'transparent'};
   }

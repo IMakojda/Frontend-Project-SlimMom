@@ -29,15 +29,15 @@ export default function App() {
       <>
         <Suspense fallback="">
           <AnimatePresence>
-            <Routes location={location} key={location.pathname}>
+            <Routes
+              location={location}
+              key={location.pathname}>
               <Route
                 exact
                 path="/"
                 element={
-                  <PublicRoute>
-                    <Layout />
-                  </PublicRoute>
-                }
+                 <Layout />
+                 }
               >
                 <Route
                   index
@@ -60,7 +60,7 @@ export default function App() {
                 <Route
                   path="/login"
                   element={
-                    <PublicRoute redirectTo="/dairy" restricted>
+                    <PublicRoute redirectTo="/diary" restricted>
                       <LoginPage />
                     </PublicRoute>
                   }
@@ -83,6 +83,7 @@ export default function App() {
                     </ProtectedRoute>
                   }
                 />
+
                 <Route
                   path="/avatar"
                   element={
@@ -94,6 +95,7 @@ export default function App() {
 
                 <Route path="*" element={<NotFound />} />
               </Route>
+
             </Routes>
           </AnimatePresence>
         </Suspense>

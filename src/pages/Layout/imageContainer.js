@@ -34,7 +34,6 @@ const strawberry=desktop?StrawberryDesk:StrawberryTablet;
 const leafs=desktop?LeafDesk:LeafTablet;
 const vector=desktop?VectorDesk:VectorTablet;
 
-
 return ( <ImageContainer ref={ref} show={isLogin}>
     <VectorImg
       src={vector}

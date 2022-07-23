@@ -7,7 +7,7 @@ export default function NotFound() {
       exit={{opacity:0, transition:{duration:0.3}}}
   >
       <h1>
-        404 Page not found <br />:(  Please go to Contact {' '}
+        404 Page not found <br />:(  Please login  {' '}
       </h1>
   </motion.div>
   );

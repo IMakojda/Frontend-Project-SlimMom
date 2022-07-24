@@ -31,6 +31,7 @@ export const Header = styled.header`
     align-items: baseline;
     padding: 80px 0 0 16px;
     max-width: 1280px;
+    margin-right: 50px;
   }
 `;
 

@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { layoutStyles } from '../../stlyles/layoutStyles';
+
 const Link = styled(NavLink)`
   color: ${layoutStyles.placeholderColor};
   font-family: ${layoutStyles.gothamPro};
@@ -15,6 +16,9 @@ const Link = styled(NavLink)`
   }
   :first-child {
     margin-right: 16px;
+  }
+  :hover{
+    color:${layoutStyles.activeButton}
   }
 `;
 

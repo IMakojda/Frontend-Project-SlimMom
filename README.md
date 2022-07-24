@@ -1,4 +1,5 @@
 *******Frontend*********
+
 Ihor Makoida - Team Lead - creating a repository, connecting dependencies, code review, project protection, Loader, Page-transition, Main-container,Routes, Redux-store;
 
 Bohdana Helenko - Scrum-master - performance of scrum-master duties, project presentation, modal;

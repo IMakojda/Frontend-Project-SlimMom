@@ -8,7 +8,7 @@ import authSelector from 'redux/auth/selectors';
 import { motion } from 'framer-motion';
 
 export default function MainPage() {
-  const token = useSelector(authSelector.getToken);
+  const userIsLoggedIn = useSelector(authSelector.getIsLoggedIn);
 
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
@@ -34,7 +34,7 @@ export default function MainPage() {
           title="Розрахуйте свою денну норму калорій прямо зараз"
         />
 
-        {token ? <SummaryForDay/> : false}
+        {userIsLoggedIn ? <SummaryForDay/> : false}
       </ContentWrap>
     </motion.div>
   );

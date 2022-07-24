@@ -1,3 +1,25 @@
+*******Frontend*********
+Ihor Makoida - Team Lead - creating a repository, connecting dependencies, code review, project protection, Loader, Page-transition, Main-container,Routes, Redux-store;
+
+Bohdana Helenko - Scrum-master - performance of scrum-master duties, project presentation, modal;
+
+Denis Zapara – RightSideBar, Redux-diary;
+
+Sergiy Lubchenko – DailyCalorieIntake, Background-container;
+
+Tetyana Korolyuk - LoginPage, LoginForm, Animation background;
+
+Mark Yakushyn - CalculatorСalorieForm, CalculatorPage, MainPage;
+
+Viktoriia Peleshko - RegistrationPage, RegistrationForm;
+
+Mariia Mlyuzan - UserInfo, MainPage, Header, Logo, Avatar, Avatar change;
+
+Markovskii Anatolii – Navigation, Burger Menu;
+
+Oleksandr Suslov - DailyCaloriesForm, DiaryPage, DiaryProductsListItem, DiaryProductsList, DiaryAddProductForm, DiaryDateСalendar, Redux-diary.
+
+
 **Read in other languages: [Русский](README.md), [Polska](README.pl.md).**
 
 # React homework template
